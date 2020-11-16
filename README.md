@@ -17,7 +17,7 @@ The purpose of this website it to provide a user with the ability to create a me
 ### Requirements
 
 Use Materialize and Flask Frameworks, in conjunction with MongoDB and an IMDB API too render information about end user libraries to the Front End.
-The Website should be responsive allowing end users to perform the full set of CRUD operations at both a collection titles level.
+The Website should be responsive allowing end users to perform the full set of CRUD operations at both a collection & titles level.
 
 ### User stories:
 --------
@@ -30,3 +30,35 @@ The Website should be responsive allowing end users to perform the full set of C
 * As a website user I would like to be able to search for a specific titles within a collection.
 * As a website user I would also like to be able to search for titles based on Genre, Director or Description.
 * Finally as a user I would like to be able to use online search capabilities to create Movie information when adding a title.
+
+
+### Wireframes
+
+--------
+####  Light Theme
+
+- Mobile Balsamiq Mockups: Small Window Sizes - [View](assets/wireframes/lightTheme/mobileOnlyWireframes_LightTheme.JPG)
+
+- Tablet Balsamiq Mockups: Medium Window Sizes - [View](assets/wireframes/lightTheme/tabletOnlyWireframes_LightTheme.JPG)
+
+- Desktop Balsamiq Mockups: Large Window Sizes - Regiter Page - [View](assets/wireframes/lightTheme/desktopOnlyWireframes-RegisterlPage_LightTheme.JPG)
+- Desktop Balsamiq Mockups: Large Window Sizes - All Titles Page - [View](assets/wireframes/lightTheme/desktopOnlyWireframes-AllTitlesPage_LightTheme.JPG)
+- Desktop Balsamiq Mockups: Large Window Sizes - Filter Pages - [View](assets/wireframes/lightTheme/desktopOnlyWireframes-FilterPages_LightTheme.JPG)
+- Desktop Balsamiq Mockups: Large Window Sizes - Add & Edit Pages - [View](assets/wireframes/lightTheme/desktopOnlyWireframes-Add&EditPages_LightTheme.JPG)
+- Desktop Balsamiq Mockups: Large Window Sizes - Title Detail Page - [View](assets/wireframes/lightTheme/desktopOnlyWireframes-TitleDetailPage_LightTheme.JPG)
+
+--------
+####  Dark Theme
+
+- Mobile Balsamiq Mockups: Small Window Sizes - [View](assets/wireframes/darkTheme/mobileOnlyWireframes_DarkTheme.JPG)
+
+- Tablet Balsamiq Mockups: Medium Window Sizes - [View](assets/wireframes/darkTheme/tabletOnlyWireframes_DarkTheme.JPG)
+
+- Desktop Balsamiq Mockups: Large Window Sizes - Regiter Page - [View](assets/wireframes/darkTheme/desktopOnlyWireframes-RegisterPage_DarkTheme.JPG)
+- Desktop Balsamiq Mockups: Large Window Sizes - All Titles Page - [View](assets/wireframes/darkTheme/desktopOnlyWireframes-AllTitlesPage_DarkTheme.JPG)
+- Desktop Balsamiq Mockups: Large Window Sizes - Filter Pages - [View](assets/wireframes/darkTheme/desktopOnlyWireframes-FilterPages_DarkTheme.JPG)
+- Desktop Balsamiq Mockups: Large Window Sizes - Add & Edit Pages - [View](assets/wireframes/darkTheme/desktopOnlyWireframes-AddEditPages_DarkTheme.JPG)
+- Desktop Balsamiq Mockups: Large Window Sizes - Title Detail Page - [View](assets/wireframes/darkTheme/desktopOnlyWireframes-TitleDetailPage_DarkTheme.JPG)
+
+--------
+
