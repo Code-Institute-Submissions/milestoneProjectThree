@@ -1,3 +1,26 @@
-body {
-    background-color: red;
+.brand-logo {
+  margin-left: 20px;
 }
+ /* #slide-out {
+    margin-top:65px;
+} */
+
+  @media only screen and (min-width : 992px) {
+  .invesible-top {
+    top: 65px;
+  }
+}
+
+main,
+footer {
+  padding-left: 300px;
+}
+
+@media only screen and (max-width: 992px) {
+  
+  main,
+  footer {
+    padding-left: 0;
+  }
+}
+
