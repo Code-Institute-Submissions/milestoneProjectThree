@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Movie Catalogue</title>
-</head>
-<body>
+
+{% extends "base.html" %}
+{% block content %}
+
+ <h2>Validate template inheritance</h2>
+
+
  {% for title in titles %}
  {{ title.title_name }}<br>
  {{ title.library_name }}<br>
@@ -21,6 +21,7 @@
  {{ title.my_rating }}<br>
  {{ title.purchase_price }}<br>
  {{ title.purchase_date }}<br>
+ {{ title.created_by }}<br>
  {% endfor %}
-</body>
-</html>
+
+{% endblock %}
