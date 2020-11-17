@@ -37,28 +37,21 @@ The Website should be responsive allowing end users to perform the full set of C
 --------
 ####  Light Theme
 
-- Mobile Balsamiq Mockups: Small Window Sizes - [View](assets/wireframes/lightTheme/mobileOnlyWireframes_LightTheme.JPG)
+- Mobile Balsamiq Mockups: Small Window Sizes - [View](assets/wireframes/lightTheme/mobileOnlyWireframes_lightTheme.JPG)
 
-- Tablet Balsamiq Mockups: Medium Window Sizes - [View](assets/wireframes/lightTheme/tabletOnlyWireframes_LightTheme.JPG)
+- Tablet Balsamiq Mockups: Medium Window Sizes - [View](assets/wireframes/lightTheme/tabletOnlyWireframes_lightTheme.JPG)
 
-- Desktop Balsamiq Mockups: Large Window Sizes - Regiter Page - [View](assets/wireframes/lightTheme/desktopOnlyWireframes-RegisterlPage_LightTheme.JPG)
-- Desktop Balsamiq Mockups: Large Window Sizes - All Titles Page - [View](assets/wireframes/lightTheme/desktopOnlyWireframes-AllTitlesPage_LightTheme.JPG)
-- Desktop Balsamiq Mockups: Large Window Sizes - Filter Pages - [View](assets/wireframes/lightTheme/desktopOnlyWireframes-FilterPages_LightTheme.JPG)
-- Desktop Balsamiq Mockups: Large Window Sizes - Add & Edit Pages - [View](assets/wireframes/lightTheme/desktopOnlyWireframes-Add&EditPages_LightTheme.JPG)
-- Desktop Balsamiq Mockups: Large Window Sizes - Title Detail Page - [View](assets/wireframes/lightTheme/desktopOnlyWireframes-TitleDetailPage_LightTheme.JPG)
+- Desktop Balsamiq Mockups: Large Window Sizes - [View](assets/wireframes/lightTheme/desktopOnlyWireframes_lightTheme.JPG)
+
 
 --------
 ####  Dark Theme
 
-- Mobile Balsamiq Mockups: Small Window Sizes - [View](assets/wireframes/darkTheme/mobileOnlyWireframes_DarkTheme.JPG)
+- Mobile Balsamiq Mockups: Small Window Sizes - [View](assets/wireframes/darkTheme/mobileOnlyWireframes_darkTheme.JPG)
 
-- Tablet Balsamiq Mockups: Medium Window Sizes - [View](assets/wireframes/darkTheme/tabletOnlyWireframes_DarkTheme.JPG)
+- Tablet Balsamiq Mockups: Medium Window Sizes - [View](assets/wireframes/darkTheme/tabletOnlyWireframes_darkTheme.JPG)
 
-- Desktop Balsamiq Mockups: Large Window Sizes - Regiter Page - [View](assets/wireframes/darkTheme/desktopOnlyWireframes-RegisterPage_DarkTheme.JPG)
-- Desktop Balsamiq Mockups: Large Window Sizes - All Titles Page - [View](assets/wireframes/darkTheme/desktopOnlyWireframes-AllTitlesPage_DarkTheme.JPG)
-- Desktop Balsamiq Mockups: Large Window Sizes - Filter Pages - [View](assets/wireframes/darkTheme/desktopOnlyWireframes-FilterPages_DarkTheme.JPG)
-- Desktop Balsamiq Mockups: Large Window Sizes - Add & Edit Pages - [View](assets/wireframes/darkTheme/desktopOnlyWireframes-AddEditPages_DarkTheme.JPG)
-- Desktop Balsamiq Mockups: Large Window Sizes - Title Detail Page - [View](assets/wireframes/darkTheme/desktopOnlyWireframes-TitleDetailPage_DarkTheme.JPG)
+- Desktop Balsamiq Mockups: Large Window Sizes - [View](assets/wireframes/darkTheme/desktopOnlyWireframes_darkTheme.JPG)
 
 --------
 
