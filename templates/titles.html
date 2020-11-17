@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Movie Catalogue</title>
+</head>
+<body>
+ {% for title in titles %}
+ {{ title.title_name }}<br>
+ {{ title.library_name }}<br>
+ {{ title.release_year }}<br>
+ {{ title.genre }}<br>
+ {{ title.duration }}<br>
+ {{ title.title_description }}<br>
+ {{ title.director }}<br>
+ {{ title.cast }}<br>
+ {{ title.image_url }}<br>
+ {{ title.is_watched }}<br>
+ {{ title.is_bluray }}<br>
+ {{ title.my_rating }}<br>
+ {{ title.purchase_price }}<br>
+ {{ title.purchase_date }}<br>
+ {% endfor %}
+</body>
+</html>
