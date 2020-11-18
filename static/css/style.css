@@ -1,8 +1,22 @@
 /* General Typography */
+
 .text-shadow {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
+
+/* White Space customisation */
+/* removes whitespace between Top Nav and template headers */
+.nav-wrapper {
+    margin-bottom:0;
+}
+
+.header-wrapper > h3 {
+
+    margin-top: 0;
+    padding-top:15px;
+    padding-left:30px;
+} 
 
 /* ------------------------------------ */
 
@@ -46,7 +60,7 @@
 /* ------------------------------------ */
 
 
-/* Target Sidenav Materialize elements */
+/* Target Sidenav Materialize Elements */
 .sidenav li > h5 {
     margin-left: 30px;
     color: white;
@@ -81,7 +95,7 @@ footer {
 /* ------------------------------------ */
 
 
-/* Target sidenav search bar */
+/* Target Sidenav Search Bar */
 
 #side-navbar-search {
     margin-left:30px;
@@ -100,6 +114,17 @@ footer {
     cursor: pointer;
     color: white;
     font-size: 1.2em;
+}
+
+/* ------------------------------------ */
+
+
+/* Target Templates */
+
+.header-wrapper {
+
+    background-color: 
+
 }
 
 /* ------------------------------------ */

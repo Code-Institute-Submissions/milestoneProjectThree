@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 
- <h2>Validate template inheritance</h2>
+<div class="container-fluid">
+  <div class="row header-wrapper blue-grey lighten-4 blue-grey-text text-lighten-1">
+    <h3 class="left-align text-shadow">All Titles</h3>
+  </div>
 
-
- {% for title in titles %}
- {{ title.title_name }}<br>
- {{ title.library_name }}<br>
- {{ title.release_year }}<br>
- {{ title.genre }}<br>
- {{ title.duration }}<br>
- {{ title.title_description }}<br>
- {{ title.director }}<br>
- {{ title.cast }}<br>
- {{ title.image_url }}<br>
- {{ title.is_watched }}<br>
- {{ title.is_bluray }}<br>
- {{ title.my_rating }}<br>
- {{ title.purchase_price }}<br>
- {{ title.purchase_date }}<br>
- {{ title.created_by }}<br>
- {% endfor %}
+  <div class="row">
+    <div class="col s6 offset-s3">
+      {% for title in titles %} {{ title.title_name }}<br />
+      {{ title.library_name }}<br />
+      {{ title.release_year }}<br />
+      {{ title.genre }}<br />
+      {{ title.duration }}<br />
+      {{ title.title_description }}<br />
+      {{ title.director }}<br />
+      {{ title.cast }}<br />
+      {{ title.image_url }}<br />
+      {{ title.is_watched }}<br />
+      {{ title.is_bluray }}<br />
+      {{ title.my_rating }}<br />
+      {{ title.purchase_price }}<br />
+      {{ title.purchase_date }}<br />
+      {{ title.created_by }}<br />
+      {% endfor %}
+    </div>
+  </div>
+</div>
 
 {% endblock %}

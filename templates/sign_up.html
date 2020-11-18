@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %} {% block content %}
+
+<div class="container-fluid">
+	<div class="row header-wrapper blue-grey lighten-4 blue-grey-text text-lighten-1">
+		<h3 class="left-align text-shadow">Sign Up</h3>
+	</div>
+
+	<div class="row">
+		<form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('sign_up') }}">
+			<div class="card-panel">
+				<!-- username -->
+				<div class="row">
+					<div class="input-field col s12">
+						<i class="fas fa-user-plus prefix blue-grey-text text-darken-2"></i>
+						<input id="username" name="username" type="text" class="validate">
+						<label for="username">Username</label>
+					</div>
+				</div>
+				<!-- password -->
+				<div class="row">
+					<div class="input-field col s12">
+						<i class="fas fa-user-lock prefix blue-grey-text text-darken-2"></i>
+						<input id="password" name="password" type="password" class="validate">
+						<label for="password">Password</label>
+					</div>
+				</div>
+				<!-- confirm password -->
+				<div class="row">
+					<div class="input-field col s12">
+						<i class="fas fa-user-check prefix blue-grey-text text-darken-2"></i>
+						<input id="confirm-password" name="confirm-password" type="password" class="validate">
+						<label for="confirm-password">Confirm Password</label>
+					</div>
+				</div>
+				<!-- register -->
+				<div class="row">
+					<button type="submit" class="col s12 btn-large blue-grey darken-2 text-shadow">
+                        Sign Up! <i class="fas fa-sign-in-alt"></i>
+                    </button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+
+</div>
+
+{% endblock %}
