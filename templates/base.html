@@ -27,26 +27,49 @@
 <body>
 	<header>
 
-    <div class="wrapper">
-		<!-- top navbar -->
+	<div class="wrapper">
+		<!-- Top Navbar -->
 		<nav class="nav-extended text-shadow blue-grey lighten-2">
-			<div class="nav-wrapper">
+			<div class="nav-wrapper container-fluid">
+				<div class="row">
+	
+					<div class="col s2">	
+						<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+						<a href="{{ url_for('get_titles') }}" class="brand-logo">KJC Movies<i class="fas fa-compact-disc left hide-on-med-and-down"></i></a>
+					</div> 
+					<div class="col s6">
+						<ul class="left hide-on-med-and-down">
+							<li id="top-navbar-search" class="search">
+								<div class="search-wrapper">
+									<input id="search" placeholder="Search"><i class="fas fa-search"></i>
+									<div class="search-results"></div>
+								</div>
+							</li>
+						</ul>
+					</div>
 
-				<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
-				<a href="#" class="brand-logo">KJC Movies</a>
-
-				<ul class="right hide-on-med-and-down">
-					<li><a href="#">Sign Up</a></li>
-					<li><a href="#">Sign In</a></li>
-				</ul>
-
+                    <!-- Right Hand Side Nav Elements -->
+	
+					<div class="col s4">
+						<ul class="right hide-on-med-and-down">
+                            <li><a href="#">Sign Up<i class="fas fa-user-plus left"></i></a></li>
+                            <li><a href="#">Sign In<i class="fas fa-sign-in-alt left"></i></a></li>
+							<li><a href="#">Sign Out<i class="fas fa-sign-out-alt left"></i></a></li>
+						</ul>
+					</div>	
+				</div>	
 			</div>
 		</nav>
-    </div>
-        <!-- mobile sidenav -->
+	</div>
+        <!-- Side Navbar -->
 		<ul class="sidenav sidenav-fixed invesible-top text-shadow blue-grey lighten-2" id="slide-out">
+            <!-- Hide for Large Devices Only-->
+            <li>
+				<h5 class="left-align hide-on-large-only"><strong>Movies Catalogue</strong></h5>
+			</li>
 
-			<li><a href="#">Home<i class="fas fa-home left"></i></a></li>
+            <!-- Display for All Devices -->
+			<li><a href="{{ url_for('get_titles') }}">Home<i class="fas fa-home left"></i></a></li>
 			<li><a href="#">Collections<i class="fas fa-object-group left"></i></a></li>
 			<li><a href="#">Genre<i class="fas fa-venus-mars left"></i></a></li>
 			<li><a href="#">Release Year<i class="far fa-calendar-check left"></i></a></li>
@@ -54,8 +77,25 @@
 			<hr>
 			<li><a href="#">Add Title<i class="fas fa-plus-square left"></i></a></li>
 			<li><a href="#">Manage Collections<i class="fas fa-edit left"></i></a></li>
-			<hr>
-			<li><a href="#">Sign Out<i class="fas fa-sign-out-alt left"></i></a></li>
+            
+
+
+            <hr>
+			<li class="#"><a href="#">Sign Up<i class="fas fa-user-plus left"></i></a></li>
+			<li class="#"><a href="#">Sign In<i class="fas fa-sign-in-alt left"></i></a></li>
+			<li class="#"><a href="#">Sign Out<i class="fas fa-sign-out-alt left"></i></a></li>
+
+            <!-- Hide for Large Devices Only-->
+			<!-- <hr class="hide-on-large-only">
+			<li class="hide-on-large-only"><a href="#">Sign Out<i class="fas fa-sign-out-alt left"></i></a></li> -->
+
+            <hr>
+            <li id="side-navbar-search" class="search">
+                <div class="search-wrapper">
+                    <input id="search" placeholder="Search"><i class="fas fa-search"></i>
+                    <div class="search-results"></div>
+                </div>
+            </li>
 		</ul>
 
 
