@@ -3,13 +3,13 @@
 {% extends "base.html" %} {% block headercontent %} 
 
 	<div class="row header-wrapper blue-grey lighten-4 blue-grey-text text-lighten-1">
-		<h3 class="left-align text-shadow">Sign Up</h3>
+		<h3 class="left-align text-shadow">Sign In</h3>
 	</div>
 {% endblock %}
 
 {% block maincontent %}    
 	<div class="row">
-		<form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('sign_up') }}">
+		<form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('sign_in') }}">
 			<div class="card-panel">
 				<!-- username -->
 				<div class="row">
@@ -31,20 +31,10 @@
 						<label for="password">Password</label>
 					</div>
 				</div>
-				<!-- confirm password -->
-				<div class="row">
-					<div class="input-field col s12">
-						<i class="fas fa-user-check prefix blue-grey-text text-darken-2 tooltipped"
-                        data-position="left" data-tooltip="Please Retype Password?"></i>
-						<input id="confirm-password" name="confirm-password" type="password" minlength="5" maxlength="20" 
-                            pattern="^[a-zA-Z0-9.@$!%*#?&]{4,20}$" class="validate"  data-length="20" required>
-						<label for="confirm-password">Confirm Password</label>
-					</div>
-				</div>
-				<!-- register -->
+				<!-- sign in -->
 				<div class="row">
 					<button type="submit" class="col s12 btn-large blue-grey darken-2 text-shadow">
-                        Sign Up! <i class="fas fa-sign-in-alt"></i>
+                        Sign In! <i class="fas fa-sign-in-alt"></i>
                     </button>
 				</div>
 			</div>

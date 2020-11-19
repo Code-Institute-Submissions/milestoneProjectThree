@@ -1,6 +1,7 @@
 $(document).ready(function () {
     $(".sidenav").sidenav();
     $(".tooltipped").tooltip();
+    $("input#username, input#password, input#confirm-password").characterCounter();
 });
 
 // $('.button-collapse').sidenav({
