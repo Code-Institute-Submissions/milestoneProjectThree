@@ -96,11 +96,17 @@ def sign_in():
 
 
 @app.route("/user_profile/<username>", methods=["GET", "POST"])
-def user_profile():
+def user_profile(username):
     # grab the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    return render_template("user_profile.html", username=username)
+    # grab user collection counts from db
+    library_count = mongo.db.libraries.count({"created_by": session["user"]})
+    titles_count = mongo.db.titles.count({"created_by": session["user"]})
+    # flash("Library & Titles Count, {}, {}".format(library_count, titles_count))
+    return render_template(
+                    "user_profile.html", username=username,
+                    library_count=library_count, titles_count=titles_count)
 
 
 if __name__ == "__main__":
