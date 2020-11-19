@@ -77,11 +77,11 @@ def sign_in():
             {"username": username.lower()})
         if existing_user:
             # ensure hashed password matches user input
-            if check_password_hash(
-                existing_user["password"], password):
-                    session["user"] = username.lower()
-                    flash("Welcome, {}".format(username))
-                    return redirect(url_for("user_profile"))
+            if check_password_hash(existing_user["password"], password):
+                session["user"] = username.lower()
+                flash("Welcome, {}".format(username))
+                return redirect(url_for(
+                    "user_profile", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -95,9 +95,12 @@ def sign_in():
     return render_template("sign_in.html")
 
 
-@app.route("/user_profile", methods=["GET", "POST"])
+@app.route("/user_profile/<username>", methods=["GET", "POST"])
 def user_profile():
-    return render_template("user_profile.html")
+    # grab the session user's username from db
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    return render_template("user_profile.html", username=username)
 
 
 if __name__ == "__main__":

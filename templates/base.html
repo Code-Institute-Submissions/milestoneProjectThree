@@ -53,7 +53,7 @@
 					<div class="col s5 hide-on-med-and-down">
 						<ul class="right">
                             <li class="#"><a href="{{ url_for('sign_up') }}">Sign Up<i class="fas fa-user-plus left"></i></a></li>
-                            <li class="#"><a href="{{ url_for('user_profile') }}">User Profile<i class="fas fa-user left"></i></a></li>
+                            <li class="#"><a href="{{ url_for('user_profile', username=session['user']) }}">User Profile<i class="fas fa-user left"></i></a></li>
                             <li class="#"><a href="{{ url_for('sign_in') }}">Sign In<i class="fas fa-sign-in-alt left"></i></a></li>
 							<li class="#"><a href="#">Sign Out<i class="fas fa-sign-out-alt left"></i></a></li>
 						</ul>
@@ -83,7 +83,7 @@
 
             <hr>
 			<li class="#"><a href="{{ url_for('sign_up') }}">Sign Up<i class="fas fa-user-plus left"></i></a></li>
-            <li class="#"><a href="{{ url_for('user_profile') }}">User Profile<i class="fas fa-user left"></i></a></li>
+            <li class="#"><a href="{{ url_for('user_profile', username=session['user']) }}">User Profile<i class="fas fa-user left"></i></a></li>
 			<li class="#"><a href="{{ url_for('sign_in') }}">Sign In<i class="fas fa-sign-in-alt left"></i></a></li>
 			<li class="#"><a href="#">Sign Out<i class="fas fa-sign-out-alt left"></i></a></li>
 
