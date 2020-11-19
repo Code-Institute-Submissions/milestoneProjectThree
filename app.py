@@ -62,6 +62,7 @@ def sign_up():
             }
         mongo.db.users.insert_one(register)
         flash("Congratulations!You have registered successfully.")
+        return redirect(url_for("user_profile"))
 
     return render_template("sign_up.html")
 
@@ -80,6 +81,7 @@ def sign_in():
                 existing_user["password"], password):
                     session["user"] = username.lower()
                     flash("Welcome, {}".format(username))
+                    return redirect(url_for("user_profile"))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -92,6 +94,10 @@ def sign_in():
 
     return render_template("sign_in.html")
 
+
+@app.route("/user_profile", methods=["GET", "POST"])
+def user_profile():
+    return render_template("user_profile.html")
 
 
 if __name__ == "__main__":

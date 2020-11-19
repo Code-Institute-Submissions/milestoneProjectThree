@@ -41,19 +41,19 @@
 						<ul class="left hide-on-med-and-down">
 							<li id="top-navbar-search" class="search">
 								<div class="search-wrapper">
-									<input id="search" placeholder="Search"><i class="fas fa-search"></i>
+									<input id="search-topnav" placeholder="Search"><i class="fas fa-search"></i>
 									<div class="search-results"></div>
 								</div>
 							</li>
 						</ul>
 					</div>
 
-                    <!-- Right Hand Side Nav Elements -->
+                    <!-- Top Right Nav Elements -->
 	
-					<div class="col s5">
-						<ul class="right hide-on-med-and-down">
+					<div class="col s5 hide-on-med-and-down">
+						<ul class="right">
                             <li class="#"><a href="{{ url_for('sign_up') }}">Sign Up<i class="fas fa-user-plus left"></i></a></li>
-                            <li class="#"><a href="#">User Profile<i class="fas fa-user left"></i></a></li>
+                            <li class="#"><a href="{{ url_for('user_profile') }}">User Profile<i class="fas fa-user left"></i></a></li>
                             <li class="#"><a href="{{ url_for('sign_in') }}">Sign In<i class="fas fa-sign-in-alt left"></i></a></li>
 							<li class="#"><a href="#">Sign Out<i class="fas fa-sign-out-alt left"></i></a></li>
 						</ul>
@@ -83,7 +83,7 @@
 
             <hr>
 			<li class="#"><a href="{{ url_for('sign_up') }}">Sign Up<i class="fas fa-user-plus left"></i></a></li>
-            <li class="#"><a href="#">User Profile<i class="fas fa-user left"></i></a></li>
+            <li class="#"><a href="{{ url_for('user_profile') }}">User Profile<i class="fas fa-user left"></i></a></li>
 			<li class="#"><a href="{{ url_for('sign_in') }}">Sign In<i class="fas fa-sign-in-alt left"></i></a></li>
 			<li class="#"><a href="#">Sign Out<i class="fas fa-sign-out-alt left"></i></a></li>
 
@@ -94,7 +94,7 @@
             <hr>
             <li id="side-navbar-search" class="search">
                 <div class="search-wrapper">
-                    <input id="search" placeholder="Search"><i class="fas fa-search"></i>
+                    <input id="search-sidenav" placeholder="Search"><i class="fas fa-search"></i>
                     <div class="search-results"></div>
                 </div>
             </li>
