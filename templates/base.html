@@ -53,6 +53,7 @@
 					<div class="col s4">
 						<ul class="right hide-on-med-and-down">
                             <li><a href="{{ url_for('sign_up') }}">Sign Up<i class="fas fa-user-plus left"></i></a></li>
+                            <li><a href="#">Sign Up<i class="fas fa-user left"></i></a></li>
                             <li><a href="#">Sign In<i class="fas fa-sign-in-alt left"></i></a></li>
 							<li><a href="#">Sign Out<i class="fas fa-sign-out-alt left"></i></a></li>
 						</ul>
@@ -98,15 +99,29 @@
             </li>
 		</ul>
 
+        {% block headercontent %}
+        {% endblock %}
 
 	</header>
 
-	<main>
+    <section class="container-fluid">
+        <!-- flash messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="row">
+                        <h4 class="flashes blue-grey darken-2 text-shadow white-text center-align">{{ message }}</h4>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
 
-		{% block content %}
-		{% endblock %}
+    <main class="container-fluid">
+        {% block maincontent %}
+        {% endblock %}
+    </main>
 
-	</main>
     
 	<!-- jQuery CDN -->
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"

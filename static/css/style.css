@@ -5,6 +5,13 @@
 }
 
 
+/* Flash Messages */
+
+.flashes {
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
 /* White Space customisation */
 /* removes whitespace between Top Nav and template headers */
 .nav-wrapper {
@@ -80,13 +87,13 @@
      color: white;
 }
 
-main,
+.header-wrapper, section, main,
 footer {
   padding-left: 300px;
 }
 
 @media only screen and (max-width: 992px) {
-  main,
+  .header-wrapper, section, main,
   footer {
     padding-left: 0;
   }
@@ -121,10 +128,5 @@ footer {
 
 /* Target Templates */
 
-.header-wrapper {
-
-    background-color: 
-
-}
 
 /* ------------------------------------ */
