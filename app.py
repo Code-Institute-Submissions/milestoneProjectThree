@@ -34,7 +34,7 @@ def default():
 # All Titles View
 @app.route("/get_titles")
 def get_titles():
-    titles = mongo.db.titles.find()
+    titles = list(mongo.db.titles.find({"created_by": session["user"]}))
     return render_template("titles.html", titles=titles)
 
 
@@ -68,7 +68,7 @@ def sign_up():
             }
         mongo.db.users.insert_one(register)
         flash("Congratulations!You have registered successfully.")
-        return redirect(url_for("user_profile"))
+        return redirect(url_for("sign_in"))
 
     return render_template("sign_up.html")
 
