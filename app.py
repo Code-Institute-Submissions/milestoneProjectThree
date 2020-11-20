@@ -31,8 +31,11 @@ def default():
 
 
 # All Titles View
-@app.route("/home")
-def get_titles():
+@app.route("/home/<username>")
+def get_titles(username):
+    # retrieve the session user's username from db for decorator
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
     titles = list(mongo.db.titles.find({"created_by": session["user"]}))
     return render_template("titles.html", titles=titles)
 

@@ -87,7 +87,7 @@
 		
 			<!-- Display for All Devices -->
             {% if session.user %}		
-			<li><a href="{{ url_for('get_titles') }}">Home<i class="fas fa-home left"></i></a></li>
+			<li><a href="{{ url_for('get_titles', username=session['user']) }}">Home<i class="fas fa-home left"></i></a></li>
 			<li><a href="#">Collections<i class="fas fa-object-group left"></i></a></li>
 			<li><a href="#">Genre<i class="fas fa-venus-mars left"></i></a></li>
 			<li><a href="#">Release Year<i class="far fa-calendar-check left"></i></a></li>

@@ -17,7 +17,7 @@
                     <img src="{{ title.image_url }}">
                     <a href="#"></a>
                 </div>
-                <div class="card-title center-align text shadow"><strong>{{ title.title_name }}</strong>
+                <div class="card-title center-align text shadow"><strong class="blue-grey-text">{{ title.title_name }}</strong>
                 </div>
             </div>
         </div>
@@ -31,24 +31,7 @@
                         <p>{{ title.description }}</p>
                     </div>
                     <div class="card-action">
-                        <a href="#"><strong>{{ title.title_name }}</strong></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-	{% endfor %}
-   	{% for title in titles %}
-        <div class="col s12 hide-on-med-and-up">
-            <div class="card horizontal">
-                <div class="card-image">
-                    <img src="{{ title.image_url }}">
-                </div>
-                <div class="card-stacked">
-                    <div class="card-content">
-                        <p>{{ title.description }}</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#"><strong>{{ title.title_name }}</strong></a>
+                        <a href="#"><strong class="blue-grey-text">{{ title.title_name }}</strong></a>
                     </div>
                 </div>
             </div>
