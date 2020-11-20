@@ -109,6 +109,14 @@ def user_profile(username):
                     library_count=library_count, titles_count=titles_count)
 
 
+@app.route("/sign_out")
+def sign_out():
+    # remove user from session cookie
+    flash("You have been logged out")
+    session.pop("user")
+    return redirect(url_for("sign_in"))
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
