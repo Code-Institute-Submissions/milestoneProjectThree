@@ -26,20 +26,19 @@ mongo = PyMongo(app)
 
 # Default View
 @app.route("/")
-@app.route("/default")
 def default():
     return render_template("default.html")
 
 
 # All Titles View
-@app.route("/get_titles")
+@app.route("/home")
 def get_titles():
     titles = list(mongo.db.titles.find({"created_by": session["user"]}))
     return render_template("titles.html", titles=titles)
 
 
 # Register View
-@app.route("/sign_up", methods=["GET", "POST"])
+@app.route("/signup", methods=["GET", "POST"])
 def sign_up():
     if request.method == "POST":
 
@@ -73,7 +72,7 @@ def sign_up():
     return render_template("sign_up.html")
 
 
-@app.route("/sign_in", methods=["GET", "POST"])
+@app.route("/signin", methods=["GET", "POST"])
 def sign_in():
     if request.method == "POST":
         username = request.form.get("username")
@@ -101,7 +100,7 @@ def sign_in():
     return render_template("sign_in.html")
 
 
-@app.route("/user_profile/<username>", methods=["GET", "POST"])
+@app.route("/userprofile/<username>", methods=["GET", "POST"])
 def user_profile(username):
     # retrieve the session user's username from db
     username = mongo.db.users.find_one(
@@ -115,7 +114,7 @@ def user_profile(username):
                     library_count=library_count, titles_count=titles_count)
 
 
-@app.route("/sign_out")
+@app.route("/signout")
 def sign_out():
     # remove user from session cookie
     flash("You have been logged out")
