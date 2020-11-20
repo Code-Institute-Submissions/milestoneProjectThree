@@ -127,9 +127,12 @@ footer {
 
 /* Default Template */
 
-/* .callout-wrapper {
+.callout-wrapper {
   margin-top:40px;
-}  */
+} 
 
-
+/* Target Logo Default html */
+i.fa-compact-disc > strong {
+font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+}
 /* ------------------------------------ */

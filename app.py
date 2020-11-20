@@ -24,8 +24,14 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
-# All Titles View
+# Default View
 @app.route("/")
+@app.route("/default")
+def default():
+    return render_template("default.html")
+
+
+# All Titles View
 @app.route("/get_titles")
 def get_titles():
     titles = mongo.db.titles.find()
@@ -97,10 +103,10 @@ def sign_in():
 
 @app.route("/user_profile/<username>", methods=["GET", "POST"])
 def user_profile(username):
-    # grab the session user's username from db
+    # retrieve the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    # grab user collection counts from db
+    # retrieve user collection counts from db
     library_count = mongo.db.libraries.count({"created_by": session["user"]})
     titles_count = mongo.db.titles.count({"created_by": session["user"]})
     # flash("Library & Titles Count, {}, {}".format(library_count, titles_count))
