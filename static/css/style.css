@@ -4,6 +4,10 @@
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
+.no-line {
+text-decoration: none;
+
+}
 
 /* Flash Messages */
 
@@ -125,7 +129,7 @@ footer {
 /* Target Templates */
 
 
-/* Default Template */
+/* Default Templates */
 
 .callout-wrapper {
   margin-top:40px;
@@ -136,3 +140,11 @@ i.fa-compact-disc > strong {
 font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 }
 /* ------------------------------------ */
+
+
+/* Target Titles html */
+
+.card-wrapper {
+
+    max-height: 550px; /* prevent mirage effect on desktop view */
+}

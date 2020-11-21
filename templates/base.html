@@ -10,9 +10,10 @@
 		integrity="sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA=="
 		crossorigin="anonymous" type="text/css">
 
-	<!-- Materialize CSS CDN -->
+	<!-- Materialize CSS & Icons CDN -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
 		type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	<!-- Local CSS -->
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
@@ -27,7 +28,7 @@
 <body>
 	<header>
 
-		<div class="wrapper">
+		<div class="wrapper navbar-fixed">
 			<!-- Top Navbar -->
 			<nav class="nav-extended text-shadow blue-grey lighten-2">
 				<div class="container-fluid">
@@ -79,7 +80,7 @@
 		</div>
 		<!-- Side Navbar -->
 		
-		<ul class="sidenav sidenav-fixed invesible-top text-shadow blue-grey lighten-2 " id="slide-out">
+		<ul class="sidenav sidenav-fixed invesible-top text-shadow blue-grey lighten-2" id="slide-out">
 			<!-- Hide for Large Devices Only-->
 			<li>
 				<h5 class="left-align hide-on-large-only"><strong>Movies Catalogue</strong></h5>
