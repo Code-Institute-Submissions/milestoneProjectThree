@@ -138,6 +138,13 @@ def sign_out():
     return redirect(url_for("sign_in"))
 
 
+# Get Individual Title Detail
+@app.route('/home/detail/<title_id>')
+def get_title_detail(title_id):
+    title = mongo.db.titles.find_one({"_id": ObjectId(title_id)})
+    return render_template("title_detail.html", title=title)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %} {% block headercontent %}
+
+<div class="row header-wrapper blue-grey lighten-4 blue-grey-text text-lighten-1">
+	<h3 class="left-align text-shadow">Title Detail</h3>
+</div>
+{% endblock %}
+
+{% block maincontent %}
+<!-- <div class="row">
+	<div class="col s12">
+		<h4 class="blue-grey-text text-darken-4">
+			{{ title.title_name }}
+		</h4>
+	</div>
+</div> -->
+<div class="row ">
+	<div class="col m3 hide-on-small-only">
+		<div class="card">
+			<div class="card-image">
+				<img src="{{ title.image_url }}">
+                </div>
+			</div>
+		</div>
+		<div class="col m8 offset-m1 align-left mild-shadow">
+			<div class="row">
+				<div class="col s12">
+					<h4 class="blue-grey-text text-darken-1">
+						<strong>{{ title.title_name }}</strong>
+					</h4>
+					<hr>
+				</div>
+				<div class="col s3">
+					<h5 class="blue-grey-text text-lighten-2">
+						<strong>Collection:</strong>
+					</h5>
+				</div>
+				<div class="col s9">
+					<h5 class="blue-grey-text text-darken-1">
+						<strong>{{ title.library_name }}</strong>
+					</h5>
+				</div>
+				<div class="col s3">
+					<h5 class="blue-grey-text text-lighten-2">
+						<strong>Year:</strong>
+					</h5>
+				</div>
+				<div class="col s9">
+					<h5 class="blue-grey-text text-darken-1">
+						<strong>{{ title.release_year }}</strong>
+					</h5>
+				</div>
+				<div class="col s3">
+					<h5 class="blue-grey-text text-lighten-2">
+						<strong>Genre:</strong>
+					</h5>
+				</div>
+				<div class="col s9">
+					<h5 class="blue-grey-text text-darken-1">
+						<strong>{{ title.genre}}</strong>
+					</h5>
+				</div>
+				<div class="col s3">
+					<h5 class="blue-grey-text text-lighten-2">
+						<strong>Duration:</strong>
+					</h5>
+				</div>
+				<div class="col s9">
+					<h5 class="blue-grey-text text-darken-1">
+						<strong >{{ title.duration }} mins</strong>
+					</h5>
+				</div>
+				<div class="col s3">
+					<h5 class="blue-grey-text text-lighten-2">
+						<strong>Plot:</strong>
+					</h5>
+				</div>
+				<div class="col s9">
+					<h5 class="blue-grey-text text-darken-1">
+						{{ title.description }}
+					</h5>
+				</div>
+				<div class="col s3">
+					<h5 class="blue-grey-text text-lighten-2">
+						<strong>Director:</strong>
+					</h5>
+				</div>
+				<div class="col s9">
+					<h5 class="blue-grey-text text-darken-1">
+						<strong >{{ title.director }}</strong>
+					</h5>
+				</div>
+				<div class="col s3">
+					<h5 class="blue-grey-text text-lighten-2">
+						<strong>Cast:</strong>
+					</h5>
+				</div>
+				<div class="col s9">
+					<h5 class="blue-grey-text text-darken-1">
+						<strong >{{ title.cast }}</strong>
+					</h5>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="row">
+        <hr>
+    
+        <div class="col s3">
+            <h7 class="blue-grey-text text-lighten-2">
+                <strong>Watched:</strong>
+            </h7>
+        </div>
+        <div class="col s9 switch">
+            <label for="is_watched">
+                {% if title.is_watched == "on" %}
+                    <input type="checkbox" id="is_watched" name="is_watched" checked>
+                {% else %}
+                    <input type="checkbox" id="is_watched" name="is_watched">
+                {% endif %}
+                <span class="lever"></span>
+                <h7 class="blue-grey-text text-lighten-2">
+                    <strong> Watched</strong>
+                </h7>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s3">
+            <h7 class="blue-grey-text text-lighten-2">
+                <strong>Bluray:</strong>
+            </h7>
+        </div>
+        <div class="col s9 switch">
+            <label for="is_bluray">
+                {% if title.is_bluray == "on" %}
+                    <input type="checkbox" id="is_is_bluray" name="is_bluray" checked>
+                {% else %}
+                    <input type="checkbox" id="is_bluray" name="is_bluray">
+                {% endif %}
+                <span class="lever"></span>
+                <h7 class="blue-grey-text text-lighten-2">
+                    <strong> BluRay</strong>
+                </h7>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s3">
+            <h7 class="blue-grey-text text-lighten-2">
+                <strong>Rating:</strong>
+            </h7>
+        </div>
+        <div class="col s9">
+            {% if title.my_rating == "5" %}
+                <span class="fa fa-star star-checked"></span>
+                <span class="fa fa-star star-checked"></span>
+                <span class="fa fa-star star-checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            {% else %}
+                <span class="fa fa-star "></span>
+                <span class="fa fa-star "></span>
+                <span class="fa fa-star "></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s3">
+            <h7 class="blue-grey-text text-lighten-2">
+                <strong>Purchase:</strong>
+            </h7>
+        </div>
+        <div class="col s9">
+            <h7 class="blue-grey-text text-darken-1">
+                <strong >{{ title.purchase_price }}</strong>
+            </h7>
+        </div>     
+    </div>       
+
+
+
+{% endblock %}
