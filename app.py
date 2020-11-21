@@ -46,6 +46,8 @@ def sign_up():
     if request.method == "POST":
 
         # store form inputs in variables
+        first_name = request.form.get("first_name")
+        last_name = request.form.get("last_name")
         username = request.form.get("username")
         password = request.form.get("password")
         confirmpassword = request.form.get("confirm-password")
@@ -65,11 +67,14 @@ def sign_up():
 
         # register user to mongodb
         register = {
+                "first_name": first_name,
+                "last_name": last_name,
                 "username": username,
                 "password": generate_password_hash(password)
             }
         mongo.db.users.insert_one(register)
-        flash("Congratulations!You have registered successfully.")
+        flash("Congratulations {}! You have registered successfully."
+              .format(first_name.capitalize()))
         return redirect(url_for("sign_in"))
 
     return render_template("sign_up.html")
@@ -87,7 +92,9 @@ def sign_in():
             # ensure hashed password matches user input
             if check_password_hash(existing_user["password"], password):
                 session["user"] = username.lower()
-                flash("Welcome, {}".format(username))
+                first_name = mongo.db.users.find_one(
+                    {"username": session["user"]})["first_name"].capitalize()
+                flash("Welcome, {}".format(first_name))
                 return redirect(url_for(
                     "user_profile", username=session["user"]))
             else:
@@ -108,12 +115,18 @@ def user_profile(username):
     # retrieve the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
+    first_name = mongo.db.users.find_one(
+        {"username": session["user"]})["first_name"].capitalize()
+    last_name = mongo.db.users.find_one(
+        {"username": session["user"]})["last_name"].capitalize()
     # retrieve user collection counts from db
-    library_count = mongo.db.libraries.count({"created_by": session["user"]})
-    titles_count = mongo.db.titles.count({"created_by": session["user"]})
-    # flash("Library & Titles Count, {}, {}".format(library_count, titles_count))
+    library_count = mongo.db.libraries.count_documents(
+        {"created_by": session["user"]})
+    titles_count = mongo.db.titles.count_documents(
+        {"created_by": session["user"]})
     return render_template(
                     "user_profile.html", username=username,
+                    first_name=first_name, last_name=last_name,
                     library_count=library_count, titles_count=titles_count)
 
 

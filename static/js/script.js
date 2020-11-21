@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $(".sidenav").sidenav();
     $(".tooltipped").tooltip();
-    $("input#username, input#password, input#confirm-password").characterCounter();
+    $("input#username, input#password, input#confirm-password, input#first_name, input#last_name").characterCounter();
 });
 
 // $('.button-collapse').sidenav({

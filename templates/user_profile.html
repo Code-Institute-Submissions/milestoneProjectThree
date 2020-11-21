@@ -11,17 +11,17 @@
         <div class="col s12 m10 offset-m1 ">
             <div class="card-panel">
                 <h3 class="center-align text-shadow">
-                    {{ username }}'s Profile
+                    {{ first_name }} {{ last_name }}'s Profile
                 </h3>
             </div>
         </div>
-    </div>
-        <div class="row white-text t">
-        <div class="col s12 m10 offset-m1 ">
-            <div class="center-align text-shadow card-panel blue-grey lighten-2">
-                <h5>Number of User Collections: {{ library_count }}<i class="fas fa-object-group left"></i></h5>                
-                <h5>Number of User Titles: {{ titles_count }}<i class="fas fa-film left"></i></h5>
+	</div>
+	<div class="row white-text">
+		<div class="col s12 m10 offset-m1 ">
+			<div class="center-align text-shadow card-panel blue-grey lighten-2">
+				<h5><i class="fas fa-object-group "></i>  Number of User Collections: {{ library_count }}</h5>
+				<h5><i class="fas fa-film "></i>  Number of User Titles: {{ titles_count }}</h5>
             </div>
-        </div>
-    </div>
+		</div>
+	</div>
 {% endblock %}
