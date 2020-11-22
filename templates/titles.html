@@ -49,7 +49,7 @@
 							<p>{{ title.description }}</p>
 						</div>
 						<div class="card-action">
-							<a href="#"><strong class="blue-grey-text ">{{ title.title_name }}</strong></a>
+							<a href="{{ url_for('get_title_detail', title_id=title._id) }}"><strong class="blue-grey-text ">{{ title.title_name }}</strong></a>
 						</div>
 					</div>
 				</div>

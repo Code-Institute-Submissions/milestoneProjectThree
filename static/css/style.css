@@ -13,6 +13,14 @@ text-decoration: none;
 }
 
 
+.button-wrapper {
+    margin-top: 30px;
+}
+
+.button-wrapper > a.btn-large {
+    margin: 0px 5px 5px 0px;
+}
+
 .star-checked {
     color: gold;
 }
@@ -156,3 +164,5 @@ font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubun
 
     max-height: 550px; /* prevent mirage effect on desktop view */
 }
+
+

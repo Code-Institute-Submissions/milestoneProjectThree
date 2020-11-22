@@ -27,7 +27,7 @@
 			<div class="row">
 				<div class="col s12">
 					<h4 class="blue-grey-text text-darken-1">
-						<strong>{{ title.title_name }}</strong>
+						<strong>{{ title.title_name }} ({{ title.release_year }})</strong>
 					</h4>
 					<hr>
 				</div>
@@ -41,7 +41,7 @@
 						<strong>{{ title.library_name }}</strong>
 					</h5>
 				</div>
-				<div class="col s3">
+				<!-- <div class="col s3">
 					<h5 class="blue-grey-text text-lighten-2">
 						<strong>Year:</strong>
 					</h5>
@@ -50,7 +50,7 @@
 					<h5 class="blue-grey-text text-darken-1">
 						<strong>{{ title.release_year }}</strong>
 					</h5>
-				</div>
+				</div> -->
 				<div class="col s3">
 					<h5 class="blue-grey-text text-lighten-2">
 						<strong>Genre:</strong>
@@ -105,83 +105,147 @@
 		</div>
 
 	</div>
-	<div class="row">
-        <hr>
+	<div class="row mild-shadow">
+		<div class="col s12">
+			<hr>
+			<div class="col s6 m3 offset-m1">
+				<h5 class="blue-grey-text text-lighten-2">
+					<strong>Is Watched?</strong>
+				</h5>
+			</div>
+			<div class="col s6 m1">
+				{% if title.is_watched == "on" %}
+				<h5 class="teal-text text-lighten-1">
+					<i class="fas fa-eye"></i>
+				</h5>
+				{% else %}
+				<h5 class="blue-grey-text text-lighten-2">
+					<i class="fas fa-eye-slash"></i>
+				</h5>
+				{% endif %}
+			</div>
+			<div class="col s6 m3 offset-m1">
+				<h5 class="blue-grey-text text-lighten-2">
+					<strong>Is Bluray?</strong>
+				</h5>
+			</div>
+			<div class="col s6 m3">
+				{% if title.is_bluray == "on" %}
+				<h5 class="teal-text text-lighten-1">
+					<i class="fas fa-check-circle"></i> bluray
+				</h5>
+				{% else %}
+				<h5 class="blue-grey-text text-lighten-2">
+					<i class="fas fa-times-circle"></i> dvd only
+				</h5>
+				{% endif %}
+			</div>
+		</div>
+
+
+		<div class="col s12">
+			<div class="col s6 m3 offset-m1">
+				<h5 class="blue-grey-text text-lighten-2">
+					<strong>My Rating</strong>
+				</h5>
+			</div>
+			<div class="col s6 m8">
+				{% if title.my_rating == "0" %}
+				<h5 class="blue-grey-text text-lighten-2">
+					<i class="far fa-star"></i>
+					<i class="far fa-star"></i>
+					<i class="far fa-star"></i>
+					<i class="far fa-star"></i>
+					<i class="far fa-star"></i>
+				</h5>
+				{% elif title.my_rating == "1" %}
+				<h5 class="">
+					<i class="fas fa-star yellow-text text-darken-1"></i>
+					<i class="far fa-star blue-grey-text text-lighten-2"></i>
+					<i class="far fa-star blue-grey-text text-lighten-2"></i>
+					<i class="far fa-star blue-grey-text text-lighten-2"></i>
+					<i class="far fa-star blue-grey-text text-lighten-2"></i>
+				</h5>
+				{% elif title.my_rating == "2" %}
+				<h5 class="">
+					<i class="fas fa-star yellow-text text-darken-1"></i>
+					<i class="fas fa-star yellow-text text-darken-1"></i>
+					<i class="far fa-star blue-grey-text text-lighten-2"></i>
+					<i class="far fa-star blue-grey-text text-lighten-2"></i>
+					<i class="far fa-star blue-grey-text text-lighten-2"></i>
+				</h5>
+				{% elif title.my_rating == "3" %}
+				<h5 class="">
+					<i class="fas fa-star yellow-text text-darken-1"></i>
+					<i class="fas fa-star yellow-text text-darken-1"></i>
+					<i class="fas fa-star yellow-text text-darken-1"></i>
+					<i class="far fa-star blue-grey-text text-lighten-2"></i>
+					<i class="far fa-star blue-grey-text text-lighten-2"></i>
+				</h5>
+				{% elif title.my_rating == "4" %}
+				<h5 class="">
+					<i class="fas fa-star yellow-text text-darken-1"></i>
+					<i class="fas fa-star yellow-text text-darken-1"></i>
+					<i class="fas fa-star yellow-text text-darken-1"></i>
+					<i class="fas fa-star yellow-text text-darken-1"></i>
+					<i class="far fa-star blue-grey-text text-lighten-2"></i>
+				</h5>
+				{% elif title.my_rating == "5" %}
+				<h5 class="yellow-text text-darken-1">
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+				</h5>
+				{% else %}
+				<h5 class="blue-grey-text text-darken-1">Not Rated Yet!</h5>
+				{% endif %}
+			</div>
+
+
+			<div class="col s6 m5 offset-m1 l3 offset-l1 blue-grey-text text-lighten-2">
+				<h5 class="">
+					<strong>Purchase Price:</strong>
+				</h5>
+			</div>
+			<div class="col s6 m6 l2 blue-grey-text text-darken-1">
+				<h5 class="">
+					<i class="fas fa-euro-sign"></i> {{ title.purchase_price }}
+				</h5>
+			</div>
+			<div class="col s6 m5 offset-m1 l3 blue-grey-text text-lighten-2">
+				<h5 class="">
+					<strong>Purchase Date:</strong>
+				</h5>
+			</div>
+			<div class="col s6 m6 l3 blue-grey-text text-darken-1">
+				<h5 class="">
+					{{ title.purchase_date }}
+				</h5>
+			</div>
+		</div>
+	</div>
     
-        <div class="col s3">
-            <h7 class="blue-grey-text text-lighten-2">
-                <strong>Watched:</strong>
-            </h7>
-        </div>
-        <div class="col s9 switch">
-            <label for="is_watched">
-                {% if title.is_watched == "on" %}
-                    <input type="checkbox" id="is_watched" name="is_watched" checked>
-                {% else %}
-                    <input type="checkbox" id="is_watched" name="is_watched">
-                {% endif %}
-                <span class="lever"></span>
-                <h7 class="blue-grey-text text-lighten-2">
-                    <strong> Watched</strong>
-                </h7>
-            </label>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s3">
-            <h7 class="blue-grey-text text-lighten-2">
-                <strong>Bluray:</strong>
-            </h7>
-        </div>
-        <div class="col s9 switch">
-            <label for="is_bluray">
-                {% if title.is_bluray == "on" %}
-                    <input type="checkbox" id="is_is_bluray" name="is_bluray" checked>
-                {% else %}
-                    <input type="checkbox" id="is_bluray" name="is_bluray">
-                {% endif %}
-                <span class="lever"></span>
-                <h7 class="blue-grey-text text-lighten-2">
-                    <strong> BluRay</strong>
-                </h7>
-            </label>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s3">
-            <h7 class="blue-grey-text text-lighten-2">
-                <strong>Rating:</strong>
-            </h7>
-        </div>
-        <div class="col s9">
-            {% if title.my_rating == "5" %}
-                <span class="fa fa-star star-checked"></span>
-                <span class="fa fa-star star-checked"></span>
-                <span class="fa fa-star star-checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-            {% else %}
-                <span class="fa fa-star "></span>
-                <span class="fa fa-star "></span>
-                <span class="fa fa-star "></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-            {% endif %}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s3">
-            <h7 class="blue-grey-text text-lighten-2">
-                <strong>Purchase:</strong>
-            </h7>
-        </div>
-        <div class="col s9">
-            <h7 class="blue-grey-text text-darken-1">
-                <strong >{{ title.purchase_price }}</strong>
-            </h7>
-        </div>     
-    </div>       
+    <!-- Edit & Return buttons -->
+	
+	<div class="row">
+		<div class="col s12 center-align text-white text-shadow">
+			<hr>
+			<!-- Return button -->
+	
+			<div class="col s10 button-wrapper offset-s1">
+				<a href="{{ url_for('get_titles', username=session['user']) }}" class="btn-large teal text-shadow">
+					Return <i class="fas fa-undo right"></i>
+				</a>
+	
+				<!-- Edit button -->
+				<a href="{{ url_for('edit_title') }}" class="btn-large blue-grey darken-2 ">
+					Edit Title <i class="fas fa-edit right"></i>
+				</a>
+			</div>
+	
+		</div>
+	</div>
 
-
-
-{% endblock %}
+	{% endblock %}

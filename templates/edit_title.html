@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %} {% block headercontent %}
+
+<div class="row header-wrapper blue-grey lighten-4 blue-grey-text text-lighten-1">
+	<h3 class="left-align text-shadow">Edit Title</h3>
+</div>
+{% endblock %}
+
+{% block maincontent %}
+
+
+
+<!-- External Code Snippet jQuery.script.net -->
+<form action="#" method="get" id="better-rating-form">
+  <div class="rating">
+    <h5>
+        <i class="fa fa-star" data-rate="1"></i>
+        <i class="fa fa-star" data-rate="2"></i>
+        <i class="fa fa-star" data-rate="3"></i>
+        <i class="fa fa-star" data-rate="4"></i>
+        <i class="fa fa-star" data-rate="5"></i>
+        <input type="hidden" id="rating-count" name="rating" value="0">
+    <h5>
+  </div>
+  <button type="submit">Submit</button>
+</form>
+
+{% endblock %}

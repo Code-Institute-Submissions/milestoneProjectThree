@@ -155,6 +155,12 @@ def get_title_detail(title_id):
     return render_template("title_detail.html", title=title)
 
 
+# Edit Title
+@app.route('/home/edittitle')
+def edit_title():
+    
+    return render_template("edit_title.html")
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
