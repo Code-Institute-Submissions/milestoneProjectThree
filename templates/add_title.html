@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %} {% block headercontent %}
+
+<div class="row header-wrapper blue-grey lighten-4 blue-grey-text text-lighten-1">
+	<h3 class="left-align text-shadow">Add Title</h3>
+</div>
+{% endblock %}
+
+{% block maincontent %}
+
+<div class="row">
+	<form class="" method="POST" action="">
+		<div class="col s12 m8 offset-m2 card-panel grey lighten-5 form-wrapper">
+			<div class="row" id="form-select-wrapper">
+				<div class="input-field col s12 m10 offset-m1">
+					<i class="fas fa-object-group prefix blue-grey-text text-darken-2"></i>
+                    <select id="library_name" name="library_name" class="validate" required>
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="1">Classic Movies</option>  
+                    </select>
+                    <label>Choose Collection</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12 m10 offset-m1">
+					<i class="fas fas fa-film prefix blue-grey-text text-darken-2"></i>
+					<input id="title_name" name="title_name" minlength="2" maxlength="50"
+                        type="text" class="validate" required>
+					<label for="title_name">Title Name</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12 m10 offset-m1">
+					<i class="fas fa-calendar-day prefix blue-grey-text text-darken-2"></i>
+					<input id="release_year" name="release_year" minlength="4" maxlength="4"
+                        pattern="^[0-9]{4,4}$" type="text" class="validate" required>
+					<label for="release_year">Release Year</label>
+				</div>
+			</div>
+
+			<div class="row right-align">
+				<div class="input-field col s6 offset-s6 m6 offset-m5">
+					<a href="" class="deep-orange lighten-2 btn text-shadow">Reset</a>
+					<button type="submit" class="teal darken-1 btn text-shadow">
+                        <i class="fas fa-search left"></i> Search
+                    </button>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="input-field col s12 m10 offset-m1">
+					<i class="fas fa-align-left prefix blue-grey-text text-darken-2"></i>
+					<textarea id="description" name="description" minlength="5"
+                        maxlength="200" class="materialize-textarea validate"></textarea>
+					<label for="description">Plot Description</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12 m10 offset-m1">
+					<i class="fas fa-theater-masks prefix blue-grey-text text-darken-2"></i>
+					<input id="genre" name="genre" minlength="2" maxlength="100"
+                        type="text">
+					<label for="genre">Genre</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12 m10 offset-m1">
+					<i class="fas fa-user-cog prefix blue-grey-text text-darken-2"></i>
+					<input id="director" name="director" minlength="2" maxlength="30"
+                        type="text" class="validate">
+					<label for="director">Director</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12 m10 offset-m1">
+					<i class="fas fa-users prefix blue-grey-text text-darken-2"></i>
+					<input id="cast" name="cast" minlength="2" maxlength="150"
+                        type="text">
+					<label for="cast">Cast</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12 m10 offset-m1">
+					<i class="fas fa-clock prefix blue-grey-text text-darken-2"></i>
+					<input id="duration" name="duration" minlength="1" maxlength="4"
+                        pattern="^[0-9]{1,4}$" type="text" class="validate">
+					<label for="duration">Duration Mins</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="col s12 m8 offset-m2 card-panel grey lighten-5">
+			<div class="row">
+				<div class="input-field col s12 m10 offset-m1">
+					<div class="switch">
+                        <!-- <i class="fas fa-eye prefix blue-grey-text text-darken-2"></i> -->
+						<label for="is_watched">
+                            <input type="checkbox" id="is_watched" name="is_watched">
+                            <span class="lever"></span>
+                            Watched
+                        </label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12 m10 offset-m1">
+					<div class="switch">
+                        <!-- <i class="fas fa-compact-disc prefix blue-grey-text text-darken-2"></i> -->
+						<label for="is_bluray">
+                            <input type="checkbox" id="is_bluray" name="is_bluray">
+                            <span class="lever"></span>
+                            Is Bluray
+                        </label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12 m10 offset-m1">
+                    <!-- <i class="fas fa-thumbs-up prefix blue-grey-text text-darken-2"></i> -->
+					<div class="col s6 m3">
+						<h6 class="blue-grey-text text-lighten-2">
+							<strong>My Rating</strong>
+						</h6>
+					</div>
+					<div class="col s6 m8 rating">
+						<input id="rating-count" name="rating" value="0" type="hidden">
+						<h6>
+							<i class="fa fa-star" data-rate="1"></i>
+							<i class="fa fa-star" data-rate="2"></i>
+							<i class="fa fa-star" data-rate="3"></i>
+							<i class="fa fa-star" data-rate="4"></i>
+							<i class="fa fa-star" data-rate="5"></i>
+						</h6>
+					</div>
+				</div>
+			</div>
+            <div class="row">
+                <div class="input-field col s6 m5 offset-m1">
+                    <i class="fas fa-euro-sign prefix blue-grey-text text-darken-2"></i>
+                    <input id="purchase_price" name="purchase_price" pattern="^\d+(?:\.\d{0,2})$" type="text" class="validate">
+                    <label for="purchase_price">Purchase Price</label>
+                </div>
+                <div class="input-field col s6 m4 offset-m1">
+                    <i class="fas fa-calendar-alt prefix blue-grey-text text-darken-2"></i>
+                    <input id="purchase_date" name="purchase_date" type="text" class="datepicker validate" >
+                    <label for="purchase_date">Purchase Date</label>
+                </div>
+            </div>
+            <!-- submit button -->
+            <div class="row">
+                <div class="col s12 center-align">
+                    <a href="{{ url_for('get_titles', username=session['user']) }}" class="btn-large red text-shadow">
+                        Cancel <i class="fas fa-times-circle right"></i>
+                    </a>
+
+                    <button type="submit" class="btn-large text-shadow blue-grey lighten-2">
+                        Add Title <i class="fas fa-plus-square right"></i>
+                    </button>
+                </div>
+            </div>
+
+		</div>
+	</form>
+</div>
+
+
+
+{% endblock %}

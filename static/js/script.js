@@ -2,6 +2,15 @@ $(document).ready(function () {
     $(".sidenav").sidenav();
     $(".tooltipped").tooltip();
     $("input#username, input#password, input#confirm-password, input#first_name, input#last_name").characterCounter();
+    $("select").formSelect();
+    $(".datepicker").datepicker({
+        format: "dd mmmm, yyyy",
+        yearRange: 5,
+        showClearBtn: true,
+        i18n: {
+            done: "Select"
+        }
+    });
 });
 
 

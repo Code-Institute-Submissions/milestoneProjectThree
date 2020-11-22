@@ -93,11 +93,11 @@
             {% if session.user %}		
 			<li><a href="{{ url_for('get_titles', username=session['user']) }}">Home<i class="fas fa-home left"></i></a></li>
 			<li><a href="#">Collections<i class="fas fa-object-group left"></i></a></li>
-			<li><a href="#">Genre<i class="fas fa-venus-mars left"></i></a></li>
+			<li><a href="#">Genre<i class="fas fa-theater-masks left"></i></a></li>
 			<li><a href="#">Release Year<i class="far fa-calendar-check left"></i></a></li>
-			<li><a href="#">Director<i class="fas fa-file-video left"></i></a></li>
+			<li><a href="#">Director<i class="fas fa-user-cog left"></i></a></li>
 			<hr>
-			<li><a href="#">Add Title<i class="fas fa-plus-square left"></i></a></li>
+			<li><a href="{{ url_for('add_title') }}">Add Title<i class="fas fa-plus-square left"></i></a></li>
 			<li><a href="#">Manage Collections<i class="fas fa-edit left"></i></a></li>
 			<hr>
 			<li class="#"><a href="{{ url_for('user_profile', username=session['user']) }}">User

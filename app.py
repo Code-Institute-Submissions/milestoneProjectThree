@@ -155,6 +155,13 @@ def get_title_detail(title_id):
     return render_template("title_detail.html", title=title)
 
 
+# Add Title
+@app.route('/home/addtitle')
+def add_title():
+    
+    return render_template("add_title.html")
+
+
 # Edit Title
 @app.route('/home/edittitle')
 def edit_title():
