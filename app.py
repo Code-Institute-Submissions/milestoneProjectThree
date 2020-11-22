@@ -34,9 +34,18 @@ def default():
 @app.route("/home/<username>")
 def get_titles(username):
     # retrieve the session user's username from db for decorator
+    # and flash messages, prevents users accessing other user resources
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    titles = list(mongo.db.titles.find({"created_by": session["user"]}))
+    titles = list(mongo.db.titles.find({"created_by": username}))
+    title_count = mongo.db.titles.count_documents(
+        {"created_by": username})
+    if titles:
+        flash("There are currently {} titles in your catalogue"
+              .format(title_count))
+    else:
+        flash("There are currently no titles in your catalogue")
+
     return render_template("titles.html", titles=titles)
 
 
@@ -113,6 +122,7 @@ def sign_in():
 @app.route("/userprofile/<username>", methods=["GET", "POST"])
 def user_profile(username):
     # retrieve the session user's username from db
+    # prevents users accessing other user resources
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     first_name = mongo.db.users.find_one(
