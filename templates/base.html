@@ -113,6 +113,7 @@
 		<!-- Side Navbar -->
 		
         {% if session.user %}	
+        <div class="">
             <ul class="sidenav sidenav-fixed invesible-top text-shadow blue-grey lighten-2" id="slide-out">
                 <!-- Hide for Large Devices Only-->
                 <li>
@@ -152,11 +153,15 @@
             	
             </ul>
 		{% endif %}	
+
+        </div>
+
+        {% block headercontent %}
+	    {% endblock %}		
 	
 		</header>
 
-	{% block headercontent %}
-	{% endblock %}		
+
 
 	<section class="container-fluid">
 		<!-- flash messages -->
