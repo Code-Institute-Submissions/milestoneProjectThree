@@ -156,8 +156,32 @@ def get_title_detail(title_id):
 
 
 # Add Title
-@app.route('/home/addtitle')
+@app.route('/home/addtitle', methods=["GET", "POST"])
 def add_title():
+    if request.method == "POST":
+        is_watched = "on" if request.form.get("is_watched") else "off"
+        is_bluray = "on" if request.form.get("is_bluray") else "off"
+        title = {
+            "library_name": request.form.get("library_name"),
+            "title_name": request.form.get("title_name"),
+            "release_year": request.form.get("release_year"),
+            "description": request.form.get("description"),
+            "genre": request.form.get("genre"),
+            "director": request.form.get("director"),
+            "cast": request.form.get("cast"),
+            "duration": request.form.get("duration"),
+            "image_url": request.form.get("image_url"),
+            "is_watched": is_watched,
+            "is_bluray": is_bluray,
+            "my_rating": request.form.get("rating"),
+            "purchase_price": request.form.get("purchase_price"),
+            "purchase_date": request.form.get("purchase_date"),
+            "created_by": session["user"]
+        }
+        mongo.db.titles.insert_one(title)
+        flash("Title Successfully Added")
+        return redirect(url_for("get_titles", username=session['user']))
+
     libraries = mongo.db.libraries.find().sort("library_name", 1)
     return render_template("add_title.html", libraries=libraries)
 
