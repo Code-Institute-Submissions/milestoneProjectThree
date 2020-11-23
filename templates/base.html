@@ -22,7 +22,36 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/external.css') }}" type="text/css">
 
 	<!-- Custom CSS Placeholder-->
+
 	{% block styles %}
+
+        {% if session.user %}
+
+        
+        <style>
+
+            /* Target Side Nav Visibility */    
+            .header-wrapper,
+            section,
+            main,
+            footer {
+                padding-left: 300px;
+            }
+
+            @media only screen and (max-width: 992px) {
+                .header-wrapper,
+                section,
+                main,
+                footer {
+                    padding-left: 0;
+                }
+            }
+  
+        
+        </style>
+
+        {% endif %}
+
 	{% endblock %}
 
 	<title>Movie Catalogue</title>
@@ -83,45 +112,46 @@
 		</div>
 		<!-- Side Navbar -->
 		
-		<ul class="sidenav sidenav-fixed invesible-top text-shadow blue-grey lighten-2" id="slide-out">
-			<!-- Hide for Large Devices Only-->
-			<li>
-				<h5 class="left-align hide-on-large-only"><strong>Movies Catalogue</strong></h5>
-			</li>
-		
-			<!-- Display for All Devices -->
-            {% if session.user %}		
-			<li><a href="{{ url_for('get_titles', username=session['user']) }}">Home<i class="fas fa-home left"></i></a></li>
-			<li><a href="#">Collections<i class="fas fa-object-group left"></i></a></li>
-			<li><a href="#">Genre<i class="fas fa-theater-masks left"></i></a></li>
-			<li><a href="#">Release Year<i class="far fa-calendar-check left"></i></a></li>
-			<li><a href="#">Director<i class="fas fa-user-cog left"></i></a></li>
-			<hr>
-			<li><a href="{{ url_for('add_title') }}">Add Title<i class="fas fa-plus-square left"></i></a></li>
-			<li><a href="#">Manage Collections<i class="fas fa-edit left"></i></a></li>
-			<hr>
-			<li class="#"><a href="{{ url_for('user_profile', username=session['user']) }}">User
-					Profile<i class="fas fa-user left"></i></a></li>
-			<li class="#"><a href="{{ url_for('sign_out') }}">Sign Out<i class="fas fa-sign-out-alt left"></i></a></li>
-			<!-- Hide for Large Devices Only-->
-			<!-- <hr class="hide-on-large-only">
-					<li class="hide-on-large-only"><a href="#">Sign Out<i class="fas fa-sign-out-alt left"></i></a></li> -->
-		
-			<hr>
-			<li id="side-navbar-search" class="search">
-				<div class="search-wrapper">
-					<input id="search-sidenav" placeholder="Search"><i class="fas fa-search"></i>
-					<div class="search-results"></div>
-				</div>
-			</li>
+        {% if session.user %}	
+            <ul class="sidenav sidenav-fixed invesible-top text-shadow blue-grey lighten-2" id="slide-out">
+                <!-- Hide for Large Devices Only-->
+                <li>
+                    <h5 class="left-align hide-on-large-only"><strong>Movies Catalogue</strong></h5>
+                </li>
+            
+                <!-- Display for All Devices -->
+                    
+                <li><a href="{{ url_for('get_titles', username=session['user']) }}">Home<i class="fas fa-home left"></i></a></li>
+                <li><a href="#">Collections<i class="fas fa-object-group left"></i></a></li>
+                <li><a href="#">Genre<i class="fas fa-theater-masks left"></i></a></li>
+                <li><a href="#">Release Year<i class="far fa-calendar-check left"></i></a></li>
+                <li><a href="#">Director<i class="fas fa-user-cog left"></i></a></li>
+                <hr>
+                <li><a href="{{ url_for('add_title') }}">Add Title<i class="fas fa-plus-square left"></i></a></li>
+                <li><a href="#">Manage Collections<i class="fas fa-edit left"></i></a></li>
+                <hr>
+                <li class="#"><a href="{{ url_for('user_profile', username=session['user']) }}">User
+                        Profile<i class="fas fa-user left"></i></a></li>
+                <li class="#"><a href="{{ url_for('sign_out') }}">Sign Out<i class="fas fa-sign-out-alt left"></i></a></li>
+                <!-- Hide for Large Devices Only-->
+                <!-- <hr class="hide-on-large-only">
+                        <li class="hide-on-large-only"><a href="#">Sign Out<i class="fas fa-sign-out-alt left"></i></a></li> -->
+            
+                <hr>
+                <li id="side-navbar-search" class="search">
+                    <div class="search-wrapper">
+                        <input id="search-sidenav" placeholder="Search"><i class="fas fa-search"></i>
+                        <div class="search-results"></div>
+                    </div>
+                </li>
 			{% else %}
-			<li class="hide-on-large-only"><a href="{{ url_for('sign_up') }}">Sign
-					Up<i class="fas fa-user-plus left"></i></a></li>
-			<li class="hide-on-large-only"><a href="{{ url_for('sign_in') }}">Sign
-					In<i class="fas fa-sign-in-alt left"></i></a></li>
-            {% endif %}		
-		</ul>
-		
+                <li class="hide-on-large-only"><a href="{{ url_for('sign_up') }}">Sign
+                        Up<i class="fas fa-user-plus left"></i></a></li>
+                <li class="hide-on-large-only"><a href="{{ url_for('sign_in') }}">Sign
+                        In<i class="fas fa-sign-in-alt left"></i></a></li>
+            	
+            </ul>
+		{% endif %}	
 	
 		</header>
 
@@ -131,13 +161,13 @@
 	<section class="container-fluid">
 		<!-- flash messages -->
 		{% with messages = get_flashed_messages() %}
-		{% if messages %}
-		{% for message in messages %}
-		<div class="row">
-			<h4 class="flashes blue-grey darken-2 text-shadow white-text center-align">{{ message }}</h4>
-		</div>
-		{% endfor %}
-		{% endif %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="row">
+                        <h4 class="flashes blue-grey darken-2 text-shadow white-text center-align">{{ message }}</h4>
+                    </div>
+                {% endfor %}
+            {% endif %}
 		{% endwith %}
 	</section>
 
