@@ -158,15 +158,15 @@ def get_title_detail(title_id):
 # Add Title
 @app.route('/home/addtitle')
 def add_title():
-    
-    return render_template("add_title.html")
+    libraries = mongo.db.libraries.find().sort("library_name", 1)
+    return render_template("add_title.html", libraries=libraries)
 
 
 # Edit Title
 @app.route('/home/edittitle')
 def edit_title():
-    
     return render_template("edit_title.html")
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

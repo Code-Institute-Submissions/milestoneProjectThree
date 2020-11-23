@@ -12,6 +12,22 @@
 }
 
 
+/* Buttons */
+
+.button-wrapper {
+      margin-top: 10px
+}
+
+.button-wrapper > a.btn, .button-wrapper > button.btn {    
+  margin-top:5px;
+}
+
+.button-wrapper > a.btn-large, .button-wrapper > button.btn-large {    
+  margin: 5px 5px 0 5px;
+  width: 200px;
+}
+
+
 /* Flash Messages */
 
 .flashes {
@@ -158,14 +174,6 @@ i.fa-compact-disc > strong {
 
  margin: 15px
 
-}
-
-.button-wrapper {
-  margin-top: 30px;
-}
-
-.button-wrapper > a.btn-large {
-  margin: 0px 5px 5px 0px;
 }
 
 .star-checked {
