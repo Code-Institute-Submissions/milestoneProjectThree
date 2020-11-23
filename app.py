@@ -162,13 +162,13 @@ def add_title():
         is_watched = "on" if request.form.get("is_watched") else "off"
         is_bluray = "on" if request.form.get("is_bluray") else "off"
         title = {
-            "library_name": request.form.get("library_name"),
-            "title_name": request.form.get("title_name"),
+            "library_name": request.form.get("library_name").lower(),
+            "title_name": request.form.get("title_name").lower(),
             "release_year": request.form.get("release_year"),
             "description": request.form.get("description"),
-            "genre": request.form.get("genre"),
-            "director": request.form.get("director"),
-            "cast": request.form.get("cast"),
+            "genre": request.form.get("genre").lower(),
+            "director": request.form.get("director").lower(),
+            "cast": request.form.get("cast").lower(),
             "duration": request.form.get("duration"),
             "image_url": request.form.get("image_url"),
             "is_watched": is_watched,

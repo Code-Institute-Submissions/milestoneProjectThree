@@ -8,13 +8,6 @@
 {% endblock %}
 
 {% block maincontent %}
-<!-- <div class="row">
-	<div class="col s12">
-		<h4 class="blue-grey-text text-darken-4">
-			{{ title.title_name }}
-		</h4>
-	</div>
-</div> -->
 <div class="row" id="title-detail-wrapper">
 	<div class="col s12 card-panel grey lighten-5">
 
@@ -22,15 +15,19 @@
 			<div class="col m3 hide-on-small-only">
 				<div class="card">
 					<div class="card-image">
-						<img src="{{ title.image_url }}">
-                </div>
-					</div>
+						{% if title.image_url %}
+                        <img src="{{ title.image_url }}">
+                        {% else %}
+                        <img src="{{ url_for('static', filename='images/default_image.jpg') }}">
+                        {% endif %}
+                    </div>
+				</div>
 				</div>
 				<div class="col m8 offset-m1 align-left mild-shadow">
 					<div class="row">
 						<div class="col s12">
 							<h4 class="blue-grey-text text-darken-1">
-								<strong>{{ title.title_name }} ({{ title.release_year }})</strong>
+								<strong>{{ title.title_name.title() }} ({{ title.release_year }})</strong>
 							</h4>
 							<hr>
 						</div>
@@ -41,7 +38,7 @@
 						</div>
 						<div class="col s9">
 							<h5 class="blue-grey-text text-darken-1">
-								<strong>{{ title.library_name }}</strong>
+								<strong>{{ title.library_name.title() }}</strong>
 							</h5>
 						</div>
 						<!-- <div class="col s3">
@@ -61,7 +58,7 @@
 						</div>
 						<div class="col s9">
 							<h5 class="blue-grey-text text-darken-1">
-								<strong>{{ title.genre}}</strong>
+								<strong>{{ title.genre.title()}}</strong>
 							</h5>
 						</div>
 						<div class="col s3">
@@ -81,7 +78,8 @@
 						</div>
 						<div class="col s9">
 							<h5 class="blue-grey-text text-darken-1">
-								{{ title.description }}
+                                <!-- jinga string filter -->
+								{{ title.description|capitalize}}
 							</h5>
 						</div>
 						<div class="col s3">
@@ -91,7 +89,7 @@
 						</div>
 						<div class="col s9">
 							<h5 class="blue-grey-text text-darken-1">
-								<strong >{{ title.director }}</strong>
+								<strong >{{ title.director.title() }}</strong>
 							</h5>
 						</div>
 						<div class="col s3">
@@ -101,7 +99,7 @@
 						</div>
 						<div class="col s9">
 							<h5 class="blue-grey-text text-darken-1">
-								<strong >{{ title.cast }}</strong>
+								<strong >{{ title.cast.title() }}</strong>
 							</h5>
 						</div>
 					</div>
@@ -152,6 +150,8 @@
 							<strong>My Rating</strong>
 						</h5>
 					</div>
+
+                    <!-- Basic Star Update Logic -->
 					<div class="col s6 m8">
 						{% if title.my_rating == "0" %}
 						<h5 class="blue-grey-text text-lighten-2">
@@ -239,13 +239,18 @@
 
 					<div class="col s10 button-wrapper offset-s1">
 						<a href="{{ url_for('get_titles', username=session['user']) }}"
-							class="btn-large brown lighten-2 text-shadow">
+							class="btn-large teal text-shadow">
 							Return <i class="fas fa-undo right"></i>
 						</a>
 
 						<!-- Edit button -->
 						<a href="{{ url_for('edit_title') }}" class="btn-large blue-grey darken-1 ">
 							Edit Title <i class="fas fa-edit right"></i>
+						</a>
+
+                        <!-- Delete button -->
+						<a href="" class="btn-large red darken-1 ">
+							Delete Title <i class="far fa-trash-alt right"></i>
 						</a>
 					</div>
 
