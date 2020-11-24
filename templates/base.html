@@ -129,7 +129,7 @@
                 <li class="waves-effect "><a href="#">Director<i class="fas fa-user-cog left"></i></a></li>
                 <hr>
                 <li class="waves-effect "><a href="{{ url_for('add_title') }}">Add Title<i class="fas fa-plus-square left"></i></a></li>
-                <li class="waves-effect "><a href="#">Manage Collections<i class="fas fa-edit left"></i></a></li>
+                <li class="waves-effect "><a href="{{ url_for('get_libraries', username=session['user']) }}">Manage Collections<i class="fas fa-edit left"></i></a></li>
                 <hr>
                 <li class="waves-effect "><a href="{{ url_for('user_profile', username=session['user']) }}">User
                         Profile<i class="fas fa-user left"></i></a></li>

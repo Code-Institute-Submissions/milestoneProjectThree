@@ -225,6 +225,26 @@ def delete_title(title_id):
     return redirect(url_for("get_titles", username=session['user']))
 
 
+@app.route("/getlibraries/<username>")
+def get_libraries(username):
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    libraries = list(mongo.db.libraries.find(
+        {"created_by": username}).sort("library_name", 1))
+    library_count = mongo.db.libraries.count_documents(
+        {"created_by": username})
+    if library_count == 1:
+        flash("There is currently {} collection in your catalogue"
+              .format(library_count))
+    elif library_count > 1:
+        flash("There are currently {} collections in your catalogue"
+              .format(library_count))
+    else:
+        flash("There are currently no collections in your catalogue")
+
+    return render_template("libraries.html", libraries=libraries)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
