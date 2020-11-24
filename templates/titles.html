@@ -23,7 +23,7 @@
 				<div class="card-content">
 					<div class="row card-title ">
 						<div class="col s10 card-title activator grey-text text-darken-1  truncate">
-							{{ title.title_name }}
+							{{ title.title_name|title }}
 						</div>
 						<div class="col s2 card-title activator grey-text text-darken-1">
 							<i class="material-icons right">more_vert</i>
@@ -39,7 +39,7 @@
 					</div>
 				</div>
 				<div class="card-reveal">
-					<span class="card-title blue-grey-text text-darken-4">{{ title.title_name }}<i class="material-icons right">close</i></span>
+					<span class="card-title blue-grey-text text-darken-4">{{ title.title_name|title }}<i class="material-icons right">close</i></span>
 					<p>{{ title.description }}</p>
 				</div>
 			</div>

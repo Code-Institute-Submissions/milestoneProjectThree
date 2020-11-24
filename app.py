@@ -217,6 +217,14 @@ def edit_title(title_id):
     return render_template("edit_title.html", title=title, libraries=libraries)
 
 
+# Delete Title
+@app.route("/deletetitle/<title_id>")
+def delete_title(title_id):
+    mongo.db.titles.remove({"_id": ObjectId(title_id)})
+    flash("Title Successfully Deleted")
+    return redirect(url_for("get_titles", username=session['user']))
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
