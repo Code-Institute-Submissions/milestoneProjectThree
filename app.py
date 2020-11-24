@@ -259,6 +259,21 @@ def add_library():
     return render_template("add_library.html")
 
 
+@app.route("/editlibrary/<library_id>", methods=["GET", "POST"])
+def edit_library(library_id):
+    if request.method == "POST":
+        submit = {
+            "library_name": request.form.get("library_name").lower(),
+            "created_by": session["user"]
+        }
+        mongo.db.libraries.update({"_id": ObjectId(library_id)}, submit)
+        flash("Collection Successfully Updated")
+        return redirect(url_for("get_libraries", username=session['user']))
+
+    library = mongo.db.libraries.find_one({"_id": ObjectId(library_id)})
+    return render_template("edit_library.html", library=library)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
