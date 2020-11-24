@@ -11,6 +11,15 @@
     This plugin allow you to create beautiful rating form. already styled.
 */
 
+$(document).ready(function() {
+
+    testvalue = $('#rating-count').val();
+    console.log("This is the returned MongoDB Value: ",testvalue)
+
+});
+
+
+
 ;(function($){
     $.fn.extend({
         betterRating: function( options ) {

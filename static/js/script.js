@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $(".sidenav").sidenav();
     $(".tooltipped").tooltip();
-    $("input#username, input#password, input#confirm-password, input#first_name, input#last_name, input#title_name, input#title_name, input#release_year, input#description, input#genre, input#director, input#cast, input#duration").characterCounter();
+    $("input#username, input#password, input#confirm-password, input#first_name, input#last_name, input#title_name, input#title_name, input#release_year, textarea#description, input#genre, input#director, input#cast, input#duration").characterCounter();
     $("select").formSelect();
     $(".datepicker").datepicker({
         format: "dd mmmm, yyyy",

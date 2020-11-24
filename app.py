@@ -187,9 +187,34 @@ def add_title():
 
 
 # Edit Title
-@app.route('/home/edittitle')
-def edit_title():
-    return render_template("edit_title.html")
+@app.route("/home/edittitle/<title_id>", methods=["GET", "POST"])
+def edit_title(title_id):
+    if request.method == "POST":
+        is_watched = "on" if request.form.get("is_watched") else "off"
+        is_bluray = "on" if request.form.get("is_bluray") else "off"
+        submit = {
+            "library_name": request.form.get("library_name").lower(),
+            "title_name": request.form.get("title_name").lower(),
+            "release_year": request.form.get("release_year"),
+            "description": request.form.get("description"),
+            "genre": request.form.get("genre").lower(),
+            "director": request.form.get("director").lower(),
+            "cast": request.form.get("cast").lower(),
+            "duration": request.form.get("duration"),
+            "image_url": request.form.get("image_url"),
+            "is_watched": is_watched,
+            "is_bluray": is_bluray,
+            "my_rating": request.form.get("rating"),
+            "purchase_price": request.form.get("purchase_price"),
+            "purchase_date": request.form.get("purchase_date"),
+            "created_by": session["user"]
+        }
+        mongo.db.titles.update({"_id": ObjectId(title_id)}, submit)
+        flash("Title Successfully Updated")
+
+    title = mongo.db.titles.find_one({"_id": ObjectId(title_id)})
+    libraries = mongo.db.libraries.find().sort("library_name", 1)
+    return render_template("edit_title.html", title=title, libraries=libraries)
 
 
 if __name__ == "__main__":

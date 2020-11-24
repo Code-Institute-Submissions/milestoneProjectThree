@@ -18,7 +18,7 @@
 					<select id="library_name" name="library_name" class="validate" required>
                         <option value="" disabled selected>Choose Collection</option>
                         {% for library in libraries %}
-                            <option value="{{ library.library_name }}">{{ library.library_name }}</option>
+                            <option value="{{ library.library_name }}">{{ library.library_name|title }}</option>
                         {% endfor %}
                     </select>
 					<label for="library_name">Collection</label> 
@@ -124,7 +124,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row">                
 				<div class="input-field col s12 m10 offset-m1">
                     <!-- <i class="fas fa-thumbs-up prefix blue-grey-text text-darken-2"></i> -->
 					<div class="col s6 m3">
@@ -132,6 +132,7 @@
 							<strong>My Rating</strong>
 						</h6>
 					</div>
+                    <!-- External Code Snippet jQuery.script.net -->
 					<div class="col s6 m8 rating">
 						<input id="rating-count" name="rating" value="0" type="hidden">
 						<h6>
@@ -142,6 +143,7 @@
 							<i class="fa fa-star" data-rate="5"></i>
 						</h6>
 					</div>
+                    <!-- ---------------------------------------- -->
 				</div>
 			</div>
             <div class="row">
