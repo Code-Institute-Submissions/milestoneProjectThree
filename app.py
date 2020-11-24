@@ -245,6 +245,20 @@ def get_libraries(username):
     return render_template("libraries.html", libraries=libraries)
 
 
+@app.route("/addlibrary", methods=["GET", "POST"])
+def add_library():
+    if request.method == "POST":
+        library = {
+            "library_name": request.form.get("library_name").lower(),
+            "created_by": session["user"]
+        }
+        mongo.db.libraries.insert_one(library)
+        flash("New Collection Added")
+        return redirect(url_for("get_libraries", username=session['user']))
+
+    return render_template("add_library.html")
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

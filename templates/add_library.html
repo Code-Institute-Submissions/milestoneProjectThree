@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %} {% block headercontent %}
+
+<div class="row header-wrapper blue-grey lighten-4 blue-grey-text text-lighten-1">
+	<h3 class="left-align text-shadow">Add Collection</h3>
+</div>
+{% endblock %}
+
+{% block maincontent %}
+
+<div class="row">
+	<form class="" method="POST" action="">
+		<div class="col s12 m8 offset-m2 card-panel grey lighten-5 form-wrapper">
+			<div class="row">
+				<div class="input-field col s12 m10 offset-m1">
+					<i class="fas fa-object-group prefix blue-grey-text text-darken-2"></i>
+					<input id="library_name" name="library_name" minlength="2" maxlength="50"
+                        type="text" class="validate" data-length="50" required>
+					<label for="library_name">Collection Name</label>
+				</div>
+			</div>
+
+            <!-- submit button -->
+            <div class="row">
+                <div class="button-wrapper col s12 center-align">
+                    <a href="{{ url_for('get_libraries', username=session['user']) }}" class="waves-effect waves-light btn-large red text-shadow">
+                        Cancel <i class="fas fa-times-circle right"></i>
+                    </a>
+                    <button type="submit" class="waves-effect waves-light btn-large blue-grey  text-shadow">
+                        Add Collection<i class="fas fa-plus-square right"></i>
+                    </button>
+                </div>
+            </div>
+
+		</div>
+	</form>
+</div>
+
+
+
+{% endblock %}
