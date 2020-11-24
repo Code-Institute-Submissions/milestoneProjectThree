@@ -3,6 +3,7 @@ $(document).ready(function () {
     $(".tooltipped").tooltip();
     $("input#username, input#password, input#confirm-password, input#first_name, input#last_name, input#title_name, input#title_name, input#release_year, textarea#description, input#genre, input#director, input#cast, input#duration").characterCounter();
     $("select").formSelect();
+    $('.modal').modal();
     $(".datepicker").datepicker({
         format: "dd mmmm, yyyy",
         yearRange: 5,

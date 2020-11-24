@@ -66,14 +66,14 @@
 				<div class="container-fluid">
 					<div class="nav-wrapper row">
 
-						<div class="col s2">
+						<div class="col s3 logo-wrapper">
 							<a href="{{ url_for('default') }}" data-target="slide-out"
 								class="sidenav-trigger"><i class="fas fa-bars"></i></a>
-							<a href="{{ url_for('default') }}" class="brand-logo">KJC
+							<a href="{{ url_for('default') }}" class="brand-logo waves-effect">KJC
 								Movies<i class="fas fa-compact-disc left hide-on-med-and-down"></i></a>
 						</div>
 
-						<div class="col s5">
+						<div class="col s4">
 							{% if session.user %}
 							<ul class="left hide-on-med-and-down">
 								<li id="top-navbar-search" class="search">
@@ -93,14 +93,14 @@
 							<ul class="right">
 								{% if session.user %}
 
-								<li class="#"><a href="{{ url_for('user_profile', username=session['user']) }}">User
+								<li class="waves-effect "><a href="{{ url_for('user_profile', username=session['user']) }}">User
 										Profile<i class="fas fa-user left"></i></a></li>
-								<li class="#"><a href="{{ url_for('sign_out') }}">Sign
+								<li class="waves-effect "><a href="{{ url_for('sign_out') }}">Sign
 										Out<i class="fas fa-sign-out-alt left"></i></a></li>
 								{% else %}
-								<li class="#"><a href="{{ url_for('sign_up') }}">Sign
+								<li class="waves-effect "><a href="{{ url_for('sign_up') }}">Sign
 										Up<i class="fas fa-user-plus left"></i></a></li>
-								<li class="#"><a href="{{ url_for('sign_in') }}">Sign
+								<li class="waves-effect "><a href="{{ url_for('sign_in') }}">Sign
 										In<i class="fas fa-sign-in-alt left"></i></a></li>
 
 							</ul>
@@ -122,18 +122,18 @@
             
                 <!-- Display for All Devices -->
                     
-                <li><a href="{{ url_for('get_titles', username=session['user']) }}">Home<i class="fas fa-home left"></i></a></li>
-                <li><a href="#">Collections<i class="fas fa-object-group left"></i></a></li>
-                <li><a href="#">Genre<i class="fas fa-theater-masks left"></i></a></li>
-                <li><a href="#">Release Year<i class="far fa-calendar-check left"></i></a></li>
-                <li><a href="#">Director<i class="fas fa-user-cog left"></i></a></li>
+                <li class="waves-effect "><a href="{{ url_for('get_titles', username=session['user']) }}">Home<i class="fas fa-home left"></i></a></li>
+                <li class="waves-effect "><a href="#">Collections<i class="fas fa-object-group left"></i></a></li>
+                <li class="waves-effect "><a href="#">Genre<i class="fas fa-theater-masks left"></i></a></li>
+                <li class="waves-effect "><a href="#">Release Year<i class="far fa-calendar-check left"></i></a></li>
+                <li class="waves-effect "><a href="#">Director<i class="fas fa-user-cog left"></i></a></li>
                 <hr>
-                <li><a href="{{ url_for('add_title') }}">Add Title<i class="fas fa-plus-square left"></i></a></li>
-                <li><a href="#">Manage Collections<i class="fas fa-edit left"></i></a></li>
+                <li class="waves-effect "><a href="{{ url_for('add_title') }}">Add Title<i class="fas fa-plus-square left"></i></a></li>
+                <li class="waves-effect "><a href="#">Manage Collections<i class="fas fa-edit left"></i></a></li>
                 <hr>
-                <li class="#"><a href="{{ url_for('user_profile', username=session['user']) }}">User
+                <li class="waves-effect "><a href="{{ url_for('user_profile', username=session['user']) }}">User
                         Profile<i class="fas fa-user left"></i></a></li>
-                <li class="#"><a href="{{ url_for('sign_out') }}">Sign Out<i class="fas fa-sign-out-alt left"></i></a></li>
+                <li class="waves-effect "><a href="{{ url_for('sign_out') }}">Sign Out<i class="fas fa-sign-out-alt left"></i></a></li>
                 <!-- Hide for Large Devices Only-->
                 <!-- <hr class="hide-on-large-only">
                         <li class="hide-on-large-only"><a href="#">Sign Out<i class="fas fa-sign-out-alt left"></i></a></li> -->
@@ -146,9 +146,9 @@
                     </div>
                 </li>
 			{% else %}
-                <li class="hide-on-large-only"><a href="{{ url_for('sign_up') }}">Sign
+                <li class="hide-on-large-only waves-effect"><a href="{{ url_for('sign_up') }}">Sign
                         Up<i class="fas fa-user-plus left"></i></a></li>
-                <li class="hide-on-large-only"><a href="{{ url_for('sign_in') }}">Sign
+                <li class="hide-on-large-only waves-effect"><a href="{{ url_for('sign_in') }}">Sign
                         In<i class="fas fa-sign-in-alt left"></i></a></li>
             	
             </ul>
