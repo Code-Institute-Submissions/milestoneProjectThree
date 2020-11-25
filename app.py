@@ -276,6 +276,13 @@ def edit_library(library_id):
     return render_template("edit_library.html", library=library)
 
 
+@app.route("/deletelibrary/<library_id>")
+def delete_library(library_id):
+    mongo.db.libraries.remove({"_id": ObjectId(library_id)})
+    flash("Collection Successfully Deleted")
+    return redirect(url_for("get_libraries", username=session['user']))
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
