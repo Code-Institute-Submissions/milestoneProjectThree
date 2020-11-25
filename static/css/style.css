@@ -215,3 +215,11 @@ i.fa-compact-disc > strong {
 }
 
 /* ------------------------------------ */
+
+
+/* Target Manage Collections Page */
+
+#collections-card-wrapper {
+
+    padding-top:20px;
+}
