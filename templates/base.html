@@ -77,10 +77,12 @@
 							{% if session.user %}
 							<ul class="left hide-on-med-and-down">
 								<li id="top-navbar-search" class="search">
+                                    <form action="{{ url_for('search') }}" method="post">
 									<div class="search-wrapper">
-										<input id="search-topnav" placeholder="Search"><i class="fas fa-search"></i>
+										<input id="search-topnav" name="search-topnav" placeholder="Search"><i class="fas fa-search"></i>
 										<div class="search-results"></div>
 									</div>
+                                    </form>
 								</li>
 							</ul>
 							{% endif %}
@@ -140,10 +142,12 @@
             
                 <hr>
                 <li id="side-navbar-search" class="search">
+                    <form action="{{ url_for('search') }}" method="post">
                     <div class="search-wrapper">
-                        <input id="search-sidenav" placeholder="Search"><i class="fas fa-search"></i>
+                        <input id="search-sidenav" name="search-sidenav" placeholder="Search"><i class="fas fa-search"></i>
                         <div class="search-results"></div>
                     </div>
+                    </form>
                 </li>
 			{% else %}
                 <li class="hide-on-large-only waves-effect"><a href="{{ url_for('sign_up') }}">Sign

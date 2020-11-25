@@ -283,6 +283,24 @@ def delete_library(library_id):
     return redirect(url_for("get_libraries", username=session['user']))
 
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    querytop = request.form.get("search-topnav")
+    queryside = request.form.get("search-sidenav")
+    if querytop:
+        titles = list(mongo.db.titles.find(
+            {'$and': [{"$text": {"$search": querytop}},
+                      {"created_by": session["user"]}]}))
+    else:
+        titles = list(mongo.db.titles.find(
+            {'$and': [{"$text": {"$search": queryside}},
+                      {"created_by": session["user"]}]}))
+    if len(titles) == 0:
+        flash("There are no results for your search")
+
+    return render_template("titles.html", titles=titles)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
