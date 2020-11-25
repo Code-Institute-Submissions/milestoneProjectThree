@@ -9,7 +9,7 @@
 
 {% block maincontent %}
 
-<div class="row">
+<div class="row card-body-wrapper">
 	<form class="" method="POST" action="{{ url_for('edit_title', title_id=title._id) }}">
 		<div class="col s12 m8 offset-m2 card-panel grey lighten-5 form-wrapper">
 			<div class="row" id="form-select-wrapper">
@@ -46,7 +46,7 @@
 			</div>
 
 			<div class="row right-align">
-				<div class="input-field button-wrapper col s6 offset-s6 m6 offset-m5">
+				<div class="input-field button-wrapper col s10 offset-s2 m9 offset-m2 xl6 offset-xl5">
 					<a href="" class="waves-effect waves-light red btn text-shadow">Reset</a>
 					<button type="submit" class="waves-effect waves-light teal darken-1 btn text-shadow">
                         <i class="fas fa-search left"></i> Search IMDB

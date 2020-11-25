@@ -182,7 +182,8 @@ def add_title():
         flash("Title Successfully Added")
         return redirect(url_for("get_titles", username=session['user']))
 
-    libraries = mongo.db.libraries.find().sort("library_name", 1)
+    libraries = mongo.db.libraries.find(
+        {"created_by": session["user"]}).sort("library_name", 1)
     return render_template("add_title.html", libraries=libraries)
 
 
@@ -213,7 +214,8 @@ def edit_title(title_id):
         flash("Title Successfully Updated")
 
     title = mongo.db.titles.find_one({"_id": ObjectId(title_id)})
-    libraries = mongo.db.libraries.find().sort("library_name", 1)
+    libraries = mongo.db.libraries.find(
+        {"created_by": session["user"]}).sort("library_name", 1)
     return render_template("edit_title.html", title=title, libraries=libraries)
 
 

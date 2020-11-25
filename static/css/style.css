@@ -202,6 +202,12 @@ i.fa-compact-disc > strong {
 
 
 /* Target Add Title Page */
+
+.card-body-wrapper {
+  margin-left:10px;
+  margin-right:10px;
+}
+
 .form-wrapper {
   margin-top: 40px;
 }
