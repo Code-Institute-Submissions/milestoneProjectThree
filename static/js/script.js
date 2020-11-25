@@ -13,9 +13,14 @@ $(document).ready(function () {
         }
     });
 
+    // set 4 second timeout against flash messages
+    setTimeout(function() {
+    $('#flash-section').fadeOut('fast');
+    }, 4000); 
 
 
-// Tutorial script to resolve materialize select validation issue 
+
+    // Tutorial script to resolve materialize select validation issue 
     validateMaterializeSelect();
     function validateMaterializeSelect() {
         let classValid = { "border-bottom": "1px solid #4caf50", "box-shadow": "0 1px 0 0 #4caf50" };
