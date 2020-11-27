@@ -1,6 +1,7 @@
 # Import Libraries
 
 import os
+import imdb
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -22,7 +23,7 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
-
+movieDB = imdb.IMDb()
 
 # Default View
 @app.route("/")
@@ -299,6 +300,51 @@ def search():
         flash("There are no results for your search")
 
     return render_template("titles.html", titles=titles)
+
+
+@app.route("/imdbsearch")
+def imdb_search():
+    form_test = "Papillon"
+    # movie_list = movieDB.search_movie(title_name)
+    # flash("Searching IMDb Database for the following: {} "
+    #       .format(title_name).title())
+
+    movie_list = movieDB.search_movie(form_test)
+    flash("Searching IMDb Database for the following: {} "
+          .format(form_test).title())
+
+    return render_template("imdb_search.html", movie_list=movie_list)
+
+
+@app.route("/imdbformupdate/<movie_id>")
+def imdb_form_update(movie_id):
+    # movie_id = movie_id
+    movieDB_title = movieDB.get_movie(movie_id)
+    movie_details_all = movieDB.get_movie_main(movie_id)
+    # movieDB_title = movie_details_all['data']['title']
+    # movieDB_year = movie_details_all['data']['year']
+    # movieDB_plot = movie_details_all['data']['plot outline']
+    # movieDB_genres = movie_details_all['data']['genres']
+    # movieDB_directors = movie_details_all['data']['directors']
+    # movieDB_stars = movie_details_all['data']['cast'][:3:]
+    # movieDB_duration = movie_details_all['data']['runtimes']
+    # movieDB_img_url = movie_details_all['data']['cover url']
+    moviedict = {
+        "title_name":  movieDB_title,
+        "release_year": movie_details_all['data']['year'],
+        "description": movie_details_all['data']['plot outline'],
+        "genres": movie_details_all['data']['genres'],
+        "directors": movie_details_all['data']['directors'],
+        "cast": movie_details_all['data']['cast'][:3:],
+        "duration": movie_details_all['data']['runtimes'],
+        "image_url": movie_details_all['data']['cover url']
+    }
+
+    flash("IMDb Database for: {} ".format(movieDB_title))
+    libraries = mongo.db.libraries.find(
+        {"created_by": session["user"]}).sort("library_name", 1)
+    return render_template("imdb_form_update.html", libraries=libraries,
+                           moviedict=moviedict)
 
 
 if __name__ == "__main__":

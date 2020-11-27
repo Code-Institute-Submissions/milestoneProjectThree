@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %} {% block headercontent %}
+
+<div class="row header-wrapper blue-grey lighten-4 blue-grey-text text-lighten-1">
+	<h3 class="left-align text-shadow">IMDb Titles Search Results</h3>
+</div>
+{% endblock %}
+
+{% block maincontent %}
+
+            
+            {% for movie in movie_list %}
+            
+            <div class="row small-margins">
+
+            <div class="col s10 offset-s1">
+
+            <a href="{{ url_for('imdb_form_update', movie_id=movie.movieID) }}" class="col s12 btn-large text-shadow blue-grey">
+            
+                IMDb Movie ID: {{ movie.movieID }} - Title: {{ movie.title|title }} - Release Year: {{ movie.year }}
+
+            </a>
+
+            </div>
+                         
+
+            </div>
+
+            {% endfor  %}
+
+
+                
+
+
+
+
+{% endblock %}

@@ -24,19 +24,21 @@
 					<label for="library_name">Collection</label> 
 				</div>
 			</div>
+
 			<div class="row">
 				<div class="input-field col s12 m10 offset-m1">
 					<i class="fas fas fa-film prefix blue-grey-text text-darken-2"></i>
 					<input id="title_name" name="title_name" minlength="2" maxlength="50"
-                        type="text" class="validate" data-length="50" required>
+                        value="{{ moviedict.title_name|title }}" type="text" class="validate" data-length="50" required>
 					<label for="title_name">Title Name</label>
 				</div>
 			</div>
+            
 			<div class="row">
 				<div class="input-field col s12 m10 offset-m1">
 					<i class="fas fa-calendar-day prefix blue-grey-text text-darken-2"></i>
 					<input id="release_year" name="release_year" minlength="4" maxlength="4"
-                        pattern="^[0-9]{4,4}$" type="number" class="validate" data-length="4" required>
+                        value="{{ moviedict.release_year }}" pattern="^[0-9]{4,4}$" type="number" class="validate" data-length="4" required>
 					<label for="release_year">Release Year</label>
 				</div>
 			</div>
@@ -45,17 +47,32 @@
 				<div class="input-field button-wrapper col s10 offset-s2 m9 offset-m2 xl6 offset-xl5">
 					<a href="" class="waves-effect waves-light red btn text-shadow">Reset</a>
                     
-                    <a href="{{ url_for('imdb_search', title_name=title_name) }}" class="waves-effect waves-light teal darken-1 btn text-shadow">
+                    <a href="{{ url_for('imdb_search') }}" class="waves-effect waves-light teal darken-1 btn text-shadow">
                         <i class="fas fa-search left"></i> Search IMDB
                     </a>                    
 				</div>
 			</div>
 
+            <!-- Modal Structure -->
+            <!-- <div id="searchmodal" class="modal red darken-4 no-shadow">
+                <div class="modal-content">
+                <h4 class="text-white">The below are the search results</h4>
+
+                
+                </div>
+                <div class="modal-footer"> -->
+                <!-- <a href="#!" class="modal-close waves-effect waves-light btn">Return</a>
+                <a href="" class="modal-close waves-effect waves-light btn red">Delete Title</a> -->
+                <!-- </div>
+            </div> -->
+
 			<div class="row">
 				<div class="input-field col s12 m10 offset-m1">
 					<i class="fas fa-align-left prefix blue-grey-text text-darken-2"></i>
-					<textarea id="description" name="description" minlength="5"
-                        maxlength="200" data-length="200" class="materialize-textarea validate"></textarea>
+					<textarea id="description" name="description" minlength="5" value=""
+                        maxlength="200" data-length="200" class="materialize-textarea validate">
+                        {{-moviedict.description-}}
+                    </textarea>                        
 					<label for="description">Plot Description</label>
 				</div>
 			</div>
@@ -63,23 +80,23 @@
 				<div class="input-field col s12 m10 offset-m1">
 					<i class="fas fa-theater-masks prefix blue-grey-text text-darken-2"></i>
 					<input id="genre" name="genre" minlength="2" maxlength="100"
-                        data-length="100" type="text">
-					<label for="genre">Genre</label>
+                        value="{{ moviedict.genres }}" data-length="100" type="text">
+					<label for="genre">Genres</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12 m10 offset-m1">
 					<i class="fas fa-user-cog prefix blue-grey-text text-darken-2"></i>
 					<input id="director" name="director" minlength="2" maxlength="30"
-                        type="text" data-length="30" class="validate">
-					<label for="director">Director</label>
+                        value="{{ moviedict.directors }}" type="text" data-length="30" class="validate">
+					<label for="director">Directors</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12 m10 offset-m1">
 					<i class="fas fa-users prefix blue-grey-text text-darken-2"></i>
 					<input id="cast" name="cast" minlength="2" maxlength="150"
-                        data-length="150" type="text">
+                        value="{{ moviedict.cast }}" data-length="150" type="text">
 					<label for="cast">Cast</label>
 				</div>
 			</div>
@@ -87,14 +104,15 @@
 				<div class="input-field col s12 m10 offset-m1">
 					<i class="fas fa-clock prefix blue-grey-text text-darken-2"></i>
 					<input id="duration" name="duration" minlength="1" maxlength="4"
-                        pattern="^[0-9]{1,4}$" type="text" data-length="4" class="validate">
+                        value="{{ moviedict.duration }}" pattern="^[0-9]{1,4}$" type="text" data-length="4" class="validate">
 					<label for="duration">Duration Mins</label>
 				</div>
 			</div>
             <div class="row">
 				<div class="input-field col s12 m10 offset-m1">
 					<i class="fas fa-image prefix blue-grey-text text-darken-2"></i>
-					<input id="image_url" name="image_url" placeholder="http://" pattern="https?://.+" type="url" class="validate">
+					<input id="image_url" name="image_url" placeholder="http://" pattern="https?://.+" 
+                        value="{{ moviedict.image_url }}"  type="url" class="validate">
 					<label for="image_url">Image URL</label>
 				</div>
 			</div>

@@ -16,6 +16,13 @@
   text-decoration: none;
 }
 
+.no-margins {
+    margin:0;
+}
+
+.small-margins {
+    margin:2px;
+}
 
 /* Buttons */
 
