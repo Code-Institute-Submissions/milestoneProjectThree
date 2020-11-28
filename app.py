@@ -25,6 +25,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 movieDB = imdb.IMDb()
 
+
 # Default View
 @app.route("/")
 def default():
@@ -302,6 +303,51 @@ def search():
     return render_template("titles.html", titles=titles)
 
 
+# Deserialised imdbPY get & formatting functions
+# Retrieve and format imdb plot summary from array of plot details
+def get_formatted_plot_summary(title_obj):
+    if title_obj.get('plot'):
+        plot_summary_and_notes_array = title_obj.get('plot')[0].split('::')
+        plot_summary_only = plot_summary_and_notes_array[0]
+        return plot_summary_only
+
+
+# Retrieve and format imdb directors details
+def get_formatted_directors(title_obj):
+    directors_string = ""
+    if title_obj.get('directors'):
+        for director in title_obj.get('directors')[:5]:
+            directors_string += director['name'] + ', '
+        directors_string = directors_string[:-2]
+        return directors_string
+
+
+# Retrieve and format imdb star details
+def get_formatted_stars(title_obj):
+    stars_string = ""
+    if title_obj.get('cast'):
+        for star in title_obj.get('cast')[:6]:
+            stars_string += star['name'] + ', '
+        stars_string = stars_string[:-2]
+        return stars_string
+
+
+# Retrieve and format imdb genres details
+def get_formatted_genres(title_obj):
+    genres_string = ""
+    if title_obj.get('genres'):
+        for genre in title_obj.get('genres'):
+            genres_string += genre + ", "
+        genres_string = genres_string[:-2]
+        return genres_string
+
+
+# Retrieve and format imdb runtime details
+def get_title_duration(title_obj):
+    if title_obj.get('runtime'):
+        return title_obj.get('runtimes')[0]
+
+
 @app.route("/imdbsearch")
 def imdb_search():
     form_test = "Papillon"
@@ -309,38 +355,31 @@ def imdb_search():
     # flash("Searching IMDb Database for the following: {} "
     #       .format(title_name).title())
 
-    movie_list = movieDB.search_movie(form_test)
+    title_list = movieDB.search_movie(form_test)
     flash("Searching IMDb Database for the following: {} "
           .format(form_test).title())
 
-    return render_template("imdb_search.html", movie_list=movie_list)
+    return render_template("imdb_search.html", title_list=title_list)
 
 
-@app.route("/imdbformupdate/<movie_id>")
-def imdb_form_update(movie_id):
+@app.route("/imdbformupdate/<title_id>")
+def imdb_form_update(title_id):
     # movie_id = movie_id
-    movieDB_title = movieDB.get_movie(movie_id)
-    movie_details_all = movieDB.get_movie_main(movie_id)
-    # movieDB_title = movie_details_all['data']['title']
-    # movieDB_year = movie_details_all['data']['year']
-    # movieDB_plot = movie_details_all['data']['plot outline']
-    # movieDB_genres = movie_details_all['data']['genres']
-    # movieDB_directors = movie_details_all['data']['directors']
-    # movieDB_stars = movie_details_all['data']['cast'][:3:]
-    # movieDB_duration = movie_details_all['data']['runtimes']
-    # movieDB_img_url = movie_details_all['data']['cover url']
+    title_obj = movieDB.get_movie(title_id)
+    title_name = title_obj.get('title')
     moviedict = {
-        "title_name":  movieDB_title,
-        "release_year": movie_details_all['data']['year'],
-        "description": movie_details_all['data']['plot outline'],
-        "genres": movie_details_all['data']['genres'],
-        "directors": movie_details_all['data']['directors'],
-        "cast": movie_details_all['data']['cast'][:3:],
-        "duration": movie_details_all['data']['runtimes'],
-        "image_url": movie_details_all['data']['cover url']
+        "title_name":  title_name,
+        "release_year": title_obj.get('year'),
+        "title_type ": title_obj.get('kind'),
+        "description":  get_formatted_plot_summary(title_obj),
+        "genres": get_formatted_genres(title_obj),
+        "directors": get_formatted_directors(title_obj),
+        "cast": get_formatted_stars(title_obj),
+        "duration": get_title_duration(title_obj),
+        "image_url": title_obj.get('full-size cover url')
     }
 
-    flash("IMDb Database for: {} ".format(movieDB_title))
+    flash("IMDb Database for: {} ".format(title_name))
     libraries = mongo.db.libraries.find(
         {"created_by": session["user"]}).sort("library_name", 1)
     return render_template("imdb_form_update.html", libraries=libraries,

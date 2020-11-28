@@ -16,6 +16,23 @@
   text-decoration: none;
 }
 
+
+.text-lower {
+    text-transform: lowercase;
+} 
+
+.text-upper {
+    text-transform: uppercase;
+} 
+
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+
+/* Gutters */
+
 .no-margins {
     margin:0;
 }
