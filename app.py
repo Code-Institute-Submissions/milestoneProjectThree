@@ -2,6 +2,8 @@
 
 import os
 import imdb
+import string
+
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -9,6 +11,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
 from werkzeug.security import generate_password_hash, check_password_hash
+
 
 if os.path.exists("env.py"):
     import env
@@ -242,6 +245,28 @@ def user_profile(username):
 ############################################################
 # Filter Views
 ############################################################
+# Collections/Library Filters
+############################################################
+# Display Collections/Libraries
+@app.route("/getlibraries/<username>")
+def get_libraries(username):
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    libraries = list(mongo.db.libraries.find(
+        {"created_by": username}).sort("library_name", 1))
+    library_count = mongo.db.libraries.count_documents(
+        {"created_by": username})
+    if library_count == 1:
+        flash("There is currently {} collection in your catalogue"
+              .format(library_count))
+    elif library_count > 1:
+        flash("There are currently {} collections in your catalogue"
+              .format(library_count))
+    else:
+        flash("There are currently no collections in your catalogue")
+
+    return render_template("libraries.html", libraries=libraries)
+
 
 # Filter Collection/Library View
 @app.route("/libraries/<library_name>/<username>/")
@@ -268,6 +293,78 @@ def filter_library_titles(library_name, username):
 
     return render_template("filter_library_titles.html",
                            titles=titles, library_name=library_name)
+
+
+############################################################
+# Genre Filters
+############################################################
+
+# Deserialised functions for genre and dircetors filters
+# From String library punctuation removal
+def remove_punc(string_var):
+    # exclude = set(string.punctuation)
+    table = str.maketrans(dict.fromkeys(string.punctuation))
+    return string_var.translate(table)
+
+
+# Clean Genre String function
+def clean_genres(string_in):
+    string_in = remove_punc(string_in)[:-1]
+    string_in = string_in.replace("  ", " ").replace("  ", " ")
+    string_in = string_in.split(" ")
+    string_in = list(dict.fromkeys(string_in))
+    return string_in
+
+
+# Display Genres
+@app.route("/getgenres/<username>")
+def get_genres(username):
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    titles = list(mongo.db.titles.find({"created_by": username}))
+
+    genres = ""
+    for title in titles:
+        genres += title['genre'] + ' '
+
+    genres = clean_genres(genres)
+    genres_count = len(genres)
+
+    if genres_count == 1:
+        flash("There is currently {} genre in your catalogue"
+              .format(genres_count))
+    elif genres_count > 1:
+        flash("There are currently {} genres in your catalogue"
+              .format(genres_count))
+    else:
+        flash("There are currently no genres in your catalogue")
+
+    return render_template("genres.html", titles=titles, genres=genres)
+
+
+# Filter Genre View
+@app.route("/genres/<genre_name>/<username>/")
+def filter_genre_titles(genre_name, username):
+
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    titles = list(mongo.db.titles.find(
+                    {'$and': [{"$text": {"$search": genre_name}},
+                     {"created_by": username}]}))
+    title_count = mongo.db.titles.count_documents(
+                    {'$and': [{"$text": {"$search": genre_name}},
+                     {"created_by": username}]})
+    if title_count == 1:
+        flash("There is currently {} title in this Genre"
+              .format(title_count))
+    elif title_count > 1:
+        flash("There are currently {} titles in this Genre"
+              .format(title_count))
+    else:
+        flash("There are currently no titles in this Genre")
+
+    return render_template("filter_genre_titles.html",
+                           titles=titles, genre_name=genre_name)
 
 
 ############################################################
@@ -465,27 +562,6 @@ def edit_imdb_form_update(title_id, movieDB_id):
 # Note* variable named library to distinguish between
 # App collection and mongoDB collection
 ############################################################
-
-# Display Collections/Libraries
-@app.route("/getlibraries/<username>")
-def get_libraries(username):
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-    libraries = list(mongo.db.libraries.find(
-        {"created_by": username}).sort("library_name", 1))
-    library_count = mongo.db.libraries.count_documents(
-        {"created_by": username})
-    if library_count == 1:
-        flash("There is currently {} collection in your catalogue"
-              .format(library_count))
-    elif library_count > 1:
-        flash("There are currently {} collections in your catalogue"
-              .format(library_count))
-    else:
-        flash("There are currently no collections in your catalogue")
-
-    return render_template("libraries.html", libraries=libraries)
-
 
 # Manage Collections/Libraries
 @app.route("/managelibraries/<username>")
