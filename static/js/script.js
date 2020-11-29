@@ -18,6 +18,40 @@ $(document).ready(function () {
     $('#flash-section').fadeOut('fast');
     }, 4000); 
 
+    // $("#imdb_search_btn").click(function(){
+    //     var title_text = $("#title_name").val();
+        // var title_year  = $("#release_year").val();
+        // search_string = title_text + " " + title_year;
+        // alert(title_text);
+        // imdb_search(search_string);
+        
+        // $.post("{{ url_for('imdb_search') }}", {title_text});
+        //  $.post("{{ url_for('imdb_search', title_text=title_text) }}");
+    // });
+   
+//     $("#imdb_search_btn").click(function(){
+//     var $this = $("#title_name").val();
+//     $.ajax({
+//       url: "{{ url_for('imdb_search') }}",
+//       data: $this,
+//       method: "POST",
+//       success: function(data) {
+//           console.log($this)
+//         //Here if u have to do something with the response
+//       }
+//     });
+//   })
+
+    
+        // $("#imdb_search_btn").bind('click', function(){
+        //     $.getJSON('/imdbsearch', {
+        //         title_text : $("#title_name").val()
+        //     }, function (data) {
+        //         $("#result").text(data.result);
+        //     });
+        //     return false;
+        // });
+    
 
 
     // Tutorial script to resolve materialize select validation issue 

@@ -12,20 +12,21 @@
             
             {% for title in title_list %}
             
-            <div class="row small-margins">
-
-            <div class="col s10 offset-s1">
-
-            <a href="{{ url_for('imdb_form_update', title_id=title.movieID) }}" class="col s12 btn-large text-shadow blue-grey text-capitalize">
-            
-                IMDb Title ID: {{ title.movieID }} - Title: {{ title.title }} - Release Year: {{ title.year }}
-
-            </a>
-
-            </div>
-                         
-
-            </div>
+			<div class="row small-margins">
+			
+				<div class="col s10 offset-s1">
+			
+					<a href="{{ url_for('imdb_form_update', movieDB_id=title.movieID, library_name=library_name) }}"
+						class="col s12 btn-large text-shadow blue-grey text-capitalize">
+			
+						IMDb Title ID: {{ title.movieID }} - Title: {{ title.title }} - Release Year: {{ title.year }} - {{library_name }}
+			
+					</a>
+			
+				</div>
+			
+			
+			</div>
 
             {% endfor  %}
 

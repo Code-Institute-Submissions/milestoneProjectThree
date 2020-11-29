@@ -161,28 +161,41 @@ def get_title_detail(title_id):
 @app.route('/home/addtitle', methods=["GET", "POST"])
 def add_title():
     if request.method == "POST":
-        is_watched = "on" if request.form.get("is_watched") else "off"
-        is_bluray = "on" if request.form.get("is_bluray") else "off"
-        title = {
-            "library_name": request.form.get("library_name").lower(),
-            "title_name": request.form.get("title_name").lower(),
-            "release_year": request.form.get("release_year"),
-            "description": request.form.get("description"),
-            "genre": request.form.get("genre").lower(),
-            "director": request.form.get("director").lower(),
-            "cast": request.form.get("cast").lower(),
-            "duration": request.form.get("duration"),
-            "image_url": request.form.get("image_url"),
-            "is_watched": is_watched,
-            "is_bluray": is_bluray,
-            "my_rating": request.form.get("rating"),
-            "purchase_price": request.form.get("purchase_price"),
-            "purchase_date": request.form.get("purchase_date"),
-            "created_by": session["user"]
-        }
-        mongo.db.titles.insert_one(title)
-        flash("Title Successfully Added")
-        return redirect(url_for("get_titles", username=session['user']))
+        if 'add_title_btn' in request.form:
+            is_watched = "on" if request.form.get("is_watched") else "off"
+            is_bluray = "on" if request.form.get("is_bluray") else "off"
+            title = {
+                "library_name": request.form.get("library_name").lower(),
+                "title_name": request.form.get("title_name").lower(),
+                "release_year": request.form.get("release_year"),
+                "description": request.form.get("description"),
+                "genre": request.form.get("genre").lower(),
+                "director": request.form.get("director").lower(),
+                "cast": request.form.get("cast").lower(),
+                "duration": request.form.get("duration"),
+                "image_url": request.form.get("image_url"),
+                "is_watched": is_watched,
+                "is_bluray": is_bluray,
+                "my_rating": request.form.get("rating"),
+                "purchase_price": request.form.get("purchase_price"),
+                "purchase_date": request.form.get("purchase_date"),
+                "created_by": session["user"]
+            }
+            mongo.db.titles.insert_one(title)
+            flash("Title Successfully Added")
+            return redirect(url_for("get_titles", username=session['user']))
+
+        elif 'imdb_search_btn' in request.form:
+            text_search = request.form.get("title_name").lower()
+            title_list = movieDB.search_movie(text_search)
+            library_name = request.form.get("library_name").lower()
+            flash("Searching IMDb Database for the following: {} "
+                  .format(text_search).title())
+
+            return render_template(
+                "imdb_search.html", title_list=title_list,
+                library_name=library_name
+                )
 
     libraries = mongo.db.libraries.find(
         {"created_by": session["user"]}).sort("library_name", 1)
@@ -193,32 +206,42 @@ def add_title():
 @app.route("/home/edittitle/<title_id>", methods=["GET", "POST"])
 def edit_title(title_id):
     if request.method == "POST":
-        is_watched = "on" if request.form.get("is_watched") else "off"
-        is_bluray = "on" if request.form.get("is_bluray") else "off"
-        submit = {
-            "library_name": request.form.get("library_name").lower(),
-            "title_name": request.form.get("title_name").lower(),
-            "release_year": request.form.get("release_year"),
-            "description": request.form.get("description"),
-            "genre": request.form.get("genre").lower(),
-            "director": request.form.get("director").lower(),
-            "cast": request.form.get("cast").lower(),
-            "duration": request.form.get("duration"),
-            "image_url": request.form.get("image_url"),
-            "is_watched": is_watched,
-            "is_bluray": is_bluray,
-            "my_rating": request.form.get("rating"),
-            "purchase_price": request.form.get("purchase_price"),
-            "purchase_date": request.form.get("purchase_date"),
-            "created_by": session["user"]
-        }
-        mongo.db.titles.update({"_id": ObjectId(title_id)}, submit)
-        flash("Title Successfully Updated")
+        if 'edit_title_btn' in request.form:
+            is_watched = "on" if request.form.get("is_watched") else "off"
+            is_bluray = "on" if request.form.get("is_bluray") else "off"
+            submit = {
+                "library_name": request.form.get("library_name").lower(),
+                "title_name": request.form.get("title_name").lower(),
+                "release_year": request.form.get("release_year"),
+                "description": request.form.get("description"),
+                "genre": request.form.get("genre").lower(),
+                "director": request.form.get("director").lower(),
+                "cast": request.form.get("cast").lower(),
+                "duration": request.form.get("duration"),
+                "image_url": request.form.get("image_url"),
+                "is_watched": is_watched,
+                "is_bluray": is_bluray,
+                "my_rating": request.form.get("rating"),
+                "purchase_price": request.form.get("purchase_price"),
+                "purchase_date": request.form.get("purchase_date"),
+                "created_by": session["user"]
+            }
+            mongo.db.titles.update({"_id": ObjectId(title_id)}, submit)
+            flash("Title Successfully Updated")
+
+        elif 'imdb_search_btn' in request.form:
+            text_search = request.form.get("title_name").lower()
+            title_list = movieDB.search_movie(text_search)
+            flash("Searching IMDb Database for the following: {} "
+                  .format(text_search).title())
+
+            return render_template("imdb_search.html", title_list=title_list)
 
     title = mongo.db.titles.find_one({"_id": ObjectId(title_id)})
     libraries = mongo.db.libraries.find(
         {"created_by": session["user"]}).sort("library_name", 1)
-    return render_template("edit_title.html", title=title, libraries=libraries)
+    return render_template("edit_title.html",
+                           title=title, libraries=libraries)
 
 
 # Delete Title
@@ -229,6 +252,7 @@ def delete_title(title_id):
     return redirect(url_for("get_titles", username=session['user']))
 
 
+# Display Collections/Libraries
 @app.route("/getlibraries/<username>")
 def get_libraries(username):
     username = mongo.db.users.find_one(
@@ -249,6 +273,7 @@ def get_libraries(username):
     return render_template("libraries.html", libraries=libraries)
 
 
+# Add Collection/Library
 @app.route("/addlibrary", methods=["GET", "POST"])
 def add_library():
     if request.method == "POST":
@@ -263,6 +288,7 @@ def add_library():
     return render_template("add_library.html")
 
 
+# Edit Collection/Library
 @app.route("/editlibrary/<library_id>", methods=["GET", "POST"])
 def edit_library(library_id):
     if request.method == "POST":
@@ -278,6 +304,7 @@ def edit_library(library_id):
     return render_template("edit_library.html", library=library)
 
 
+# Delete Collection/Library
 @app.route("/deletelibrary/<library_id>")
 def delete_library(library_id):
     mongo.db.libraries.remove({"_id": ObjectId(library_id)})
@@ -285,6 +312,7 @@ def delete_library(library_id):
     return redirect(url_for("get_libraries", username=session['user']))
 
 
+# Navbar Search View
 @app.route("/search", methods=["GET", "POST"])
 def search():
     querytop = request.form.get("search-topnav")
@@ -348,27 +376,12 @@ def get_title_duration(title_obj):
         return title_obj.get('runtimes')[0]
 
 
-@app.route("/imdbsearch")
-def imdb_search():
-    form_test = "Papillon"
-    # movie_list = movieDB.search_movie(title_name)
-    # flash("Searching IMDb Database for the following: {} "
-    #       .format(title_name).title())
-
-    title_list = movieDB.search_movie(form_test)
-    flash("Searching IMDb Database for the following: {} "
-          .format(form_test).title())
-
-    return render_template("imdb_search.html", title_list=title_list)
-
-
-@app.route("/imdbformupdate/<title_id>")
-def imdb_form_update(title_id):
-    # movie_id = movie_id
-    title_obj = movieDB.get_movie(title_id)
-    title_name = title_obj.get('title')
-    moviedict = {
-        "title_name":  title_name,
+@app.route("/imdbformupdate/<movieDB_id>")
+def imdb_form_update(movieDB_id):
+    title_obj = movieDB.get_movie(movieDB_id)
+    movieDB_name = title_obj.get('title')
+    title_dict = {
+        "title_name":  movieDB_name,
         "release_year": title_obj.get('year'),
         "title_type ": title_obj.get('kind'),
         "description":  get_formatted_plot_summary(title_obj),
@@ -379,11 +392,11 @@ def imdb_form_update(title_id):
         "image_url": title_obj.get('full-size cover url')
     }
 
-    flash("IMDb Database for: {} ".format(title_name))
+    flash("IMDb Database for: {} ".format(movieDB_name))
     libraries = mongo.db.libraries.find(
         {"created_by": session["user"]}).sort("library_name", 1)
     return render_template("imdb_form_update.html", libraries=libraries,
-                           moviedict=moviedict)
+                           title_dict=title_dict)
 
 
 if __name__ == "__main__":

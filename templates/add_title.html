@@ -36,7 +36,7 @@
 				<div class="input-field col s12 m10 offset-m1">
 					<i class="fas fa-calendar-day prefix blue-grey-text text-darken-2"></i>
 					<input id="release_year" name="release_year" minlength="4" maxlength="4"
-                        pattern="^[0-9]{4,4}$" type="number" class="validate" data-length="4" required>
+                        pattern="^[0-9]{4,4}$" type="number" class="validate" data-length="4">
 					<label for="release_year">Release Year</label>
 				</div>
 			</div>
@@ -45,9 +45,9 @@
 				<div class="input-field button-wrapper col s10 offset-s2 m9 offset-m2 xl6 offset-xl5">
 					<a href="{{ url_for('add_title') }}" class="waves-effect waves-light red btn text-shadow">Reset</a>
                     
-                    <a href="{{ url_for('imdb_search') }}" class="waves-effect waves-light teal darken-1 btn text-shadow">
-                        <i class="fas fa-search left"></i> Search IMDB
-                    </a>                    
+                    <button type="submit" name="imdb_search_btn" value="imdb_search_btn" class="waves-effect waves-light teal darken-1 btn text-shadow">
+                        Search IMDB <i class="fas fa-search left"></i>
+                    </button>               
 				</div>
 			</div>
 
@@ -166,7 +166,7 @@
                         Cancel <i class="fas fa-times-circle right"></i>
                     </a>
 
-                    <button type="submit" class="waves-effect waves-light  btn-large blue-grey text-shadow">
+                    <button type="submit" name="add_title_btn" value="add_title_btn" class="waves-effect waves-light  btn-large blue-grey text-shadow">
                         Add Title <i class="fas fa-plus-square right"></i>
                     </button>
                 </div>
