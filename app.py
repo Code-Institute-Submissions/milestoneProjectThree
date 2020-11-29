@@ -113,7 +113,8 @@ def get_titles(username):
     # and flash messages, prevents users accessing other user resources
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    titles = list(mongo.db.titles.find({"created_by": username}))
+    titles = list(mongo.db.titles.find(
+        {"created_by": username}).sort("title_name", 1))
     title_count = mongo.db.titles.count_documents(
         {"created_by": username})
 
@@ -429,6 +430,70 @@ def filter_director_titles(director_name, username):
 
     return render_template("filter_director_titles.html",
                            titles=titles, director_name=director_name)
+
+
+############################################################
+# Releazse Year Filters
+############################################################
+
+# Clean Directors String function
+def clean_years(string_in):
+    # string_in = string_in.replace(", , ", ", ")[:-2]
+    string_in = string_in.split(", ")[:-2]
+    string_in = list(dict.fromkeys(string_in))
+    return string_in
+
+
+# Display Years View
+@app.route("/getyears/<username>")
+def get_years(username):
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    titles = list(mongo.db.titles.find({"created_by": username}))
+
+    years = ""
+    for title in titles:
+        years += title['release_year'] + ', '
+
+    years = clean_years(years)
+    years_count = len(years)
+
+    if years_count == 1:
+        flash("Catalogue titles are currently grouped in a single year")
+    elif years_count > 1:
+        flash("Catalogue titles are currently grouped across {} years"
+              .format(years_count))
+    else:
+        flash("""There are currently no titles
+               grouped by year in your catalogue""")
+
+    return render_template(
+        "years.html", titles=titles, years=years)
+
+
+# Filter Release Year View
+@app.route("/years/<release_year>/<username>/")
+def filter_year_titles(release_year, username):
+
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    titles = list(mongo.db.titles.find(
+                    {'$and': [{"release_year": release_year},
+                     {"created_by": username}]}))
+    # title_count = mongo.db.titles.count_documents(
+    #                 {'$and': [{"release_year": release_year},
+    #                  {"created_by": username}]})
+    # if title_count == 1:
+    #     flash("There is currently {} title for this Director"
+    #           .format(title_count))
+    # elif title_count > 1:
+    #     flash("There are currently {} titles for this Director"
+    #           .format(title_count))
+    # else:
+    #     flash("There are currently no titles for this Director")
+
+    return render_template("filter_year_titles.html",
+                           titles=titles, release_year=release_year)
 
 
 ############################################################

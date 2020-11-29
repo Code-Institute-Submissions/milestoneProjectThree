@@ -33,6 +33,10 @@
 
 /* Gutters */
 
+.pad-bot {
+    padding-bottom: 10px;
+}
+
 .no-margins {
     margin:0;
 }

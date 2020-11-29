@@ -127,7 +127,7 @@
                 <li class="waves-effect "><a href="{{ url_for('get_titles', username=session['user']) }}">Home<i class="fas fa-home left"></i></a></li>
                 <li class="waves-effect "><a href="{{ url_for('get_libraries', username=session['user']) }}">Collections<i class="fas fa-object-group left"></i></a></li>
                 <li class="waves-effect "><a href="{{ url_for('get_genres', username=session['user']) }}">Genres<i class="fas fa-theater-masks left"></i></a></li>
-                <li class="waves-effect "><a href="#">Release Year<i class="far fa-calendar-check left"></i></a></li>
+                <li class="waves-effect "><a href="{{ url_for('get_years', username=session['user']) }}">Release Year<i class="far fa-calendar-check left"></i></a></li>
                 <li class="waves-effect "><a href="{{ url_for('get_directors', username=session['user']) }}">Directors<i class="fas fa-user-cog left"></i></a></li>
                 <hr>
                 <li class="waves-effect "><a href="{{ url_for('add_title') }}">Add Title<i class="fas fa-plus-square left"></i></a></li>
