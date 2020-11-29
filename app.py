@@ -17,13 +17,13 @@ if os.path.exists("env.py"):
 app = Flask(__name__)
 
 # Set links to environmental variables
-
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 movieDB = imdb.IMDb()
+
 
 ############################################################
 # Search Functions
@@ -113,7 +113,11 @@ def get_titles(username):
     titles = list(mongo.db.titles.find({"created_by": username}))
     title_count = mongo.db.titles.count_documents(
         {"created_by": username})
-    if titles:
+
+    if title_count == 1:
+        flash("There is currently {} title in your catalogue"
+              .format(title_count))
+    elif title_count > 1:
         flash("There are currently {} titles in your catalogue"
               .format(title_count))
     else:
@@ -233,6 +237,37 @@ def user_profile(username):
                     "user_profile.html", username=username,
                     first_name=first_name, last_name=last_name,
                     library_count=library_count, titles_count=titles_count)
+
+
+############################################################
+# Filter Views
+############################################################
+
+# Filter Collection/Library View
+@app.route("/libraries/<library_name>/<username>/")
+def filter_library_titles(library_name, username):
+    # retrieve the session user's username from db for decorator
+    # and flash messages, prevents users accessing other user resources
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    titles = list(mongo.db.titles.find(
+                    {'$and': [{"library_name": library_name},
+                     {"created_by": username}]}))
+    title_count = mongo.db.titles.count_documents(
+        {'$and': [{"library_name": library_name},
+                  {"created_by": username}]})
+
+    if title_count == 1:
+        flash("There is currently {} title in this collection"
+              .format(title_count))
+    elif title_count > 1:
+        flash("There are currently {} titles in this collection"
+              .format(title_count))
+    else:
+        flash("There are currently no titles in this collection")
+
+    return render_template("filter_library_titles.html",
+                           titles=titles, library_name=library_name)
 
 
 ############################################################
@@ -452,6 +487,27 @@ def get_libraries(username):
     return render_template("libraries.html", libraries=libraries)
 
 
+# Manage Collections/Libraries
+@app.route("/managelibraries/<username>")
+def manage_libraries(username):
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    libraries = list(mongo.db.libraries.find(
+        {"created_by": username}).sort("library_name", 1))
+    library_count = mongo.db.libraries.count_documents(
+        {"created_by": username})
+    if library_count == 1:
+        flash("There is currently {} collection in your catalogue"
+              .format(library_count))
+    elif library_count > 1:
+        flash("There are currently {} collections in your catalogue"
+              .format(library_count))
+    else:
+        flash("There are currently no collections in your catalogue")
+
+    return render_template("manage_libraries.html", libraries=libraries)
+
+
 # Add Collection/Library
 @app.route("/addlibrary", methods=["GET", "POST"])
 def add_library():
@@ -477,7 +533,7 @@ def edit_library(library_id):
         }
         mongo.db.libraries.update({"_id": ObjectId(library_id)}, submit)
         flash("Collection Successfully Updated")
-        return redirect(url_for("get_libraries", username=session['user']))
+        return redirect(url_for("manage_libraries", username=session['user']))
 
     library = mongo.db.libraries.find_one({"_id": ObjectId(library_id)})
     return render_template("edit_library.html", library=library)
@@ -488,11 +544,11 @@ def edit_library(library_id):
 def delete_library(library_id):
     mongo.db.libraries.remove({"_id": ObjectId(library_id)})
     flash("Collection Successfully Deleted")
-    return redirect(url_for("get_libraries", username=session['user']))
+    return redirect(url_for("manage_libraries", username=session['user']))
 
 
 ############################################################
-# Environmental
+# Environmental variables
 ############################################################
 
 if __name__ == "__main__":

@@ -125,13 +125,13 @@
                 <!-- Display for All Devices -->
                     
                 <li class="waves-effect "><a href="{{ url_for('get_titles', username=session['user']) }}">Home<i class="fas fa-home left"></i></a></li>
-                <li class="waves-effect "><a href="#">Collections<i class="fas fa-object-group left"></i></a></li>
+                <li class="waves-effect "><a href="{{ url_for('get_libraries', username=session['user']) }}">Collections<i class="fas fa-object-group left"></i></a></li>
                 <li class="waves-effect "><a href="#">Genre<i class="fas fa-theater-masks left"></i></a></li>
                 <li class="waves-effect "><a href="#">Release Year<i class="far fa-calendar-check left"></i></a></li>
                 <li class="waves-effect "><a href="#">Director<i class="fas fa-user-cog left"></i></a></li>
                 <hr>
                 <li class="waves-effect "><a href="{{ url_for('add_title') }}">Add Title<i class="fas fa-plus-square left"></i></a></li>
-                <li class="waves-effect "><a href="{{ url_for('get_libraries', username=session['user']) }}">Manage Collections<i class="fas fa-edit left"></i></a></li>
+                <li class="waves-effect "><a href="{{ url_for('manage_libraries', username=session['user']) }}">Manage Collections<i class="fas fa-edit left"></i></a></li>
                 <hr>
                 <li class="waves-effect "><a href="{{ url_for('user_profile', username=session['user']) }}">User
                         Profile<i class="fas fa-user left"></i></a></li>
