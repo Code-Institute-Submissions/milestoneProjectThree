@@ -368,6 +368,70 @@ def filter_genre_titles(genre_name, username):
 
 
 ############################################################
+# Director Filters
+############################################################
+
+# Clean Directors String function
+def clean_directors(string_in):
+    string_in = string_in.replace(", , ", ", ").replace(", , ", ", ")[:-2]
+    string_in = string_in.split(", ")
+    string_in = list(dict.fromkeys(string_in))
+    return string_in
+
+
+# Display Directors View
+@app.route("/getdirectors/<username>")
+def get_directors(username):
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    titles = list(mongo.db.titles.find({"created_by": username}))
+
+    directors = ""
+    for title in titles:
+        directors += title['director'] + ', '
+
+    directors = clean_directors(directors)
+    directors_count = len(directors)
+
+    if directors_count == 1:
+        flash("There is currently {} director in your catalogue"
+              .format(directors_count))
+    elif directors_count > 1:
+        flash("There are currently {} directors in your catalogue"
+              .format(directors_count))
+    else:
+        flash("There are currently no directors in your catalogue")
+
+    return render_template(
+        "directors.html", titles=titles, directors=directors)
+
+
+# Filter Directors View
+@app.route("/directors/<director_name>/<username>/")
+def filter_director_titles(director_name, username):
+
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    titles = list(mongo.db.titles.find(
+                    {'$and': [{"$text": {"$search": director_name}},
+                     {"created_by": username}]}))
+    title_count = mongo.db.titles.count_documents(
+                    {'$and': [{"$text": {"$search": director_name}},
+                     {"created_by": username}]})
+    if title_count == 1:
+        flash("There is currently {} title for this Director"
+              .format(title_count))
+    elif title_count > 1:
+        flash("There are currently {} titles for this Director"
+              .format(title_count))
+    else:
+        flash("There are currently no titles for this Director")
+
+    return render_template("filter_director_titles.html",
+                           titles=titles, director_name=director_name)
+
+
+############################################################
 # Add/Delete Title Views
 ############################################################
 
