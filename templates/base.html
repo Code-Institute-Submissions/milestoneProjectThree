@@ -26,8 +26,7 @@
 	{% block styles %}
 
         {% if session.user %}
-
-        
+      
         <style>
 
             /* Target Side Nav Visibility */    
@@ -45,8 +44,7 @@
                 footer {
                     padding-left: 0;
                 }
-            }
-  
+            }  
         
         </style>
 
@@ -66,7 +64,7 @@
 				<div class="container-fluid">
 					<div class="nav-wrapper row">
 
-						<div class="col s3 logo-wrapper">
+						<div class="col s3 logo-wrapper" id="logo-wrapper">
 							<a href="{{ url_for('default') }}" data-target="slide-out"
 								class="sidenav-trigger"><i class="fas fa-bars"></i></a>
 							<a href="{{ url_for('default') }}" class="brand-logo waves-effect">KJC
@@ -88,22 +86,26 @@
 							{% endif %}
 						</div>
 
-
 						<!-- Top Right Nav Elements -->
 
 						<div class="col s5 hide-on-med-and-down">
 							<ul class="right">
 								{% if session.user %}
 
-								<li class="waves-effect "><a href="{{ url_for('user_profile', username=session['user']) }}">User
-										Profile<i class="fas fa-user left"></i></a></li>
-								<li class="waves-effect "><a href="{{ url_for('sign_out') }}">Sign
-										Out<i class="fas fa-sign-out-alt left"></i></a></li>
+								<li class="waves-effect ">
+                                    <a href="{{ url_for('user_profile', username=session['user']) }}">User Profile
+                                    <i class="fas fa-user left"></i></a>
+                                </li>
+								<li class="waves-effect ">
+                                    <a href="{{ url_for('sign_out') }}">Sign Out<i class="fas fa-sign-out-alt left"></i></a>
+                                </li>
 								{% else %}
-								<li class="waves-effect "><a href="{{ url_for('sign_up') }}">Sign
-										Up<i class="fas fa-user-plus left"></i></a></li>
-								<li class="waves-effect "><a href="{{ url_for('sign_in') }}">Sign
-										In<i class="fas fa-sign-in-alt left"></i></a></li>
+								<li class="waves-effect ">
+                                    <a href="{{ url_for('sign_up') }}">Sign Up<i class="fas fa-user-plus left"></i></a>
+                                </li>
+								<li class="waves-effect ">
+                                    <a href="{{ url_for('sign_in') }}">Sign In<i class="fas fa-sign-in-alt left"></i></a>
+                                </li>
 
 							</ul>
 						</div>
@@ -124,22 +126,33 @@
             
                 <!-- Display for All Devices -->
                     
-                <li class="waves-effect "><a href="{{ url_for('get_titles', username=session['user']) }}">Home<i class="fas fa-home left"></i></a></li>
-                <li class="waves-effect "><a href="{{ url_for('get_libraries', username=session['user']) }}">Collections<i class="fas fa-object-group left"></i></a></li>
-                <li class="waves-effect "><a href="{{ url_for('get_genres', username=session['user']) }}">Genres<i class="fas fa-theater-masks left"></i></a></li>
-                <li class="waves-effect "><a href="{{ url_for('get_years', username=session['user']) }}">Release Year<i class="far fa-calendar-check left"></i></a></li>
-                <li class="waves-effect "><a href="{{ url_for('get_directors', username=session['user']) }}">Directors<i class="fas fa-user-cog left"></i></a></li>
+                <li class="waves-effect ">
+                    <a href="{{ url_for('get_titles', username=session['user']) }}">Home<i class="fas fa-home left"></i></a>
+                </li>
+                <li class="waves-effect ">
+                    <a href="{{ url_for('get_libraries', username=session['user']) }}">Collections<i class="fas fa-object-group left"></i></a>
+                </li>
+                <li class="waves-effect ">
+                    <a href="{{ url_for('get_genres', username=session['user']) }}">Genres<i class="fas fa-theater-masks left"></i></a>
+                </li>
+                <li class="waves-effect ">
+                    <a href="{{ url_for('get_years', username=session['user']) }}">Release Year<i class="far fa-calendar-check left"></i></a>
+                </li>
+                <li class="waves-effect ">
+                    <a href="{{ url_for('get_directors', username=session['user']) }}">Directors<i class="fas fa-user-cog left"></i></a>
+                </li>
                 <hr>
-                <li class="waves-effect "><a href="{{ url_for('add_title') }}">Add Title<i class="fas fa-plus-square left"></i></a></li>
-                <li class="waves-effect "><a href="{{ url_for('manage_libraries', username=session['user']) }}">Manage Collections<i class="fas fa-edit left"></i></a></li>
+                <li class="waves-effect ">
+                    <a href="{{ url_for('add_title') }}">Add Title<i class="fas fa-plus-square left"></i></a>
+                </li>
+                <li class="waves-effect ">
+                    <a href="{{ url_for('manage_libraries', username=session['user']) }}">Manage Collections<i class="fas fa-edit left"></i></a>
+                </li>
                 <hr>
-                <li class="waves-effect "><a href="{{ url_for('user_profile', username=session['user']) }}">User
-                        Profile<i class="fas fa-user left"></i></a></li>
-                <li class="waves-effect "><a href="{{ url_for('sign_out') }}">Sign Out<i class="fas fa-sign-out-alt left"></i></a></li>
-                <!-- Hide for Large Devices Only-->
-                <!-- <hr class="hide-on-large-only">
-                        <li class="hide-on-large-only"><a href="#">Sign Out<i class="fas fa-sign-out-alt left"></i></a></li> -->
-            
+                <li class="waves-effect ">
+                    <a href="{{ url_for('user_profile', username=session['user']) }}">User Profile<i class="fas fa-user left"></i></a>
+                </li>
+                <li class="waves-effect "><a href="{{ url_for('sign_out') }}">Sign Out<i class="fas fa-sign-out-alt left"></i></a></li>           
                 <hr>
                 <li id="side-navbar-search" class="search hide-on-large-only">
                     <form action="{{ url_for('search') }}" method="post">
@@ -149,15 +162,19 @@
                     </div>
                     </form>
                 </li>
-			{% else %}
-                <li class="hide-on-large-only waves-effect"><a href="{{ url_for('sign_up') }}">Sign
-                        Up<i class="fas fa-user-plus left"></i></a></li>
-                <li class="hide-on-large-only waves-effect"><a href="{{ url_for('sign_in') }}">Sign
-                        In<i class="fas fa-sign-in-alt left"></i></a></li>
-            	
+            </ul>
+        </div>
+		{% else %}
+        <div class="hide-on-large-only">
+            <ul class="sidenav sidenav-fixed invesible-top text-shadow blue-grey lighten-2" id="slide-out">
+                <li class="hide-on-large-only waves-effect">
+                    <a href="{{ url_for('sign_up') }}">Sign Up<i class="fas fa-user-plus left"></i></a>
+                </li>
+                <li class="hide-on-large-only waves-effect">
+                    <a href="{{ url_for('sign_in') }}">Sign In<i class="fas fa-sign-in-alt left"></i></a>
+                </li>            	
             </ul>
 		{% endif %}	
-
         </div>
 
         {% block headercontent %}
@@ -200,6 +217,20 @@
 
 	<!-- Custom JS Placeholder-->
 	{% block scripts %}
+
+    <script>
+    
+    // Use jQuery to alter nav logo class
+
+        $(document).ready(function () {
+            if ($(window).width() < 768) {
+                $("#logo-wrapper").removeClass('logo-wrapper');
+            } else {
+                $("#logo-wrapper").addClass('logo-wrapper');
+            }
+        });
+    
+    </script>
 
  	{% endblock %}
 

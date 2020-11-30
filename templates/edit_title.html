@@ -25,7 +25,7 @@
                             {% endif %}
                         {% endfor %}
                     </select>
-					<label for="library_name">Collection</label> 
+					<label for="library_name">Collection</label>
 				</div>
 			</div>
 			<div class="row">
@@ -48,9 +48,9 @@
 			<div class="row right-align">
 				<div class="input-field button-wrapper col s10 offset-s2 m9 offset-m2 xl6 offset-xl5">
 					<a href="" class="waves-effect waves-light red btn text-shadow">Reset</a>
-                    <button type="submit" name="imdb_search_btn" value="imdb_search_btn" class="waves-effect waves-light teal darken-1 btn text-shadow">
+					<button type="submit" name="imdb_search_btn" value="imdb_search_btn" class="waves-effect waves-light teal darken-1 btn text-shadow">
                         Search IMDB <i class="fas fa-search left"></i>
-                    </button>     
+                    </button>
 				</div>
 			</div>
 
@@ -77,7 +77,7 @@
 					<i class="fas fa-user-cog prefix blue-grey-text text-darken-2"></i>
 					<input id="director" name="director" minlength="2" maxlength="30"
                         type="text" value="{{ title.director|title  }}" data-length="30" class="validate">
-					<label for="director">Director</label>
+					<label for="director">Directors</label>
 				</div>
 			</div>
 			<div class="row">
@@ -96,7 +96,7 @@
 					<label for="duration">Duration Mins</label>
 				</div>
 			</div>
-            <div class="row">
+			<div class="row">
 				<div class="input-field col s12 m10 offset-m1">
 					<i class="fas fa-image prefix blue-grey-text text-darken-2"></i>
 					<input id="image_url" name="image_url" placeholder="http://" value="{{ title.image_url }}"
@@ -110,10 +110,9 @@
 			<div class="row">
 				<div class="input-field col s12 m10 offset-m1">
 					<div class="switch">
-                        <!-- <i class="fas fa-eye prefix blue-grey-text text-darken-2"></i> -->
 						<label for="is_watched">
                             {% if title.is_watched == "on" %}
-                                <input type="checkbox" id="is_watched" name="is_watched" checked>
+                                <input type="checkbox" id="is_watched_selected" name="is_watched" checked>
                             {% else %}
                                 <input type="checkbox" id="is_watched" name="is_watched">
                             {% endif %}
@@ -126,10 +125,9 @@
 			<div class="row">
 				<div class="input-field col s12 m10 offset-m1">
 					<div class="switch">
-                        <!-- <i class="fas fa-compact-disc prefix blue-grey-text text-darken-2"></i> -->
-						<label for="is_bluray">                            
+						<label for="is_bluray">
                             {% if title.is_bluray == "on" %}
-                                <input type="checkbox" id="is_bluray" name="is_bluray" checked>
+                                <input type="checkbox" id="is_bluray_selected" name="is_bluray" checked>
                             {% else %}
                                 <input type="checkbox" id="is_bluray" name="is_bluray">
                             {% endif %}
@@ -139,63 +137,39 @@
 					</div>
 				</div>
 			</div>
-            <div class="row">
-            <div class="col s12">
-            
-            </div>
-            </div>
-			<div class="row">                
-				<div class="input-field col s12 m10 offset-m1">
-                    <!-- <i class="fas fa-thumbs-up prefix blue-grey-text text-darken-2"></i> -->
-					<div class="col s6 m3">
-						<h6 class="blue-grey-text text-lighten-2">
-							<strong>My Rating</strong>
-						</h6>
-					</div>
-                    This is the value retrieved from mongoDB: {{ title.my_rating }}             
-                    <span class="starRating col s6 m9">
-                     
-                        <input id="rating5" type="radio" name="rating" value="5">
-                        <label for="rating5">5</label>
-                        <input id="rating4" type="radio" name="rating" value="4">
-                        <label for="rating4">4</label>
-                        <input id="rating3" type="radio" name="rating" value="3">
-                        <label for="rating3">3</label>
-                        <input id="rating2" type="radio" name="rating" value="2">
-                        <label for="rating2">2</label>
-                        <input id="rating1" type="radio" name="rating" value="1">
-                        <label for="rating1">1</label>
-                    </span>
 
+            <!-- Placeholder Star Rating -->
+            This is the value retrieved from mongoDB: {{ title.my_rating }}
 
+			<div class="row">
+				<div class="input-field col s6 m5 offset-m1">
+					<i class="fas fa-euro-sign prefix blue-grey-text text-darken-2"></i>
+					<input id="purchase_price" name="purchase_price" pattern="^\d+(?:\.\d{0,2})$"
+                        value="{{ title.purchase_price }}" type="text" class="validate">
+					<label for="purchase_price">Purchase Price</label>
+				</div>
+				<div class="input-field col s6 m4 offset-m1">
+					<i class="fas fa-calendar-alt prefix blue-grey-text text-darken-2"></i>
+					<input id="purchase_date" name="purchase_date" type="text" value="{{ title.purchase_date }}"
+                        class="datepicker validate" >
+					<label for="purchase_date">Purchase Date</label>
 				</div>
 			</div>
-            <div class="row">
-                <div class="input-field col s6 m5 offset-m1">
-                    <i class="fas fa-euro-sign prefix blue-grey-text text-darken-2"></i>
-                    <input id="purchase_price" name="purchase_price" pattern="^\d+(?:\.\d{0,2})$" 
-                        value="{{ title.purchase_price }}" type="text" class="validate">
-                    <label for="purchase_price">Purchase Price</label>
-                </div>
-                <div class="input-field col s6 m4 offset-m1">
-                    <i class="fas fa-calendar-alt prefix blue-grey-text text-darken-2"></i>
-                    <input id="purchase_date" name="purchase_date" type="text" value="{{ title.purchase_date }}"
-                        class="datepicker validate" >
-                    <label for="purchase_date">Purchase Date</label>
-                </div>
-            </div>
-            <!-- submit button -->
-            <div class="row">
-                <div class="button-wrapper col s12 center-align">
-                    <a href="{{ url_for('get_titles', username=session['user']) }}" class="waves-effect waves-light btn-large red text-shadow">
-                        Cancel <i class="fas fa-times-circle right"></i>
-                    </a>
+			<!-- submit button -->
+			<div class="row">
+				<div class="button-wrapper col s12 center-align">
+					<a href="{{ url_for('get_titles', username=session['user']) }}"
+						class="waves-effect waves-light btn-large red text-shadow">
+						Cancel <i class="fas fa-times-circle right"></i>
+					</a>
 
-                    <button type="submit" class="waves-effect waves-light btn-large blue-grey text-shadow" name="edit_title_btn" value="edit_title_btn">Update Title <i class="fas fa-edit right"></i>
+					<button type="submit" class="waves-effect waves-light btn-large blue-grey text-shadow" name="edit_title_btn" value="edit_title_btn">Update Title <i class="fas fa-edit right"></i>
                     </button>
-                </div>
-            </div>
-
+				</div>
+			</div>
+			<div class="center-align">
+				
+			</div>
 		</div>
 	</form>
 </div>
@@ -204,10 +178,9 @@
 
 {% block scripts %}
 <script>
-
-    $(document).ready(function () {
+	$(document).ready(function () {
         $("input[value='{{ title.my_rating }}']" ).prop("checked", true );            
     });
     
 </script>
- 	{% endblock %}
+{% endblock %}

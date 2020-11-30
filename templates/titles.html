@@ -18,9 +18,9 @@
 				<a href="{{ url_for('get_title_detail', title_id=title._id) }}" class="">
                     <div class="card-image waves-effect waves-block waves-light">
                     {% if title.image_url %}
-                        <img class="activator" src="{{ title.image_url }}">
+                        <img class="" src="{{ title.image_url }}">
                     {% else %}
-                        <img class="activator" src="{{ url_for('static', filename='images/default_image.jpg') }}">
+                        <img class="" src="{{ url_for('static', filename='images/default_image.jpg') }}">
                     {% endif %}
                     </div>
                 </a>

@@ -1,9 +1,19 @@
+
+.input-field.col label.star{
+    left: 0;
+    font-size: 15px;
+    vertical-align: middle;
+    padding-bottom: 0;
+   
+}
+
 .starRating:not(old){
   display        : inline-block;
-  width          : 7.5em;
-  height         : 1.5em;
+  width          : 150px;
+  height         : 20px;
   overflow       : hidden;
-  vertical-align : bottom;
+  vertical-align : center;
+  margin-top     : 10px;  
 }
 
 .starRating:not(old) > input{
@@ -15,7 +25,7 @@
   display         : block;
   float           : right;
   position        : relative;
-  background      : url('star-off.svg');
+  background      : url('/static/images/star-off.svg');
   background-size : contain;
 }
 
@@ -24,7 +34,7 @@
   display         : block;
   width           : 1.5em;
   height          : 1.5em;
-  background      : url('star-on.svg');
+  background      : url('/static/images/star-on.svg');
   background-size : contain;
   opacity         : 0;
   transition      : opacity 0.2s linear;

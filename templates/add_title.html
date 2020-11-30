@@ -14,19 +14,21 @@
 		<div class="col s12 m8 offset-m2 card-panel grey lighten-5 form-wrapper">
 			<div class="row" id="form-select-wrapper">
 				<div class="input-field col s12 m10 offset-m1">
-					<i class="fas fa-object-group prefix blue-grey-text text-darken-2"></i>
+					<i class="fas fa-object-group prefix blue-grey-text text-darken-2 tooltipped"
+                    data-position="left" data-tooltip="Please Select a Collection for this title"></i>
 					<select id="library_name" name="library_name" class="validate" required>
                         <option value="" disabled selected>Choose Collection</option>
                         {% for library in libraries %}
                             <option value="{{ library.library_name }}">{{ library.library_name|title }}</option>
                         {% endfor %}
                     </select>
-					<label for="library_name">Collection</label> 
+					<label for="library_name">Collection</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12 m10 offset-m1">
-					<i class="fas fas fa-film prefix blue-grey-text text-darken-2"></i>
+					<i class="fas fas fa-film prefix blue-grey-text text-darken-2 tooltipped"
+                    data-position="left" data-tooltip="Please Enter the Title Name or text for the IMDb Search"></i>
 					<input id="title_name" name="title_name" minlength="2" maxlength="50"
                         type="text" class="validate" data-length="50" required>
 					<label for="title_name">Title Name</label>
@@ -34,7 +36,8 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s12 m10 offset-m1">
-					<i class="fas fa-calendar-day prefix blue-grey-text text-darken-2"></i>
+					<i class="fas fa-calendar-day prefix blue-grey-text text-darken-2 tooltipped"
+                    data-position="left" data-tooltip="Please Enter the Title's Release Year using format YYYY"></i>
 					<input id="release_year" name="release_year" minlength="4" maxlength="4"
                         pattern="^[0-9]{4,4}$" type="number" class="validate" data-length="4">
 					<label for="release_year">Release Year</label>
@@ -44,16 +47,17 @@
 			<div class="row right-align">
 				<div class="input-field button-wrapper col s10 offset-s2 m9 offset-m2 xl6 offset-xl5">
 					<a href="{{ url_for('add_title') }}" class="waves-effect waves-light red btn text-shadow">Reset</a>
-                    
-                    <button type="submit" name="imdb_search_btn" value="imdb_search_btn" class="waves-effect waves-light teal darken-1 btn text-shadow">
+
+					<button type="submit" name="imdb_search_btn" value="imdb_search_btn" class="waves-effect waves-light teal darken-1 btn text-shadow tooltipped" data-position="right" data-tooltip="Use the IMDb Search Engine to find Title details">
                         Search IMDB <i class="fas fa-search left"></i>
-                    </button>               
+                    </button>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="input-field col s12 m10 offset-m1">
-					<i class="fas fa-align-left prefix blue-grey-text text-darken-2"></i>
+					<i class="fas fa-align-left prefix blue-grey-text text-darken-2 tooltipped"
+                    data-position="left" data-tooltip="Please add a plot summary or use IMDb Search to auto populate this entry"></i>
 					<textarea id="description" name="description" minlength="5"
                         maxlength="200" data-length="200" class="materialize-textarea validate"></textarea>
 					<label for="description">Plot Description</label>
@@ -61,7 +65,8 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s12 m10 offset-m1">
-					<i class="fas fa-theater-masks prefix blue-grey-text text-darken-2"></i>
+					<i class="fas fa-theater-masks prefix blue-grey-text text-darken-2 tooltipped"
+                    data-position="left" data-tooltip="Please Enter the Title Genre or Genres"></i>
 					<input id="genre" name="genre" minlength="2" maxlength="100"
                         data-length="100" type="text">
 					<label for="genre">Genre</label>
@@ -69,15 +74,17 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s12 m10 offset-m1">
-					<i class="fas fa-user-cog prefix blue-grey-text text-darken-2"></i>
+					<i class="fas fa-user-cog prefix blue-grey-text text-darken-2 tooltipped"
+                    data-position="left" data-tooltip="Please Enter the Title's Director or Directors"></i>
 					<input id="director" name="director" minlength="2" maxlength="30"
                         type="text" data-length="30" class="validate">
-					<label for="director">Director</label>
+					<label for="director">Directors</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12 m10 offset-m1">
-					<i class="fas fa-users prefix blue-grey-text text-darken-2"></i>
+					<i class="fas fa-users prefix blue-grey-text text-darken-2 tooltipped"
+                    data-position="left" data-tooltip="Please Enter the Title's Cast seperated by commas"></i>
 					<input id="cast" name="cast" minlength="2" maxlength="150"
                         data-length="150" type="text">
 					<label for="cast">Cast</label>
@@ -85,15 +92,17 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s12 m10 offset-m1">
-					<i class="fas fa-clock prefix blue-grey-text text-darken-2"></i>
+					<i class="fas fa-clock prefix blue-grey-text text-darken-2 tooltipped"
+                    data-position="left" data-tooltip="Please Enter the Title Duration in minutes"></i>
 					<input id="duration" name="duration" minlength="1" maxlength="4"
                         pattern="^[0-9]{1,4}$" type="text" data-length="4" class="validate">
 					<label for="duration">Duration Mins</label>
 				</div>
 			</div>
-            <div class="row">
+			<div class="row">
 				<div class="input-field col s12 m10 offset-m1">
-					<i class="fas fa-image prefix blue-grey-text text-darken-2"></i>
+					<i class="fas fa-image prefix blue-grey-text text-darken-2 tooltipped"
+                    data-position="left" data-tooltip="Please Enter the Image URL to be used as the Database Poster for this title"></i>
 					<input id="image_url" name="image_url" placeholder="http://" pattern="https?://.+" type="url" class="validate">
 					<label for="image_url">Image URL</label>
 				</div>
@@ -104,7 +113,6 @@
 			<div class="row">
 				<div class="input-field col s12 m10 offset-m1">
 					<div class="switch">
-                        <!-- <i class="fas fa-eye prefix blue-grey-text text-darken-2"></i> -->
 						<label for="is_watched">
                             <input type="checkbox" id="is_watched" name="is_watched">
                             <span class="lever"></span>
@@ -116,7 +124,6 @@
 			<div class="row">
 				<div class="input-field col s12 m10 offset-m1">
 					<div class="switch">
-                        <!-- <i class="fas fa-compact-disc prefix blue-grey-text text-darken-2"></i> -->
 						<label for="is_bluray">
                             <input type="checkbox" id="is_bluray" name="is_bluray">
                             <span class="lever"></span>
@@ -125,28 +132,11 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">                
-				<div class="input-field col s12 m10 offset-m1">
-                    <!-- <i class="fas fa-thumbs-up prefix blue-grey-text text-darken-2"></i> -->
-					<div class="col s6 m3">
-						<h6 class="blue-grey-text text-lighten-2">
-							<strong>My Rating</strong>
-						</h6>
-					</div>
-                    <!-- External Code Snippet jQuery.script.net -->
-					<div class="col s6 m8 rating">
-						<input id="rating-count" name="rating" value="0" type="hidden">
-						<h6>
-							<i class="fa fa-star" data-rate="1"></i>
-							<i class="fa fa-star" data-rate="2"></i>
-							<i class="fa fa-star" data-rate="3"></i>
-							<i class="fa fa-star" data-rate="4"></i>
-							<i class="fa fa-star" data-rate="5"></i>
-						</h6>
-					</div>
-                    <!-- ---------------------------------------- -->
-				</div>
-			</div>
+
+
+            <!-- Placeholder Star Rating -->
+
+            
             <div class="row">
                 <div class="input-field col s6 m5 offset-m1">
                     <i class="fas fa-euro-sign prefix blue-grey-text text-darken-2"></i>

@@ -35,7 +35,8 @@ movieDB = imdb.IMDb()
 # Navbar Search View
 @app.route("/search", methods=["GET", "POST"])
 def search():
-    query = request.form.get("search")
+    query = request.form.get("search", "")
+    titles = []
     if query:
         titles = list(mongo.db.titles.find(
             {'$and': [{"$text": {"$search": query}},
@@ -54,6 +55,7 @@ def get_formatted_plot_summary(title_obj):
         plot_summary_and_notes_array = title_obj.get('plot')[0].split('::')
         plot_summary_only = plot_summary_and_notes_array[0]
         return plot_summary_only
+    return ""
 
 
 # Retrieve and format imdb directors details
@@ -64,6 +66,7 @@ def get_formatted_directors(title_obj):
             directors_string += director['name'] + ', '
         directors_string = directors_string[:-2]
         return directors_string
+    return ""
 
 
 # Retrieve and format imdb star details
@@ -74,6 +77,7 @@ def get_formatted_stars(title_obj):
             stars_string += star['name'] + ', '
         stars_string = stars_string[:-2]
         return stars_string
+    return ""
 
 
 # Retrieve and format imdb genres details
@@ -84,12 +88,14 @@ def get_formatted_genres(title_obj):
             genres_string += genre + ", "
         genres_string = genres_string[:-2]
         return genres_string
+    return ""
 
 
 # Retrieve and format imdb runtime details
 def get_title_duration(title_obj):
     if title_obj.get('runtime'):
         return title_obj.get('runtimes')[0]
+    return ""
 
 
 ############################################################
@@ -103,7 +109,7 @@ def default():
 
 
 # All Titles View
-@app.route("/home/<username>")
+@app.route("/<username>/home")
 def get_titles(username):
     # retrieve the session user's username from db for decorator
     # and flash messages, prevents users accessing other user resources
@@ -127,7 +133,7 @@ def get_titles(username):
 
 
 # Get Individual Title Detail
-@app.route('/home/detail/<title_id>')
+@app.route('/title/<title_id>')
 def get_title_detail(title_id):
     title = mongo.db.titles.find_one({"_id": ObjectId(title_id)})
     return render_template("title_detail.html", title=title)
@@ -138,7 +144,7 @@ def get_title_detail(title_id):
 ############################################################
 
 # Register View
-@app.route("/signup", methods=["GET", "POST"])
+@app.route("/sign-up", methods=["GET", "POST"])
 def sign_up():
     if request.method == "POST":
 
@@ -178,7 +184,7 @@ def sign_up():
 
 
 # Login view
-@app.route("/signin", methods=["GET", "POST"])
+@app.route("/sign-in", methods=["GET", "POST"])
 def sign_in():
     if request.method == "POST":
         username = request.form.get("username")
@@ -209,7 +215,7 @@ def sign_in():
 
 
 # Logout View
-@app.route("/signout")
+@app.route("/sign-out")
 def sign_out():
     # remove user from session cookie
     flash("You have been logged out")
@@ -218,7 +224,7 @@ def sign_out():
 
 
 # User profile view
-@app.route("/userprofile/<username>", methods=["GET", "POST"])
+@app.route("/<username>/profile", methods=["GET", "POST"])
 def user_profile(username):
     # retrieve the session user's username from db
     # prevents users accessing other user resources
@@ -245,7 +251,7 @@ def user_profile(username):
 # Collections/Library Filters
 ############################################################
 # Display Collections/Libraries
-@app.route("/getlibraries/<username>")
+@app.route("/<username>/collections")
 def get_libraries(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
@@ -266,8 +272,8 @@ def get_libraries(username):
 
 
 # Filter Collection/Library View
-@app.route("/libraries/<library_name>/<username>/")
-def filter_library_titles(library_name, username):
+@app.route("/<username>/collection/<library_name>")
+def filter_library_titles(username, library_name):
     # retrieve the session user's username from db for decorator
     # and flash messages, prevents users accessing other user resources
     username = mongo.db.users.find_one(
@@ -308,22 +314,24 @@ def remove_punc(string_var):
 def clean_genres(string_in):
     string_in = remove_punc(string_in)[:-1]
     string_in = string_in.replace("  ", " ").replace("  ", " ")
-    string_in = string_in.replace("scifi", "sci-fi ")
+    string_in = string_in.replace("scifi", "sci-fi")
+    string_in = string_in.replace("filmnoir", "film-noir")
     string_in = string_in.split(" ")
     string_in = list(dict.fromkeys(string_in))
     return string_in
 
 
 # Display Genres
-@app.route("/getgenres/<username>")
+@app.route("/<username>/genres")
 def get_genres(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    titles = list(mongo.db.titles.find({"created_by": username}))
+    titles = list(mongo.db.titles.find(
+        {"created_by": username}))
 
     genres = ""
     for title in titles:
-        genres += title['genre'] + ' '
+        genres += title['genre'] + ', '
 
     genres = clean_genres(genres)
     genres_count = len(genres)
@@ -341,7 +349,7 @@ def get_genres(username):
 
 
 # Filter Genre View
-@app.route("/genres/<genre_name>/<username>/")
+@app.route("/<username>/genre/<genre_name>")
 def filter_genre_titles(genre_name, username):
 
     username = mongo.db.users.find_one(
@@ -378,7 +386,7 @@ def clean_directors(string_in):
 
 
 # Display Directors View
-@app.route("/getdirectors/<username>")
+@app.route("/<username>/directors")
 def get_directors(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
@@ -405,8 +413,8 @@ def get_directors(username):
 
 
 # Filter Directors View
-@app.route("/directors/<director_name>/<username>/")
-def filter_director_titles(director_name, username):
+@app.route("/<username>/director/<director_name>")
+def filter_director_titles(username, director_name):
 
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
@@ -442,7 +450,7 @@ def clean_years(string_in):
 
 
 # Display Years View
-@app.route("/getyears/<username>")
+@app.route("/<username>/title-release-years")
 def get_years(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
@@ -469,25 +477,14 @@ def get_years(username):
 
 
 # Filter Release Year View
-@app.route("/years/<release_year>/<username>/")
-def filter_year_titles(release_year, username):
+@app.route("/<username>/title-release-year/<release_year>")
+def filter_year_titles(username, release_year):
 
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     titles = list(mongo.db.titles.find(
                     {'$and': [{"release_year": release_year},
                      {"created_by": username}]}))
-    # title_count = mongo.db.titles.count_documents(
-    #                 {'$and': [{"release_year": release_year},
-    #                  {"created_by": username}]})
-    # if title_count == 1:
-    #     flash("There is currently {} title for this Director"
-    #           .format(title_count))
-    # elif title_count > 1:
-    #     flash("There are currently {} titles for this Director"
-    #           .format(title_count))
-    # else:
-    #     flash("There are currently no titles for this Director")
 
     return render_template("filter_year_titles.html",
                            titles=titles, release_year=release_year)
@@ -498,7 +495,7 @@ def filter_year_titles(release_year, username):
 ############################################################
 
 # Add Title
-@app.route('/home/addtitle', methods=["GET", "POST"])
+@app.route('/title/add', methods=["GET", "POST"])
 def add_title():
     if request.method == "POST":
         if 'add_title_btn' in request.form:
@@ -543,7 +540,8 @@ def add_title():
 
 
 # IMDB form update for add title view
-@app.route("/addimdbformupdate/<library_selected>/<movieDB_id>")
+@app.route(
+    "/title/add/imdb-search-update/<library_selected>/imdb-id/<movieDB_id>")
 def add_imdb_form_update(movieDB_id, library_selected):
     title_obj = movieDB.get_movie(movieDB_id)
     movieDB_name = title_obj.get('title')
@@ -568,7 +566,7 @@ def add_imdb_form_update(movieDB_id, library_selected):
 
 
 # Delete Title
-@app.route("/deletetitle/<title_id>")
+@app.route("/title/<title_id>/delete")
 def delete_title(title_id):
     mongo.db.titles.remove({"_id": ObjectId(title_id)})
     flash("Title Successfully Deleted")
@@ -580,7 +578,7 @@ def delete_title(title_id):
 ############################################################
 
 # Edit Title
-@app.route("/home/edittitle/<title_id>", methods=["GET", "POST"])
+@app.route("/title/<title_id>/edit", methods=["GET", "POST"])
 def edit_title(title_id):
     if request.method == "POST":
         if 'edit_title_btn' in request.form:
@@ -605,6 +603,8 @@ def edit_title(title_id):
             }
             mongo.db.titles.update({"_id": ObjectId(title_id)}, submit)
             flash("Title Successfully Updated")
+            title = mongo.db.titles.find_one({"_id": ObjectId(title_id)})
+            return render_template("title_detail.html", title=title)
 
         elif 'imdb_search_btn' in request.form:
             text_search = request.form.get("title_name").lower()
@@ -624,7 +624,7 @@ def edit_title(title_id):
 
 
 # IMDB form update for edit title view
-@app.route("/editimdbformupdate/<title_id>/<movieDB_id>")
+@app.route("/title/<title_id>/edit/imdb-search-update/imdb-id/<movieDB_id>")
 def edit_imdb_form_update(title_id, movieDB_id):
     title_obj = movieDB.get_movie(movieDB_id)
     movieDB_name = title_obj.get('title')
@@ -690,7 +690,7 @@ def edit_imdb_form_update(title_id, movieDB_id):
 ############################################################
 
 # Manage Collections/Libraries
-@app.route("/managelibraries/<username>")
+@app.route("/<username>/manage-collections")
 def manage_libraries(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
@@ -711,7 +711,7 @@ def manage_libraries(username):
 
 
 # Add Collection/Library
-@app.route("/addlibrary", methods=["GET", "POST"])
+@app.route("/collection/add", methods=["GET", "POST"])
 def add_library():
     if request.method == "POST":
         library = {
@@ -726,7 +726,7 @@ def add_library():
 
 
 # Edit Collection/Library
-@app.route("/editlibrary/<library_id>", methods=["GET", "POST"])
+@app.route("/collection/<library_id>/edit", methods=["GET", "POST"])
 def edit_library(library_id):
     if request.method == "POST":
         submit = {
@@ -742,7 +742,7 @@ def edit_library(library_id):
 
 
 # Delete Collection/Library
-@app.route("/deletelibrary/<library_id>")
+@app.route("/collection/<library_id>/delete")
 def delete_library(library_id):
     mongo.db.libraries.remove({"_id": ObjectId(library_id)})
     flash("Collection Successfully Deleted")
