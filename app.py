@@ -430,7 +430,7 @@ def filter_director_titles(director_name, username):
 
 
 ############################################################
-# Releazse Year Filters
+# Release Year Filters
 ############################################################
 
 # Clean Directors String function

@@ -1,53 +1,37 @@
-/* Better Ratings Code Snippet */
-
-/* CSS Document for better rating plugin */
-
-.better-rating {}
-.better-rating li{
-    display: inline-block;
-    margin: 10px 0;
-}
-.better-rating .profile-pic{
-    display: inline-block;
-}
-.better-rating .content{
-    display: inline-block;
-    max-width: 68%;
-    vertical-align: top;
-    background: #f7f7f7;
-    padding: 20px;
-}
-.profile-rating-wrapper {
-    display: inline-block;
-    text-align: center;
-}
-.better-rating.slider {}
-
-#better-rating-form {}
-#better-rating-form input, #better-rating-form textarea{
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 3px;
-    border: 1px solid #a5a5a5;
+.starRating:not(old){
+  display        : inline-block;
+  width          : 7.5em;
+  height         : 1.5em;
+  overflow       : hidden;
+  vertical-align : bottom;
 }
 
-#better-rating-form button {
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 3px;
-    border: 1px solid #a5a5a5;
-    cursor: pointer;
+.starRating:not(old) > input{
+  margin-right : -100%;
+  opacity      : 0;
 }
-.rating i{
-    cursor: pointer;
- }
- .selected {
-    color: #f57f17;
- }
- .hover {
-    color: #fdd835;
- }
-.rating i:hover{
-    color: #fdd835;
+
+.starRating:not(old) > label{
+  display         : block;
+  float           : right;
+  position        : relative;
+  background      : url('star-off.svg');
+  background-size : contain;
+}
+
+.starRating:not(old) > label:before{
+  content         : '';
+  display         : block;
+  width           : 1.5em;
+  height          : 1.5em;
+  background      : url('star-on.svg');
+  background-size : contain;
+  opacity         : 0;
+  transition      : opacity 0.2s linear;
+}
+
+.starRating:not(old) > label:hover:before,
+.starRating:not(old) > label:hover ~ label:before,
+.starRating:not(:hover) > :checked ~ label:before{
+  opacity : 1;
 }
