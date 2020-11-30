@@ -10,65 +10,71 @@
 {% block maincontent %}
 
 <div class="row card-body-wrapper">
-<div class="col s12">
-	{% for title in titles %}
-	<div class="col m4 xl3 hide-on-small-only">
-		<div class="card card-wrapper">
-			<div class="card-image waves-effect waves-block waves-light">
-				{% if title.image_url %}
-				<img class="activator" src="{{ title.image_url }}">
-                {% else %}
-				<img class="activator" src="{{ url_for('static', filename='images/default_image.jpg') }}">
-                {% endif %}
-			</div>
-				<div class="card-content">
-					<div class="row card-title ">
-						<div class="col s10 card-title activator grey-text text-darken-1  truncate">
-							{{ title.title_name|title }}
-						</div>
-						<div class="col s2 card-title activator grey-text text-darken-1">
-							<i class="material-icons waves-effect">more_vert</i> 
-						</div>
-					</div>
-					<div class="row">
-						<div class="col s12">
-							<p>
-								<a
-									href="{{ url_for('get_title_detail', title_id=title._id) }}"><strong class="blue-grey-text">View Detail</strong></a>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="card-reveal">
-					<span class="card-title blue-grey-text text-darken-4">{{ title.title_name|title }}<i class="material-icons right">close</i></span>
-					<p>{{ title.description }}</p>
-				</div>
-			</div>
-		</div>
-
-
-
-		<div class="col s12 hide-on-med-and-up">
-			<div class="card horizontal">
-				<div class="card-image">
-					{% if title.image_url %}
-					<img src="{{ title.image_url }}">
+	<div class="col s12">
+		{% for title in titles %}
+        <!-- Desktop Views -->
+		<div class="col m4 xl3 hide-on-small-only">
+			<div class="card large">
+				<a href="{{ url_for('get_title_detail', title_id=title._id) }}" class="">
+                    <div class="card-image waves-effect waves-block waves-light">
+                    {% if title.image_url %}
+                        <img class="activator" src="{{ title.image_url }}">
                     {% else %}
-					<img src="{{ url_for('static', filename='images/default_image_small.jpg') }}">
+                        <img class="activator" src="{{ url_for('static', filename='images/default_image.jpg') }}">
+                    {% endif %}
+                    </div>
+                </a>
+                <div class="card-content">
+                    <div class="row card-title ">
+                        <div class="col s10 card-title activator grey-text text-darken-1  truncate">
+                            {{ title.title_name|title }}
+                        </div>
+                        <div class="col s2 card-title activator blue-grey-text text-darken-1">
+                            <i class="fas fa-chevron-circle-up"></i>
+                            <!-- <i class="material-icons waves-effect">more_vert</i> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <p>
+                                <a href="{{ url_for('get_title_detail', title_id=title._id) }}">
+                                    <strong class="blue-grey-text">View Detail</strong>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title blue-grey-text text-darken-4">
+                        {{ title.title_name|title }}<i class="material-icons right">close</i>
+                    </span>
+                    <p>{{ title.description }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile & Tablet Views -->
+        <div class="col s12 hide-on-med-and-up">
+            <div class="card horizontal">
+                <div class="card-image">
+                    {% if title.image_url %}
+                        <img src="{{ title.image_url }}">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='images/default_image_small.jpg') }}">
                     {% endif %}
                 </div>
-					<div class="card-stacked">
-						<div class="card-content">
-							<p>{{ title.description }}</p>
-						</div>
-						<div class="card-action">
-							<a
-								href="{{ url_for('get_title_detail', title_id=title._id) }}"><strong class="blue-grey-text ">{{ title.title_name }}</strong></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			{% endfor %}
-		</div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p>{{ title.description }}</p>
+                    </div>
+                    <div class="card-action">
+                        <a
+                            href="{{ url_for('get_title_detail', title_id=title._id) }}"><strong class="blue-grey-text ">{{ title.title_name }}</strong></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
-		{% endblock %}
+</div>
+{% endblock %}

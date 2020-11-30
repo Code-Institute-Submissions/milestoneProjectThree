@@ -29,11 +29,32 @@
                         </div>
                         <div class="card-action">
                             <a href="{{ url_for('edit_library', library_id=library._id) }}" class="waves-effect waves-light btn blue-grey lighten-2">Edit</a>
-                            <a href="{{ url_for('delete_library', library_id=library._id) }}" class="waves-effect waves-light btn red">Delete</a>
+                            <a href="#modal1" class="waves-effect waves-light btn red modal-trigger">Delete
+                            </a>
+                            <!-- Modal Structure -->
+                            <div id="modal1" class="modal white no-shadow">
+                                <div class="modal-content">
+                                <h4 class="red-text text-darken-4">Warning <i class="fas fa-exclamation-circle"></i></h4>
+
+                                <h6><strong>You are about to delete this collection from your catalogue.</strong></h6>
+                                </div>
+                                <div class="modal-footer">
+                                <a href="#!" class="modal-close waves-effect waves-light btn red">Cancel</a>
+                                <a href="{{ url_for('delete_library', library_id=library._id) }}" class="modal-close waves-effect waves-light btn ">
+                                Delete Title</a>
+                                </div>
+                            </div>
+                        
+
                         </div>
                     </div>
                 </div>
             {% endfor %}
+
+
+
+
+
         </div>
     </div>
 </div>

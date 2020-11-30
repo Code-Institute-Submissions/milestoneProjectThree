@@ -35,16 +35,12 @@ movieDB = imdb.IMDb()
 # Navbar Search View
 @app.route("/search", methods=["GET", "POST"])
 def search():
-    querytop = request.form.get("search-topnav")
-    queryside = request.form.get("search-sidenav")
-    if querytop:
+    query = request.form.get("search")
+    if query:
         titles = list(mongo.db.titles.find(
-            {'$and': [{"$text": {"$search": querytop}},
+            {'$and': [{"$text": {"$search": query}},
                       {"created_by": session["user"]}]}))
-    else:
-        titles = list(mongo.db.titles.find(
-            {'$and': [{"$text": {"$search": queryside}},
-                      {"created_by": session["user"]}]}))
+
     if len(titles) == 0:
         flash("There are no results for your search")
 
@@ -312,6 +308,7 @@ def remove_punc(string_var):
 def clean_genres(string_in):
     string_in = remove_punc(string_in)[:-1]
     string_in = string_in.replace("  ", " ").replace("  ", " ")
+    string_in = string_in.replace("scifi", "sci-fi ")
     string_in = string_in.split(" ")
     string_in = list(dict.fromkeys(string_in))
     return string_in

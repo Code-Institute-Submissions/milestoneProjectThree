@@ -79,7 +79,7 @@
 								<li id="top-navbar-search" class="search">
                                     <form action="{{ url_for('search') }}" method="post">
 									<div class="search-wrapper">
-										<input id="search-topnav" name="search-topnav" placeholder="Search"><i class="fas fa-search"></i>
+										<input id="search-topnav" name="search" placeholder="Search"><i class="fas fa-search"></i>
 										<div class="search-results"></div>
 									</div>
                                     </form>
@@ -141,10 +141,10 @@
                         <li class="hide-on-large-only"><a href="#">Sign Out<i class="fas fa-sign-out-alt left"></i></a></li> -->
             
                 <hr>
-                <li id="side-navbar-search" class="search">
+                <li id="side-navbar-search" class="search hide-on-large-only">
                     <form action="{{ url_for('search') }}" method="post">
                     <div class="search-wrapper">
-                        <input id="search-sidenav" name="search-sidenav" placeholder="Search"><i class="fas fa-search"></i>
+                        <input id="search-sidenav" name="search" placeholder="Search"><i class="fas fa-search"></i>
                         <div class="search-results"></div>
                     </div>
                     </form>

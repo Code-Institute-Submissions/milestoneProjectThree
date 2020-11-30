@@ -35,64 +35,64 @@
 							</h4>
 							<hr>
 						</div>
-						<div class="col s3">
+						<div class="col s4 m3">
 							<h5 class="blue-grey-text text-lighten-2">
 								Collection:
 							</h5>
 						</div>
-						<div class="col s9">
+						<div class="col s8 m9">
 							<h5 class="blue-grey-text text-darken-1">
 								{{ title.library_name.title() }}
 							</h5>
 						</div>
 
-						<div class="col s3">
+						<div class="col s4 m3">
 							<h5 class="blue-grey-text text-lighten-2">
 								Genre:
 							</h5>
 						</div>
-						<div class="col s9">
+						<div class="col s8 m9">
 							<h5 class="blue-grey-text text-darken-1">
 								{{ title.genre.title()}}
 							</h5>
 						</div>
-						<div class="col s3">
+						<div class="col s4 m3">
 							<h5 class="blue-grey-text text-lighten-2">
 								Duration:
 							</h5>
 						</div>
-						<div class="col s9">
+						<div class="col s8 m9">
 							<h5 class="blue-grey-text text-darken-1">
 								{{ title.duration }} mins
 							</h5>
 						</div>
-						<div class="col s3">
+						<div class="col s4 m3">
 							<h5 class="blue-grey-text text-lighten-2">
 								Plot:
 							</h5>
 						</div>
-						<div class="col s9">
+						<div class="col s8 m9">
 							<h5 class="blue-grey-text text-darken-1">
                                 <!-- jinga string filter -->
 								{{ title.description }}
 							</h5>
 						</div>
-						<div class="col s3">
+						<div class="col s4 m3">
 							<h5 class="blue-grey-text text-lighten-2">
 								Directors:
 							</h5>
 						</div>
-						<div class="col s9">
+						<div class="col s8 m9">
 							<h5 class="blue-grey-text text-darken-1">
 								{{ title.director.title() }}
 							</h5>
 						</div>
-						<div class="col s3">
+						<div class="col s4 m3">
 							<h5 class="blue-grey-text text-lighten-2">
 								Cast:
 							</h5>
 						</div>
-						<div class="col s9">
+						<div class="col s8 m9">
 							<h5 class="blue-grey-text text-darken-1">
 								{{ title.cast.title() }}
 							</h5>
@@ -104,6 +104,7 @@
 			<div class="row mild-shadow">
 				<div class="col s12">
 					<hr>
+                    <div class="row no-margins">
 					<div class="col s6 m3 offset-m1">
 						<h5 class="blue-grey-text text-lighten-2">
 							Is Watched?
@@ -120,6 +121,8 @@
 						</h5>
 						{% endif %}
 					</div>
+                    </div>
+                    <div class="row no-margins">
 					<div class="col s6 m3 offset-m1">
 						<h5 class="blue-grey-text text-lighten-2">
 							Is Bluray?
@@ -136,17 +139,19 @@
 						</h5>
 						{% endif %}
 					</div>
+                    </div>
 				</div>
-
-
+			
+			
 				<div class="col s12">
+                    <div class="row no-margins">
 					<div class="col s6 m3 offset-m1">
 						<h5 class="blue-grey-text text-lighten-2">
 							My Rating
 						</h5>
 					</div>
-
-                    <!-- Basic Star Update Logic -->
+			
+					<!-- Basic Star Update Logic -->
 					<div class="col s6 m8">
 						{% if title.my_rating == "0" %}
 						<h5 class="blue-grey-text text-lighten-2">
@@ -200,27 +205,31 @@
 						<h5 class="blue-grey-text text-darken-1">Not Rated Yet!</h5>
 						{% endif %}
 					</div>
-
-
-					<div class="col s6 m5 offset-m1 l3 offset-l1 blue-grey-text text-lighten-2">
-						<h5 class="">
-							Purchase Price:
-						</h5>
+                    </div>
+			
+					<div class="row no-margins">
+						<div class="col s6 m5 offset-m1 l3 offset-l1 blue-grey-text text-lighten-2">
+							<h5 class="">
+								Purchase Price:
+							</h5>
+						</div>
+						<div class="col s6 m6 l2 blue-grey-text text-darken-1">
+							<h5 class="">
+								€{{ title.purchase_price }}
+							</h5>
+						</div>
 					</div>
-					<div class="col s6 m6 l2 blue-grey-text text-darken-1">
-						<h5 class="">
-							<i class="fas fa-euro-sign"></i> {{ title.purchase_price }}
-						</h5>
-					</div>
-					<div class="col s6 m5 offset-m1 l3 blue-grey-text text-lighten-2">
-						<h5 class="">
-							Purchase Date:
-						</h5>
-					</div>
-					<div class="col s6 m6 l3 blue-grey-text text-darken-1">
-						<h5 class="">
-							{{ title.purchase_date }}
-						</h5>
+					<div class="row no-margins">
+						<div class="col s6 m5 offset-m1 l3 offset-l1 blue-grey-text text-lighten-2">
+							<h5 class="">
+								Purchase Date:
+							</h5>
+						</div>
+						<div class="col s6 m6 l3 blue-grey-text text-darken-1">
+							<h5 class="">
+								{{ title.purchase_date }}
+							</h5>
+						</div>
 					</div>
 				</div>
 			</div>
