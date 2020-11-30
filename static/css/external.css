@@ -7,6 +7,10 @@
    
 }
 
+
+/* External Code Snippet provided by Kate Rose Morley.@
+http://code.iamkate.com/html-and-css/star-rating-widget/#css */
+
 .starRating:not(old){
   display        : inline-block;
   width          : 150px;

@@ -138,8 +138,36 @@
 				</div>
 			</div>
 
-            <!-- Placeholder Star Rating -->
-            This is the value retrieved from mongoDB: {{ title.my_rating }}
+            <div class="row">
+				<div class="input-field col s12 m10 offset-m1">
+					<div class="col s5 l3">
+						<h6 class="blue-grey-text text-lighten-2">
+							<strong>My Rating</strong>
+						</h6>
+					</div>
+
+					<!-- External Code Snippet provided by Kate Rose Morley. 
+                    @:http://code.iamkate.com/html-and-css/star-rating-widget/#css -->
+                    
+					<div class="col s7 l9">
+
+						<span class="starRating">
+                            <input id="rating5" type="radio" name="rating" value="5">
+                            <label class="star" for="rating5">5</label>
+                            <input id="rating4" type="radio" name="rating" value="4">
+                            <label class="star" for="rating4">4</label>
+                            <input id="rating3" type="radio" name="rating" value="3">
+                            <label class="star" for="rating3">3</label>
+                            <input id="rating2" type="radio" name="rating" value="2">
+                            <label class="star" for="rating2">2</label>
+                            <input id="rating1" type="radio" name="rating" value="1">
+                            <label class="star" for="rating1">1</label>
+                        </span>
+                    </div>
+                    <!-- ---------------------------------------- -->
+				</div>
+			</div>
+
 
 			<div class="row">
 				<div class="input-field col s6 m5 offset-m1">
