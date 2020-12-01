@@ -14,6 +14,8 @@
 [View the live project here.](http://kjc-movie-catalogue-milestone3.herokuapp.com/)
 
 --------
+#### To facilate is of marking I've created a dummy admin/admin account that is already populated with several titles.
+--------
 
 ## Purpose
 
@@ -355,7 +357,7 @@ Ask Num | Scenario                                                              
     - Upon completion of the process the user is returned to the collections page where they can view the newly created collection and receive a flash feedback message indicating the task was successful[3].
     - From there they can return to manage collections page where they will be presented with the options to edit or delete the newly created collection.[3]  
     - From there the can navigate to the add title page where they will be guided through the process by a form validation, pattern recognition and a series of tooltips.[4]
-    - Within the newly populated homepage they can selected the title via clicking the card or the link immediately beneath the card.  This brings them to the title detail page where the can fulfil requirements [5] & [6].
+    - Within the newly populated homepage they can select the title via clicking the card or the link immediately beneath the card.  This brings them to the title detail page where they can fulfil requirements [5] & [6].
 
 #### Returning Visitor Goals
 Ask Num | Scenario                                                                                                                                       			    |
@@ -384,7 +386,7 @@ Ask Num | Scenario                                                              
 
 ### Further Testing.
 
-*   The Website was tested on Google Chrome, Internet Explorer, Microsoft Edge and Firefox browsers.
+*   The Website was tested on Google Chrome, Internet Explorer, Microsoft Edge and Firefox browsers. No major issues were identified.
 *   Responsive Testing was completed using [Techsini Multi-mockup](https://techsini.com/multi-mockup/index.php)
     - The Web Page renders well at small, medium and large window sizes.
     - Click to View the Homepage for [Small](assets/images/home_mobile_view.jpg), [Medium](assets/images/home_tablet_view.jpg) & [Large](assets/images/home_desktop_view.jpg) Window Sizes
@@ -404,3 +406,189 @@ assets/images/detail_desktop_view.jpg) Window Sizes
 
 *   The JavaScript code was validated using [JSHint](https://jshint.com/)
     -   2 Warnings remain. Both are associated with external js snippet provided  during the Putting It All Together Tutorial for the materialize select issue.
+
+
+--------
+
+## Deployment
+
+### GitHub Pages
+
+The project was deployed to GitHub Pages using the following steps...
+
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/kencormican/milestoneProjectThree) from the list of available repos.
+2. At the top of the Repository (not top of page), locate the "Settings" Button on the menu.
+3. Scroll down the Settings page until you locate the "GitHub Pages" Section.
+4. Under "Source", click the dropdown called "None" and select "Master Branch".
+5. The page will automatically refresh.
+6. Scroll back down through the page to locate the now published site [link](https://kencormican.github.io/milestoneProjectTwo/) in the "GitHub Pages" section.
+    - Note* to function correctly the main html page must be named "index.html"
+
+### Forking the GitHub Repository
+
+By forking the GitHub Repository we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository by using the following steps...
+
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/kencormican/milestoneProjectThree)
+2. At the top of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
+3. You should now have a copy of the original repository in your GitHub account.
+
+### Making a Local Clone
+
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/kencormican/milestoneProjectThree)
+2. Under the repository name, click "Clone or download".
+3. To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
+4. Open Git Bash
+5. Change the current working directory to the location where you want the cloned directory to be made.
+6. Type `git clone`, and then paste the URL you copied in Step 3.
+
+```
+$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+```
+
+7. Press Enter. Your local clone will be created.
+
+```
+$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+> Cloning into `CI-Clone`...
+> remote: Counting objects: 10, done.
+> remote: Compressing objects: 100% (8/8), done.
+> remove: Total 10 (delta 1), reused 10 (delta 1)
+> Unpacking objects: 100% (10/10), done.
+```
+
+Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository#cloning-a-repository-to-github-desktop) to retrieve pictures for some of the buttons and more detailed explanations of the above process.
+
+
+--------
+
+### If running locally on an IDE such as GitPoD
+
+1. Install all local dependencies including Flask, PyMongo & dnspython
+
+```
+>pip3 install Flask
+>pip3 install flask-pymongo
+>pip3 install dnspython
+```
+
+2. Create env.py file and .gitignore .
+
+```
+>touch env.py
+>touch .gitignore
+```
+
+3. Target env.py with .gitignore
+
+```
+>__pycache__/
+>env.py
+```
+
+4. Store all sensitive data including mongoDB URI, passoword, dbname ip port and secret key,  as environmental variable within env.py
+```
+>import os
+>os.environ.setdefault("IP", "0.0.0.0")
+>os.environ.setdefault("PORT", "5000")
+>os.environ.setdefault("SECRET_KEY", "your_secret_key_here")
+>os.environ.setdefault("MONGO_URI", "mongodb+srv://<USERNAME>:<PASSWORD>@<CLUSTER>-4g3i1.mongodb.net/<DBNAMEW>?retryWrites=true&w=majority")
+>os.environ.setdefault("MONGO_DBNAME", "<DBNAMEW>")
+```
+
+
+5. Copy the URI from the mongoDB connect option directly to the env.py file.
+
+
+6. Link the app.py with the environmental variables and flask libraries.
+
+```
+>import os
+>from flask import (
+>    Flask, flash, render_template,
+>    redirect, request, session, url_for)
+>from flask_pymongo import PyMongo
+>from bson.objectid import ObjectId
+>if os.path.exists("env.py"):
+>    import env
+>
+>
+>app = Flask(__name__)
+>
+>app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+>app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+>app.secret_key = os.environ.get("SECRET_KEY")
+>
+>mongo = PyMongo(app)
+>
+>
+>if __name__ == "__main__":
+>    app.run(host=os.environ.get("IP"),
+>            port=int(os.environ.get("PORT")),
+>            debug=True)
+```
+
+
+7. Run app.py locally on the ide using:
+```
+>python3 app.py
+```
+
+### Heroku Deployment
+
+1. Create a requirements.txt file using the terminal command pip3 freeze > requirements.txt
+
+2.	Create a Procfile with the terminal command 
+echo web: python app.py > Procfile
+3.	Git add and git commit the new Procfile and requirements.txt files to GitHub.
+
+4.	Create a new app on Heroku website by clicking “New” give it a name and assign it to you nearest region USA or Europe.
+
+5. From the Heroku dashboard select GitHub as the Deployment method
+
+6. Link the Heroku app to the correct GitHub repository.
+
+7. In the Heroku dashboard for your app click on settings “Reveal Config Vars”
+
+8. Set the following vars
+
+|  |  |
+|--|--|
+| DEBUG |FALSE  |
+| IP |  0.0.0.0|
+| PORT |5000  |
+| SECRET_KEY | your_secret |
+|MONGO_URI  |  mongodb+srv://<USERNAME>:<PASSWORD>@<CLUSTER>-4g3i1.mongodb.net/<DBNAMEW>?retryWrites=true&w=majority|
+
+9. in the “Manual Deployment” section of the page, make sure master branch is selected and then click “Deploy Branch”
+
+
+
+
+
+## Credits
+
+### Code
+
+-   As part of the preparation for this project I reviewed the several systems for streaming online content to gauge how best to approach the design and planning stages. These sites included but were not limited to Netflix, NowTV, the RTE Player and Plex.
+
+-	The Edit and Add Title Template Star Ratings CSS & HTML Code was extracted from an [External Code Snippet](http://code.iamkate.com/html-and-css/star-rating-widget/#css ) provided by Kate Rose Morley.
+
+- 	The jquery code resolving the Materialize select issue was taken directly from the Code Institute "Materilaize Form Validation" Tutorial and source code link provided by Tim Nelson. 
+
+-	The code and logic used to create this project was heavily influenced by the CI Practical Python and Data Centric Development Modules. In particular the "Putting it all Together" MongoDB and Flask tutorials provided by Tim Nelson and the Code Institute team.
+
+-   [Materialize](https://materializecss.com/): Materialize Library used throughout the project mainly to make site responsive using the Materialize Grid System.
+
+-   [w3schools.com](https://www.w3schools.com/default.asp) : For Javascript, Python, HTML, CSS & Bootstrap Tutorials
+
+
+### Content
+
+-   All content was either written by the developer or derived from open source data sets rendered to the Web page via the imdbPY library and IMDb API calls.
+
+
+--------
+
+
+
+
