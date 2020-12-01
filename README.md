@@ -14,18 +14,18 @@
 [View the live project here.](http://kjc-movie-catalogue-milestone3.herokuapp.com/)
 
 --------
-#### To facilate is of marking I've created a dummy admin/admin account that is already populated with several titles.
+#### To facilitate the marking of this project I've created a dummy admin/admin account that is already populated with several titles.
 --------
 
 ## Purpose
 
-In late 1995 Samsung announced it would start mass-producing DVDs.  The format which initial focussed primarily on music videos was formally launched in Japan in November 1996.  However, Movie and home entertainment distributors quickly adopted the DVD format to replace the ubiquitous VHS tape. Over the next two decades the DVD format and subsequently Bluray dics became the primary means of consuming videos by the public across the globe. Consumers embraced the DVD because of its high quality video and sound, superior data lifespan, and the fact that it could also provide interactive functionalty.
+In late 1995 Samsung announced it would start mass-producing DVDs.  The format, which initially focussed primarily on music videos, was formally launched in Japan in November 1996.  However, Movie and home entertainment distributors quickly adopted the DVD format to replace the ubiquitous VHS tape. Over the next two decades the DVD format, and subsequently Bluray discs, became the primary means of consuming videos by the public across the globe. Consumers embraced the DVD because of its high quality video and sound, superior data lifespan, and the fact that it could also provide interactive functionalty.
 
-The format has become somewhat obselete over the past three years, in large part due to the genesis of online streaming services such as Netflix, Hulu and Amazon Prime, however, many consumers have amassed vast archives of DVDs & Blurays in the inetrvening two decades.
+The format has become somewhat obselete over the past three years, in large part, due to the genesis of online streaming services such as Netflix, Hulu and Amazon Prime. All that said, many consumers have amassed vast archives of DVDs & Blurays in the intervening two decades.
 
-The purpose of this website it to provide these same end users with the ability to create a media library tracking their DBVD and/or Bluray collection/s.  In developing this website I intend on creating a fully responsive user experience that will provide consumers with the ability to perform the complete set of CRUD (Create, Read, Update & Delete) operations on their catalogues.  
+The purpose of this website it to provide these same end users with the ability to create a media library, tracking their DVD and/or Bluray collection/s.  In developing this website I intend to create a fully responsive user experience that will provide consumers with the ability to perform the complete set of CRUD (Create, Read, Update & Delete) operations on their catalogues.  
 
-To enhance UX the website will also allow registered users to consume the Internet Movie Database or IMDb API, retrieving title information and auto populating the consumer entries. In addition to the ability to customize their collections and individual title information the end user will also be be able to store additional personal information relating to their titles, including purchase date, price, watched dtate and a peronal user rating.
+To enhance UX the website will also allow registered users to consume the Internet Movie Database or IMDb API, retrieving title information and auto populating the consumer entries. In addition to customizing collections and title information, the end user will also be be able to store personal information relating to their titles.  This will include purchase date, price, watched state and a personal user rating.
 
 --------
 
@@ -35,9 +35,9 @@ To enhance UX the website will also allow registered users to consume the Intern
 ## The Project Brief
 --------
 The brief was to create a full-stack site that allows consumers of the site to manage a common dataset.  
-In creating the site, the developer should expose the learnings from the HTML, CSS, JavaScript, Python, Flask, MongoDB Modules. 
+In creating the site, the developer should expose the learnings from the HTML, CSS, JavaScript, Python, Flask and MongoDB Modules. 
 
-1. Design, develop and implement a backend for a web application using Python and a micro-framework
+1. Design, develop and implement a backend for a web application using Python and a Nicro-framework
 2. Implement custom HTML and CSS code to create a responsive full-stack application consisting of one or more HTML pages with relevant responses to user actions and a set of data manipulation functions
 3. Build a non-relational database-backed Flask web application that allows users to store and manipulate data records about a particular domain.
 4. Demonstrate competence in modelling and managing non-relational data effectively
@@ -54,11 +54,9 @@ In creating the site, the developer should expose the learnings from the HTML, C
 
 ### Requirements
 
-Use Materialize and Flask Frameworks, in conjunction with MongoDB and the IMDB API too render information about end user libraries to the Front End.
-The Website should be responsive allowing end users to perform the full set of CRUD operations at both a collection and titles level.
+Use the Materialize and Flask Frameworks, in conjunction with MongoDB and the IMDb API to render information about end user libraries to the Front End.  The Website should be responsive, allowing end users to perform the full set of CRUD operations at both a collection and titles level.
 The end users should be able to view their catalogue in its entirety or filter stored titles based on collection, genre, release date, director or search criteria.
-In addition, the above the end user should be able select individual titles to display and edit more detailed information. 
-Site structure and purpose should be clear from the outset providing the end user with an intuitive learning experience.
+In addition to the above the end user should be able to select individual titles to display more detailed information and/or edit and update the stored data. Site structure and purpose should be clear from the outset, providing the end user with an intuitive learning experience.
 The website should be fully responsive and clearly display good UX design for small, medium and large breakpoints.
 
 
@@ -85,51 +83,52 @@ Ask Num | Scenario                                                              
 ### Design
 
 #### Colour Scheme
--   I felt that a basic blue-grey and white webpage design was more aesthetically pleasing.
--   Colour is to be introduced through the poster images/urls associated with the titles themselves
--	Re the base template I've decided to use subtle different in shades of the Materialize blue-grey colour scheme to separate Nav from Header, Card and Flash Message components.
+-   I felt that a basic blue-grey and white webpage design would be more aesthetically pleasing.
+-   Colour is to be introduced via the poster and images/urls associated with the stored titles.
+-	Re the base template, I've decided to use subtlly different shades of the Materialize blue-grey colour scheme to separate the Nav elements from the Header, Card and Flash Message components.
 
 #### Typography
--   The Segoe UI family of fonts are the Materialize defaults with Roboto and Sans Serif acting as the fallback fonts.
+-   The Segoe UI family of fonts are the Materialize defaults with Roboto and Sans Serif acting as the fallback alternatives.
 -   I've decided to use both Font Awesome and Materialize icons to highlight functionality and make the site more intuitive.
--	Font-awesome icons are preferred over Materialize icons because they provide a greater degree of variation and flexibility.
--	For example, the disc icon used in the main nav as the Brand Logo.
+-	Font-awesome icons are preferred over Materialize icons because they provide a greater degree of variation and flexibility. For example, the disc icon used in the main nav as the Brand Logo.
 -	Where possible I've used the Materialize Header elements to keep font sizes consistent across the various templates.
--	I've used Materialize helper classes to align text within the various html containers.
+-	I've used also Materialize helper classes to align text within the various html containers.
 -	I've used CSS to customise materialize defaults further. These include but are not limited to various degrees of text-shadowing, font-sizes and text decoration
 -	Finally, I've used a combination of CSS transforms, python and Jinga methods to alter text capitalisation at various points within the project.
 
 #### Imagery
 -   I've used Materialize card-image components in conjunction with the title image urls to provide a central point of focus for the website. I've also used standard materialize card elements, and icon styled with the sites blue-grey theme to provide secondary points of focus.
 -	For the initial site callout and the Brand Logo I've used an enlarged Font Awesome compact disc icon.
--	The main the integrity of the site and for consistency of UX I've created a default poster, using a combination of various movie related imagery, to populate the materialize card-image elements in the event an end user fails to select an image URL from the web during the title creation process.
+-	I've also created a default poster, derived from a combination of various movie related imagery, to be used in the event a service consumer fails to select an image URL during the title creation process. 
+-   This poster will be used to populate all empty materialize card-image elements, thereby maintaining consistency of UX across the site.
 
 #### Responsive Elements
 -   I've used the materialize fixed nav and side-nav classes to provide a more user-friendly experience at different window sizes.
 -	I've used a collapsible, with side nav for mobile and tablet devices and fixed side-nav for larger devices.
--   The plan was to limit the top nav to Logo, search element and reg/user login details and extend available functionality via side nav.
--	Sign Up/In/Out/User Profile will be hidden on fixed side nav but made available for mobile collapsible side nav. 
+-   The plan was to limit the top nav to Logo, search, reg/user and login element.
+-   The side nav could then be used to extend functionality to the end user.
+-	Sign Up/In/Out and User Profile elements will be hidden on the fixed side nav but made available for mobile collapsible side nav. 
 -	li and ul elements were also targeted at different window sizes using the Materialize show and hide helper classes.
--	Jinga if statements, targeting user session, in conjunction with media queries, targeting the large breakpoint, were used to remove the fixed side nav for unregistered users callout page, the registration and the login pages.
--	I've also used Jinga in conjunction with jquery to target the logo-wrapper class on small devices.  This was resulting in the brand header image aligning left as opposed to centre for small and medium devices and needed to be removed at those breakpoints, however, it was required for improved UX a large window sized.
--	I used the materialize grid system to target form and card components at the various window sizes.
+-	Jinga if statements, targeting the user session, were used in conjunction with media queries, targeting the large breakpoint, to remove the fixed side nav for unregistered users. This provides a simple consistent view the callout, registration and login pages.
+-	I've also used Jinga in conjunction with jquery to target the logo-wrapper class on small devices.  This was causing the the brand header image to align to the left for small and medium devices when it should have been center aligned. The class needed to be removed at the small and breakpoints, however, it was required for improved UX a large window sizes.
+-	I also used the materialize grid system to target form and card components at the various window sizes.
 -	Several form button elements and input elements were altered to render more cleanly between large and small window sizes.
--	Card Images were also rendered differently for the titles pages at different breakpoints with 4x card images being displayed at large and xlarge 3x at medium and 1x at small breakpoints.
--	I also used the materialize horizontal card type to render the card image and description differently on mobile devices.
+-	The materialize grid system was also used the render Card Images differently for the titles pages at different breakpoints. A single card was displayed at small breakpoint, with that increadin to 3x and 4x cards and at the medium and large breakpoints respectively.
+-	Finally, I used the materialize horizontal card type to render the card with a landscape, as opposed to portait orientation, for mobile devices.
 
 #### Interactive Elements
 -   The Matrialize framework was used to provides a multitude of interactive features for this site.
--	These included but were not limited hoverable helper classes, tooltips, character counters, modals, form validation, select dropdown menus and date pickers.
--   The Materialize card-image activator class was used to create animation/transition between the image iteslef and the plot description viewed in a card envelope.
--	I also used the flash library within the flask microframework to provide additional feedback to the user following interaction with the site.
+-	These included but were not limited to; hoverable helper classes, tooltips, character counters, modals, form validation, select dropdown menus and date pickers.
+-   The Materialize card-image activator class was used to create animation/transitions between the image itself and the plot description viewed in the card envelope.
+-	I also used the flash library within the flask microframework to provide additional feedback to the user following interactions with the site.
 -	The nav bar was customised heavily to render as intended and for the collapsible, top and side-navs to produce to required interactivity.
 -	In addition to the above, search result feedback and form update templates were created, and supported on to backend using python to provide the end user with progress indicators during the IMDd search process
 
 #### Authentication
 -	The Werkzeug library was used with Flask and a ‘users’ collection in MongoDB, to create registration and authentication processes.
--	The two main helpers used for this were are "generate_password_hash", and "check_password_hash".
--	This combined with html pattern validation and a littles python password verification provided some simple security functionality.
--	This also facilitated the creation of user specific catalogues, IMHO a prerequisite to delivering on the project terms of reference.
+-	The two main helpers used for this were "generate_password_hash", and "check_password_hash".
+-	These were combined with html pattern validation and a littles python password verification to provide some simple security functionality.
+-	This also facilitated the creation of user specific catalogues, IMHO a prerequisite to delivering functional production website.
 
 
 ### Wireframes
@@ -159,7 +158,7 @@ Ask Num | Scenario                                                              
 
 ### Authentication
 
-To ensure a viable production site I felt it was important to protect users from accidentally modifying or erasing one another’s entries.  To do so I introduced a simple registration and authentication process using the Werkzeug library described in our tutorials.  Once activated users can be isolated from one another and provided with personalised feedback messages.
+To ensure a viable production site I felt it was important to protect users from accidentally modifying or erasing one-another’s entries.  I used the Werkzeug library, which was described in the "Putting it All in place" tutorials, to introduce a simple registration and authentication process. Once activated users can be isolated from one another and provided with dditional personalised feedback messages.
 
 - Click to View the [registration & login pages](assets/images/registration_and_login_views.jpg) for the major breakpoints
 
@@ -196,7 +195,7 @@ assets/images/detail_desktop_view.jpg) Window Sizes
 
 ### Edit Title
 
-The edit template and view augment the add functionality by providing the and user to query a pre-exiting record on the database and populate the form with the results of the query. Again the imdb search functionality is available to dynamically populate the form with the results of an external query.
+The edit template and view augment the add functionality by providing the ability to query a pre-exiting record on the database and populate the form with the results of the query. Again the imdb search functionality is available to dynamically populate the form with the results of an external query.
 
 - Click to View the edit page template for [Small](assets/images/edit_title_mobile_view.jpg), [Medium](assets/images/edit_title_tablet_view.jpg) & [Large](assets/images/edit_title_desktop_view.jpg) Window Sizes
 
@@ -208,7 +207,7 @@ In addition to the CRUD functionality provided for the individual titles, this s
 
 ### Delete
 
-Delete functionality has been provided for both teh collection and title entries.  Both processes have been wired up to modals and flash messages to provide the end user with control and feedback.
+Delete functionality has been provided for both collection and title entries.  Both processes have been wired up to modals and flash messages to provide the end user with control and feedback.
 
 
 ### Movie Catalogue Database Overview
@@ -302,7 +301,7 @@ password        | password                   | string                           
 	-	The materialise search input defaults also had to be modified to operate in the top nav and without materialize icons.
 
 *	Flash messages:
-	-	Identified unwanted defaults for flash messages. Altered default margins and padding to facilitate design theme. Also identified grid overflow on flash after user profile anchor added to top menu.  resolved by adjusting navbar grid layout.
+	-	Identified unwanted defaults for flash messages. Altered default margins and padding to facilitate design theme. Also identified grid overflow on flash after user profile anchor added to top menu.  Resolved by adjusting navbar grid layout.
 
 *	Sign Up Page/Functionality:
 	-	Cycled through multiple iterations of correct and incorrect register behaviour to verify flash responses and that MongoDB was being checked and updated correctly.
@@ -316,7 +315,7 @@ password        | password                   | string                           
 	-	For the default Materialize card content display the text was overflowing at quite high viewports and resulting in the more-vert icon being pushed to the next line. To resolve this used additional materialize row, col and truncate functionality.
 
 *	Detailed Title Template:
-	-	Decided to go with icons with simple jinga if statement logic for Is watched, Is Bluray and My Rating functionality. Also added purchased date to theme. Logic included for null as well as populated entries on My Rating.
+	-	Decided to go with icons with simple jinga if statement logic for "Is watched", "Is Bluray" and "My Rating" functionality. Also added purchased date to theme. Logic included for null as well as populated entries on My Rating.
 
 *	Base Template:
 	-	Fixed side nav was displayed in all views regardless of whether user was logged in or not.  Wanted to remove for unregistered and logged out users.  To do this I moved media query from style.css into base.html styles jinga block and set conditional statement against user session for both style and entire sidenav ul element.  When this was added to ul the headercontent jinga block overflowed into sidenav.  To resolve this I encapsulate the ul in it's own wrapper div and places headercontent extend block outside div but still within header element thereby maintaining semantic html.
@@ -407,6 +406,8 @@ assets/images/detail_desktop_view.jpg) Window Sizes
 *   The JavaScript code was validated using [JSHint](https://jshint.com/)
     -   2 Warnings remain. Both are associated with external js snippet provided  during the Putting It All Together Tutorial for the materialize select issue.
 
+*   The Python code was validated using  [PEP8 Online](http://pep8online.com/)
+    - No warnings or errors were returned.
 
 --------
 
@@ -579,7 +580,7 @@ echo web: python app.py > Procfile
 
 -   [Materialize](https://materializecss.com/): Materialize Library used throughout the project mainly to make site responsive using the Materialize Grid System.
 
--   [w3schools.com](https://www.w3schools.com/default.asp) : For Javascript, Python, HTML, CSS & Bootstrap Tutorials
+-   [w3schools.com](https://www.w3schools.com/default.asp) : For Javascript, Python, HTML & CSS Tutorials
 
 
 ### Content
