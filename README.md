@@ -137,9 +137,7 @@ Ask Num | Scenario                                                              
 ####  Light Theme
 
 - Mobile Balsamiq Mockups: Small Window Sizes - [View](assets/wireframes/lightTheme/mobileOnlyWireframes_lightTheme.JPG)
-
 - Tablet Balsamiq Mockups: Medium Window Sizes - [View](assets/wireframes/lightTheme/tabletOnlyWireframes_lightTheme.JPG)
-
 - Desktop Balsamiq Mockups: Large Window Sizes - [View](assets/wireframes/lightTheme/desktopOnlyWireframes_lightTheme.JPG)
 
 
@@ -147,9 +145,7 @@ Ask Num | Scenario                                                              
 ####  Dark Theme
 
 - Mobile Balsamiq Mockups: Small Window Sizes - [View](assets/wireframes/darkTheme/mobileOnlyWireframes_darkTheme.JPG)
-
 - Tablet Balsamiq Mockups: Medium Window Sizes - [View](assets/wireframes/darkTheme/tabletOnlyWireframes_darkTheme.JPG)
-
 - Desktop Balsamiq Mockups: Large Window Sizes - [View](assets/wireframes/darkTheme/desktopOnlyWireframes_darkTheme.JPG)
 
 --------
@@ -161,7 +157,6 @@ Ask Num | Scenario                                                              
 To ensure a viable production site I felt it was important to protect users from accidentally modifying or erasing one-another’s entries.  I used the Werkzeug library, which was described in the "Putting it All in place" tutorials, to introduce a simple registration and authentication process. Once activated users can be isolated from one another and provided with dditional personalised feedback messages.
 
 - Click to View the [registration & login pages](assets/images/registration_and_login_views.jpg) for the major breakpoints
-
 - Click to View the personalised user profile pages for [Small](assets/images/profile_mobile_view.jpg), [Medium](assets/images/profile_tablet_view.jpg) & [Large](assets/images/profile_desktop_view.jpg) Window Sizes
 
 ### Home Page Cards
@@ -183,7 +178,6 @@ assets/images/home_desktop_view.jpg) Window Sizes
 This template provides the user with the ability to add a new title to the catalogue via a web based form.  The page provides client-side form validation and immediate feedback to the user via character counters, tool tips and flash messaging. The form also allows the user to set a personal rating value to the title via an animated star rating utility. In addition to the above this template provides an IMDB search facility via a separate search button.
 
 - Click to View the Add Title Page for [Small](assets/images/add_title_mobile_view.jpg), [Medium](assets/images/add_title_tablet_view.jpg) & [Large](assets/images/add_title_desktop_view.jpg) Window Sizes
-
 - Click to View sample IMDb Search results for [Small](assets/images/imdb_search_mobile_view.jpg), [Medium](assets/images/imdb_search_tablet_view.jpg) & [Large](assets/images/imdb_search_desktop_view.jpg) Window Sizes
 
 ### View Title detail 
@@ -210,45 +204,6 @@ In addition to the CRUD functionality provided for the individual titles, this s
 Delete functionality has been provided for both collection and title entries.  Both processes have been wired up to modals and flash messages to provide the end user with control and feedback.
 
 
-### Movie Catalogue Database Overview
-
-#### MongoDB libraries collection
-
-Key             | Value                      | Type                                                                                                   	 		       |
-:--             | :--------------------------| :--------------------------------------------------------------------------------------------------------------------   |
-library_id      | .id                        | ObjectId                                                                                                                |
-created_by      | user                       | string                                                                                                                  |
-library_name    | libarary                   | string                                                                                                                  |
-
-#### titles collection
-Key             | Value                      | Type                                                                                                   	 		       |
-:--             | :--------------------------| :--------------------------------------------------------------------------------------------------------------------   |
-title_id        | .id                        | ObjectId                                                                                                                |
-library_name    | library_name               | string                                                                                                                  |
-title_name      | title_name                 | string                                                                                                                  |
-release_year    | release_year               | string                                                                                                                  |
-description     | description                | string                                                                                                                  |
-genre           | genre                      | string                                                                                                                  |
-director        | director                   | string                                                                                                                  |
-cast            | cast                       | string                                                                                                                  |
-duration        | duration                   | string                                                                                                                  |
-image_url       | image_url                  | string                                                                                                                  |
-is_watched      | is_watched                 | string                                                                                                                  |
-is_bluray       | is_bluray                  | string                                                                                                                  |
-my_rating       | my_rating                  | string                                                                                                                  |
-purchase_price  | purchase_price             | string                                                                                                                  |purchase_date   | purchase_date              | string                                                                                                                  |
-created_by      | user                       | string                                                                                                                  |
-
-#### users collection
-Key             | Value                      | Type                                                                                                   	 		       |
-:--             | :--------------------------| :--------------------------------------------------------------------------------------------------------------------   |
-user_id         | .id                        | Objectid                                                                                                                |
-first_name      | first_name                 | string                                                                                                                  |
-last_name       | last_name                  | string                                                                                                                  |
-username        | username                   | string                                                                                                                  |
-password        | password                   | string                                                                                                                  |
-
-
 ## Technologies Used
 
 ### Languages Used
@@ -260,36 +215,22 @@ password        | password                   | string                           
 
 ### Frameworks, Libraries & Programs Used
 
-1. [Font Awesome:](https://fontawesome.com/)
-    - Font Awesome was used for the footer nav icon for aesthetic and UX purposes.
-1. [Materialize 1.0.0:](https://materializecss.com/)
-    - Masterialize was used to assist with the responsiveness and styling of the website.
-1. [jQuery 3.5.1:](https://jquery.com/)
-    - The project uses JQuery to simplify DOM manipulation and to enhance the Materialize framework. 
-1. [Flask 1.1.2:](https://flask.palletsprojects.com/en/1.1.x/)
-	- Microframework used to enhance Python capabilities
-1. [Werkzeug 1.0.1:](https://werkzeug.palletsprojects.com/en/1.0.x/)
-	- Library used to manage and enhance security and authentication functionality
-1. [Flask-PyMongo 2.3.0:](https://pypi.org/project/Flask-PyMongo/)
-    - MongoDB support for Flask applications.
-1. [dnspython 2.0.0:](https://pypi.org/project/dnspython/)
-	- Libraries used to interface with MongoDB
-1. [imdbPY 2020.9.25:](https://imdbpy.github.io/)
-    - imdbPy is a Python library used to process and manage the interactions between the site and IMDb API before rendering information to the front end.
-1. [IMDb API] (https://developer.imdb.com/)
-	- Used by imdbPY to retrieve information about screen titles
-1. [MongoDB:](https://www.mongodb.com/)
-	- Cloud based  general purpose, document-oriented, distributed Database
-1. [GitPod:](https://www.gitpod.io/)
-	- Used as the IDE to develop the project
-1. [Git](https://git-scm.com/)
-    - Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
-1. [GitHub:](https://github.com/)
-    - GitHub is used to store the projects code after being pushed from Git.
-1. [Microsoft Paint:](https://en.wikipedia.org/wiki/Microsoft_Paint)
-    - Microsoft Paint was used to create the responsive image for the ReadMe.md and to capture the balsamiq & wireframe images in a generic format.
-1. [Balsamiq:](https://balsamiq.com/)
-    - Balsamiq was used to create the [wireframes](assets/wireframes/lightTheme/desktopOnlyWireframes_lightTheme.JPG) during the design process.
+1. [Font Awesome:](https://fontawesome.com/) - Font Awesome was used for the footer nav icon for aesthetic and UX purposes.
+1. [Materialize 1.0.0:](https://materializecss.com/) - Masterialize was used to assist with the responsiveness and styling of the website.
+1. [jQuery 3.5.1:](https://jquery.com/) - The project uses JQuery to simplify DOM manipulation and to enhance the Materialize framework. 
+1. [Flask 1.1.2:](https://flask.palletsprojects.com/en/1.1.x/) - Microframework used to enhance Python capabilities
+1. [Werkzeug 1.0.1:](https://werkzeug.palletsprojects.com/en/1.0.x/) - Library used to manage and enhance security and authentication functionality
+1. [Flask-PyMongo 2.3.0:](https://pypi.org/project/Flask-PyMongo/) - MongoDB support for Flask applications.
+1. [dnspython 2.0.0:](https://pypi.org/project/dnspython/)- Libraries used to interface with MongoDB
+1. [imdbPY 2020.9.25:](https://imdbpy.github.io/)- imdbPy is a Python library used to process and manage the interactions between the site and IMDb API before rendering information to the front end.
+1. [IMDb API:](https://developer.imdb.com/) - Used by imdbPY to retrieve information about screen titles
+1. [MongoDB:](https://www.mongodb.com/)- Cloud based  general purpose, document-oriented, distributed Database
+1. [Heroku](https://devcenter.heroku.com/categories/reference). -  Use to deploy python based apps
+1. [GitPod:](https://www.gitpod.io/)- Used as the IDE to develop the project
+1. [Git](https://git-scm.com/) - Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
+1. [GitHub:](https://github.com/) - GitHub is used to store the projects code after being pushed from Git.
+1. [Microsoft Paint:](https://en.wikipedia.org/wiki/Microsoft_Paint)  - Microsoft Paint was used to create the responsive image for the ReadMe.md and to capture the balsamiq & wireframe images in a generic format.
+1. [Balsamiq:](https://balsamiq.com/) - Balsamiq was used to create the [wireframes](assets/wireframes/lightTheme/desktopOnlyWireframes_lightTheme.JPG) during the design process.
 
 --------
 ##  Testing 
@@ -393,63 +334,45 @@ Ask Num | Scenario                                                              
 assets/images/detail_desktop_view.jpg) Window Sizes
     - Click to View the Manage Collections View for [Small](assets/images/manage_collections_mobile_view.jpg), [Medium](assets/images/manage_collections_tablet_view.jpg) & [Large](assets/images/manage_collections_desktop_view.jpg) Window Sizes
 
-*   The ReadMe.md page was tested using the [Markdown Live Preview](https://markdownlivepreview.com/)
+* The ReadMe.md page was tested using the [Markdown Live Preview](https://markdownlivepreview.com/)
 
-*   The HTML code was tested using the [W3C HTML Validator](https://validator.w3.org/#validate_by_input).
+* The HTML code was tested using the [W3C HTML Validator](https://validator.w3.org/#validate_by_input).
     - Mutiple errors were highlighted however the majority related to the W3C utility being unable to process jinga.
 
 *   The HTML semantic elements were also checked against [w3schools.com Semantic definitions](https://www.w3schools.com/html/html5_semantic_elements.asp#:~:text=or%20Vice%20Versa%3F-,The%20element%20specifies%20independent%2C%20self%2Dcontained%20content,defines%20section%20in%20a%20document.)
 
 *   The CSS code was tested using the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/)
-    - One warning remains. An unrecognised materialize vendor extension.
+    - ***! Note: One warning remains. An unrecognised materialize vendor extension.***
 
 *   The JavaScript code was validated using [JSHint](https://jshint.com/)
-    -   2 Warnings remain. Both are associated with external js snippet provided  during the Putting It All Together Tutorial for the materialize select issue.
+    - ***! Note: 2 Warnings remain. Both are associated with external js snippet provided  during the Putting It All Together Tutorial for the materialize select issue.***
 
 *   The Python code was validated using  [PEP8 Online](http://pep8online.com/)
-    - No warnings or errors were returned.
+    - ***! Note: No warnings or errors were returned.***
 
 --------
 
 ## Deployment
 
-### GitHub Pages
+The project can be deployed to Heroku using the following steps...
 
-The project was deployed to GitHub Pages using the following steps...
+### Making a Local Clone of the GitHub Repository
 
-1. Log in to GitHub and locate the [GitHub Repository](https://github.com/kencormican/milestoneProjectThree) from the list of available repos.
-2. At the top of the Repository (not top of page), locate the "Settings" Button on the menu.
-3. Scroll down the Settings page until you locate the "GitHub Pages" Section.
-4. Under "Source", click the dropdown called "None" and select "Master Branch".
-5. The page will automatically refresh.
-6. Scroll back down through the page to locate the now published site [link](https://kencormican.github.io/milestoneProjectTwo/) in the "GitHub Pages" section.
-    - Note* to function correctly the main html page must be named "index.html"
-
-### Forking the GitHub Repository
-
-By forking the GitHub Repository we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository by using the following steps...
-
-1. Log in to GitHub and locate the [GitHub Repository](https://github.com/kencormican/milestoneProjectThree)
-2. At the top of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
-3. You should now have a copy of the original repository in your GitHub account.
-
-### Making a Local Clone
-
-1. Log in to GitHub and locate the [GitHub Repository](https://github.com/kencormican/milestoneProjectThree)
+1. Log in to GitHub and locate the [GitHub Repository]( https://github.com/kencormican/milestoneProjectThree)
 2. Under the repository name, click "Clone or download".
 3. To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
-4. Open Git Bash
+4. Open Git Bash on GitPod or your IDE of choice
 5. Change the current working directory to the location where you want the cloned directory to be made.
 6. Type `git clone`, and then paste the URL you copied in Step 3.
 
 ```
-$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+$ git clone https://github.com/kencormican/milestoneProjectThree.git
 ```
 
 7. Press Enter. Your local clone will be created.
 
 ```
-$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+$ git clone https://github.com/kencormican/milestoneProjectThree.git
 > Cloning into `CI-Clone`...
 > remote: Counting objects: 10, done.
 > remote: Compressing objects: 100% (8/8), done.
@@ -459,98 +382,168 @@ $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 
 Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository#cloning-a-repository-to-github-desktop) to retrieve pictures for some of the buttons and more detailed explanations of the above process.
 
-
 --------
 
-### If running locally on an IDE such as GitPoD
+
+### Local Development
+To run this project locally on your system - you will need the following components installed on your system:
+
+* Python 3.7 including PIP.
+* An IDE for example - GitPod.
+* GIT for cloning and version control.
+* MongoDB to manage the database either locally or remotely on MongoDB Atlas.
+
+
+### Creating MongoDB Database and Collection
+
+On MongoDB create the Database Collections and documents described below
+
+Movie Catalogue Database Overview
+
+#### MongoDB libraries collection
+
+Key             | Value                      | Type                                                                                                   	 		       |
+:--             | :--------------------------| :--------------------------------------------------------------------------------------------------------------------   |
+library_id      | .id                        | ObjectId                                                                                                                |
+created_by      | user                       | string                                                                                                                  |
+library_name    | libarary                   | string                                                                                                                  |
+
+#### titles collection
+Key             | Value                      | Type                                                                                                   	 		       |
+:--             | :--------------------------| :--------------------------------------------------------------------------------------------------------------------   |
+title_id        | .id                        | ObjectId                                                                                                                |
+library_name    | library_name               | string                                                                                                                  |
+title_name      | title_name                 | string                                                                                                                  |
+release_year    | release_year               | string                                                                                                                  |
+description     | description                | string                                                                                                                  |
+genre           | genre                      | string                                                                                                                  |
+director        | director                   | string                                                                                                                  |
+cast            | cast                       | string                                                                                                                  |
+duration        | duration                   | string                                                                                                                  |
+image_url       | image_url                  | string                                                                                                                  |
+is_watched      | is_watched                 | string                                                                                                                  |
+is_bluray       | is_bluray                  | string                                                                                                                  |
+my_rating       | my_rating                  | string                                                                                                                  |
+purchase_price  | purchase_price             | string                                                                                                                  |purchase_date   | purchase_date              | string                                                                                                                  |
+created_by      | user                       | string                                                                                                                  |
+
+#### users collection
+Key             | Value                      | Type                                                                                                   	 		       |
+:--             | :--------------------------| :--------------------------------------------------------------------------------------------------------------------   |
+user_id         | .id                        | Objectid                                                                                                                |
+first_name      | first_name                 | string                                                                                                                  |
+last_name       | last_name                  | string                                                                                                                  |
+username        | username                   | string                                                                                                                  |
+password        | password                   | string                                                                                                                  |
+
+
+
+### Then on IDE BASH terminal
 
 1. Install all local dependencies including Flask, PyMongo & dnspython
 
 ```
->pip3 install Flask
->pip3 install flask-pymongo
->pip3 install dnspython
+ pip3 install Flask
+ pip3 install flask-pymongo
+ pip3 install dnspython
 ```
 
-2. Create env.py file and .gitignore .
+2. Create env.py and .gitignore 
 
 ```
->touch env.py
->touch .gitignore
+ touch env.py
+ touch .gitignore
 ```
 
-3. Target env.py with .gitignore
+3. Target env.py with .gitignore 
 
 ```
->__pycache__/
->env.py
+ __pycache__/
+ env.py
 ```
 
-4. Store all sensitive data including mongoDB URI, passoword, dbname ip port and secret key,  as environmental variable within env.py
-```
->import os
->os.environ.setdefault("IP", "0.0.0.0")
->os.environ.setdefault("PORT", "5000")
->os.environ.setdefault("SECRET_KEY", "your_secret_key_here")
->os.environ.setdefault("MONGO_URI", "mongodb+srv://<USERNAME>:<PASSWORD>@<CLUSTER>-4g3i1.mongodb.net/<DBNAMEW>?retryWrites=true&w=majority")
->os.environ.setdefault("MONGO_DBNAME", "<DBNAMEW>")
-```
-
-
-5. Copy the URI from the mongoDB connect option directly to the env.py file.
-
-
-6. Link the app.py with the environmental variables and flask libraries.
+4. Store all sensitive data including mongoDB URI, passoword, dbname ip, port and secret key,  as environmental variable within env.py
 
 ```
->import os
->from flask import (
->    Flask, flash, render_template,
->    redirect, request, session, url_for)
->from flask_pymongo import PyMongo
->from bson.objectid import ObjectId
->if os.path.exists("env.py"):
->    import env
->
->
->app = Flask(__name__)
->
->app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
->app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
->app.secret_key = os.environ.get("SECRET_KEY")
->
->mongo = PyMongo(app)
->
->
->if __name__ == "__main__":
->    app.run(host=os.environ.get("IP"),
->            port=int(os.environ.get("PORT")),
->            debug=True)
+ import os
+ os.environ.setdefault("IP", "0.0.0.0")
+ os.environ.setdefault("PORT", "5000")
+ os.environ.setdefault("SECRET_KEY", "your_secret_key_here")
+ os.environ.setdefault("MONGO_URI", "mongodb+srv://<USERNAME>:<PASSWORD>@<CLUSTER>-4g3i1.mongodb.net/<DBNAMEW>?retryWrites=true&w=majority")
+ os.environ.setdefault("MONGO_DBNAME", "<DBNAMEW>")
 ```
 
+5. Log into MongDB and select Connect.  
+6. Select the appropriate OS and language settings for the connection string
+7. Copy the connect string and irectly to the env.py MONGO_URI variable.
+8. Update the env.py variable with teh appropraite MONGO_DBNAME
+9. From the IDE BASH terminal run app.py locally using:
 
-7. Run app.py locally on the ide using:
 ```
->python3 app.py
+python3 app.py
 ```
 
-### Heroku Deployment
+10. Open Port 8080 to launch the app locally
+11. Verify app functionality
 
-1. Create a requirements.txt file using the terminal command pip3 freeze > requirements.txt
+--------
 
-2.	Create a Procfile with the terminal command 
-echo web: python app.py > Procfile
-3.	Git add and git commit the new Procfile and requirements.txt files to GitHub.
+### Deploy To Heroku
 
-4.	Create a new app on Heroku website by clicking “New” give it a name and assign it to you nearest region USA or Europe.
+#### Setup Requirements:
+Make sure requirements.txt is up to date.  
+requirements.txt tells Heroku what dependencies need to be installed to run the app.
 
-5. From the Heroku dashboard select GitHub as the Deployment method
+1.  Goto the Bash Terminal
+2.  Type the following: 
 
-6. Link the Heroku app to the correct GitHub repository.
+```
+ pip3 freeze --local > requirements.txt
+```
+3.  Push all changes to GitHub.
 
-7. In the Heroku dashboard for your app click on settings “Reveal Config Vars”
+#### Setup Procfile:
+Heroku looks for this Procfile to find out which file runs the app and how to run it.
 
-8. Set the following vars
+1.  Goto the Bash Terminal.
+2.  Type the following: 
+
+```
+ echo web: python app.py > Procfile
+
+```
+3.  Open the Procfile, and if there is an empty line, delete it as it can cause problems with Heroku.
+4.  Push file to GitHub.
+
+### Heroku:
+
+#### Create a new application:
+
+1.  Goto the Heroku Dashboard.
+2.  Click New.
+3.  Select to create a new app.
+4.  The Heroku app name must be unique, use "–" instead of spaces, and use lower case letters.
+5.  kjc-movie-catalogue-milestone3 the name I picked for this application.
+6.  Select the region closest – In my case Europe
+7.  Click create app.
+
+#### Connecting to the GitHub repository:
+There are several ways to connect this or any app. You can use Heroku CLI to connect as outlined on the Heroku site. However its simpler to deploy the site from Github, 
+that way you only need to push to GitHub.
+
+1.  Select Github, from the Deployment method section, on the Deploy Tab.
+2.  Make sure your GitHub id is displayed and then enter the GitHub repository name and click search.
+3.  Once it finds the repository, click connect, to connect to the repository.
+
+#### Setup the Config Vars.
+Attempting to deploy at this stage would result in some unwanted application errors, 
+this is because we have hidden our environment variables inside the env file, 
+and this is not available to Heroku.
+
+1.  Click on settings.
+2.  Click on **Reveal Config Vars**.
+3.  This is where we tell Heroku what secret variables are required. 
+Add the Key-Value pairs as follows: 
 
 |  |  |
 |--|--|
@@ -558,28 +551,33 @@ echo web: python app.py > Procfile
 | IP |  0.0.0.0|
 | PORT |5000  |
 | SECRET_KEY | your_secret |
-|MONGO_URI  |  mongodb+srv://<USERNAME>:<PASSWORD>@<CLUSTER>-4g3i1.mongodb.net/<DBNAMEW>?retryWrites=true&w=majority|
+|MONGO_URI  |  mongodb+srv://<USERNAME>:<PASSWORD>@<CLUSTER>-4g3i1.mongodb.net/<DBNAME>?retryWrites=true&w=majority|
 
-9. in the “Manual Deployment” section of the page, make sure master branch is selected and then click “Deploy Branch”
+***! Note: You can retriev this information from the local copy of the env.py file***   
 
+4.  Click on **Hide Config Vars**.
 
+#### Automatic Deployment:
+Once the Config Vars has been entered you are ready for Automatic Deployment.
 
+1.  Click on the Deploy Tab.
+2.  Click enable automatic deploys.
+3.  Select the master branch.
+4.  Click Deploy branch
 
+#### The Project is now deployed.
+
+--------
 
 ## Credits
 
 ### Code
 
 -   As part of the preparation for this project I reviewed the several systems for streaming online content to gauge how best to approach the design and planning stages. These sites included but were not limited to Netflix, NowTV, the RTE Player and Plex.
-
 -	The Edit and Add Title Template Star Ratings CSS & HTML Code was extracted from an [External Code Snippet](http://code.iamkate.com/html-and-css/star-rating-widget/#css ) provided by Kate Rose Morley.
-
 - 	The jquery code resolving the Materialize select issue was taken directly from the Code Institute "Materilaize Form Validation" Tutorial and source code link provided by Tim Nelson. 
-
 -	The code and logic used to create this project was heavily influenced by the CI Practical Python and Data Centric Development Modules. In particular the "Putting it all Together" MongoDB and Flask tutorials provided by Tim Nelson and the Code Institute team.
-
 -   [Materialize](https://materializecss.com/): Materialize Library used throughout the project mainly to make site responsive using the Materialize Grid System.
-
 -   [w3schools.com](https://www.w3schools.com/default.asp) : For Javascript, Python, HTML & CSS Tutorials
 
 
